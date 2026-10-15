@@ -1,1223 +1,1247 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un reto para Gaby 💜</title>
-
-<style>
+<meta name="theme-color" content="#090610">
+<title>Una misión secreta para Gaby</title><style>
 :root {
-    --morado: #9d4edd;
-    --rosa: #ff4fd8;
-    --azul: #39d5ff;
-    --fondo: #080510;
+  --pink: #ff2d75;
+  --purple: #9d4dff;
+  --blue: #35d9ff;
+  --gold: #ffd66b;
+  --dark: #090610;
+  --panel: rgba(25, 16, 40, .91);
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background:
-        radial-gradient(ellipse at top, #38105e 0%, transparent 55%),
-        radial-gradient(ellipse at bottom, #170a38 0%, transparent 60%),
-        var(--fondo);
-    overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  color: white;
+  background:
+    radial-gradient(ellipse at 50% 0%, #382050 0%, transparent 55%),
+    linear-gradient(160deg, #090610, #160a27 65%, #07050c);
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        120deg,
-        transparent 0px,
-        transparent 70px,
-        rgba(180, 70, 255, .035) 71px,
-        transparent 73px
-    );
-    z-index: -1;
+button, input { font: inherit; }
+
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.luces {
-    position: fixed;
-    top: -120px;
-    left: 10%;
-    width: 80%;
-    height: 400px;
-    background: radial-gradient(
-        ellipse,
-        rgba(165, 55, 255, .19),
-        transparent 70%
-    );
-    filter: blur(35px);
-    pointer-events: none;
-    animation: luces 5s ease-in-out infinite alternate;
-    z-index: -1;
+/* NUEVA PANTALLA INICIAL */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #382050 0%, transparent 55%),
+    linear-gradient(160deg, #090610, #160a27 65%, #07050c);
 }
 
-@keyframes luces {
-    from { opacity: .45; transform: scale(.9); }
-    to { opacity: 1; transform: scale(1.15); }
+#intro-screen.hidden {
+  display: none;
 }
 
-.particula {
-    position: fixed;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--rosa);
-    box-shadow: 0 0 12px var(--rosa);
-    animation: flotar linear infinite;
-    pointer-events: none;
-    z-index: -1;
+.intro-content {
+  width: min(100%, 480px);
+  padding: 30px 22px;
+  border: 1px solid #ffffff25;
+  border-radius: 24px;
+  background: rgba(25, 16, 40, .91);
+  box-shadow: 0 15px 55px #0006, 0 0 30px #9d4dff20;
+  animation: appear .8s ease both;
 }
 
-@keyframes flotar {
-    from {
-        transform: translateY(110vh);
-        opacity: 0;
-    }
-    15% { opacity: 1; }
-    to {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
+.intro-icon {
+  font-size: 75px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 20px #a64dff75);
 }
 
-header {
-    padding: 24px 15px 10px;
+.intro-content h1 {
+  font-size: clamp(32px, 8vw, 48px);
+  line-height: 1;
+  margin: 25px 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 0 25px #a63dff75;
 }
 
-.etiqueta {
-    display: inline-block;
-    padding: 8px 15px;
-    border: 1px solid rgba(255, 79, 216, .6);
-    border-radius: 30px;
-    color: #ffc8f5;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    box-shadow: 0 0 15px rgba(255, 79, 216, .15);
+.intro-content p {
+  color: #c5b8d7;
+  line-height: 1.65;
 }
 
-h1 {
-    font-size: clamp(30px, 8vw, 55px);
-    margin: 18px 0 10px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(
-        90deg,
-        #fff,
-        #ff79e5,
-        #a879ff,
-        #67e8ff
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: brillo 4s linear infinite;
+#accept-challenge {
+  margin-top: 25px;
+  animation: pulse 1.2s infinite alternate;
 }
 
-@keyframes brillo {
-    to { background-position: 200% center; }
+#lights {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.subtitulo {
-    color: #d8c8f0;
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 550px;
-    margin: 0 auto;
+.light {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 12px 3px var(--blue);
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1.8); }
+}
+
+header, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+header { padding: 18px 12px 0; }
+
+.brand {
+  display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid #ffffff45;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--blue);
+  background: #100a1dbb;
 }
 
 main {
-    width: min(100% - 30px, 720px);
-    margin: 15px auto 45px;
+  width: min(94%, 680px);
+  margin: 0 auto;
+  padding: 22px 0 45px;
 }
 
-.panel {
-    background: rgba(19, 10, 35, .83);
-    border: 1px solid rgba(171, 100, 255, .42);
-    border-radius: 22px;
-    padding: 25px 18px;
-    box-shadow:
-        0 0 35px rgba(144, 54, 255, .13),
-        inset 0 0 25px rgba(255, 255, 255, .015);
-    backdrop-filter: blur(10px);
-    animation: aparecer .6s ease;
-}
-
-@keyframes aparecer {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.oculto {
-    display: none !important;
+h1 {
+  font-size: clamp(32px, 8vw, 58px);
+  line-height: 1;
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 0 25px #a63dff75;
 }
 
 h2 {
-    color: #ffb5f0;
-    font-size: clamp(23px, 6vw, 32px);
-    margin-top: 0;
+  font-size: clamp(23px, 5vw, 34px);
+  margin-top: 10px;
 }
 
-p {
-    line-height: 1.7;
+p { line-height: 1.65; }
+
+.neon {
+  color: var(--pink);
+  text-shadow: 0 0 15px #ff2d7590;
 }
 
-.texto-suave {
-    color: #c9bada;
-    font-size: 14px;
+.muted { color: #c5b8d7; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #ffffff20;
+  border-radius: 24px;
+  padding: 25px 18px;
+  box-shadow: 0 15px 55px #0006, 0 0 25px #9d4dff12;
+  backdrop-filter: blur(12px);
+  margin: 20px 0;
 }
 
-.boton {
-    display: inline-block;
-    border: 0;
-    border-radius: 12px;
-    padding: 15px 22px;
-    margin: 12px 4px 0;
-    color: white;
-    font-size: 14px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    cursor: pointer;
-    background: linear-gradient(110deg, #9d4edd, #ec38bc);
-    box-shadow: 0 0 24px rgba(207, 68, 255, .3);
-    transition: transform .2s, filter .2s;
+.screen {
+  display: none;
+  animation: appear .55s ease both;
 }
 
-.boton:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.15);
+.screen.active { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.boton:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-    transform: none;
+button.primary {
+  border: none;
+  border-radius: 15px;
+  padding: 16px 23px;
+  width: 100%;
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(100deg, #ed2674, #833cff);
+  box-shadow: 0 7px 25px #a52cff42;
+  transition: transform .2s, filter .2s;
+  margin-top: 14px;
 }
 
-.boton-aceptar {
-    background: linear-gradient(110deg, #ff2e88, #9d4edd);
-    font-size: 16px;
-    padding: 19px 25px;
-    animation: latido 1.7s infinite;
+button.primary:active { transform: scale(.97); }
+
+button.secondary {
+  background: #ffffff0c;
+  border: 1px solid #ffffff30;
+  color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 12px;
 }
 
-@keyframes latido {
-    0%, 100% { box-shadow: 0 0 16px rgba(255, 46, 136, .35); }
-    50% { box-shadow: 0 0 34px rgba(255, 46, 136, .75); }
+.icon {
+  font-size: 65px;
+  margin: 12px 0;
+  filter: drop-shadow(0 0 20px #a64dff75);
 }
 
-.progreso-contenedor {
-    width: 100%;
-    height: 6px;
-    background: #281638;
-    border-radius: 10px;
-    margin: 0 0 22px;
-    overflow: hidden;
+.musicbar {
+  position: sticky;
+  top: 8px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #100b1bef;
+  border: 1px solid #ffffff25;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 14px auto;
+  font-size: 12px;
 }
 
-#progreso {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--rosa), var(--azul));
-    transition: width .5s;
+.musicbar button {
+  border: 1px solid #ffffff30;
+  border-radius: 20px;
+  background: #ffffff10;
+  color: white;
+  padding: 8px 12px;
 }
 
-.numero-paso {
-    color: #bca6d7;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
+.progress-wrap {
+  height: 5px;
+  background: #ffffff15;
+  border-radius: 20px;
+  margin: 20px 0;
+  overflow: hidden;
 }
 
-.cajas {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 9px;
-    margin: 32px auto 20px;
-    max-width: 500px;
+#progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  transition: width .5s;
 }
 
-.caja {
-    position: relative;
-    width: 31%;
-    min-width: 0;
-    padding: 0;
-    border: 1px solid rgba(198, 128, 255, .7);
-    border-radius: 15px;
-    background: linear-gradient(145deg, #40166b, #170b2c);
-    min-height: 140px;
-    cursor: pointer;
-    color: white;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
-    transition:
-        left .65s ease-in-out,
-        transform .2s,
-        border-color .2s,
-        box-shadow .2s;
+#stage-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--blue);
+  text-transform: uppercase;
 }
 
-.caja:hover:not(:disabled) {
-    transform: translateY(-7px);
-    border-color: var(--rosa);
-    box-shadow: 0 0 22px rgba(255, 79, 216, .25);
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 25px 0 10px;
 }
 
-.caja:disabled {
-    cursor: default;
+.mystery-box {
+  min-width: 0;
+  border: 1px solid #ffffff30;
+  border-radius: 15px;
+  padding: 18px 4px;
+  background: linear-gradient(145deg, #392052, #171020);
+  color: white;
+  font-size: 37px;
+  box-shadow: inset 0 0 20px #ffffff05, 0 7px 15px #0005;
+  transition: transform .2s, border-color .2s;
 }
 
-.icono-caja {
-    display: block;
-    font-size: clamp(40px, 11vw, 65px);
-    margin: 15px 0 8px;
-    filter: drop-shadow(0 0 10px rgba(255, 79, 216, .4));
+.mystery-box:active { transform: scale(.95); }
+
+.mystery-box span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  color: #d7c8e7;
 }
 
-.nombre-caja {
-    display: block;
-    font-size: 11px;
-    letter-spacing: 2px;
-    padding-bottom: 15px;
-    color: #e5c8ff;
+.mystery-box:disabled {
+  cursor: default;
+  opacity: .9;
 }
 
-.estrellita {
-    position: absolute;
-    top: -19px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 27px;
-    filter: drop-shadow(0 0 9px #ffe66d);
-    animation: flotarEstrella .8s ease-in-out infinite alternate;
+#box-result {
+  min-height: 55px;
+  font-weight: bold;
 }
 
-@keyframes flotarEstrella {
-    to { transform: translateX(-50%) translateY(-5px); }
+input[type="text"] {
+  width: 100%;
+  border: 1px solid #ffffff30;
+  background: #090610;
+  color: white;
+  padding: 17px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 13px;
+  outline: none;
+  letter-spacing: 3px;
+  margin: 15px 0 5px;
 }
 
-.mensaje {
-    min-height: 25px;
-    margin: 15px 0;
-    font-weight: bold;
-    color: #ffd5f6;
+input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 18px #35d9ff22;
 }
 
-#codigo {
-    width: min(100%, 300px);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #a66bdf;
-    background: #10091d;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    letter-spacing: 4px;
-    outline: none;
-    text-transform: uppercase;
+#code-feedback { min-height: 28px; }
+
+.answers {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-#codigo:focus {
-    border-color: var(--rosa);
-    box-shadow: 0 0 15px rgba(255, 79, 216, .2);
+.answer {
+  width: 100%;
+  text-align: left;
+  padding: 16px;
+  color: white;
+  background: #ffffff08;
+  border: 1px solid #ffffff25;
+  border-radius: 13px;
+  line-height: 1.5;
+  transition: .2s;
 }
 
-.opciones {
-    display: grid;
-    gap: 12px;
-    margin-top: 20px;
+.answer:hover {
+  border-color: var(--purple);
+  background: #9d4dff16;
 }
 
-.opcion {
-    padding: 16px 12px;
-    border: 1px solid #644081;
-    background: #1b1030;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: .2s;
+.answer:disabled { opacity: .8; }
+
+#quiz-feedback {
+  min-height: 35px;
+  font-weight: bold;
 }
 
-.opcion:hover {
-    background: #392050;
-    border-color: var(--rosa);
+.count-number {
+  font-size: clamp(100px, 30vw, 180px);
+  font-weight: 900;
+  color: var(--pink);
+  text-shadow: 0 0 45px #ff2d7588;
+  line-height: 1;
+  animation: pulse .8s infinite alternate;
 }
 
-.opcion:disabled {
-    cursor: default;
-    opacity: .8;
+@keyframes pulse {
+  to { transform: scale(1.06); }
 }
 
-#cuenta {
-    font-size: clamp(80px, 20vw, 135px);
-    font-weight: 900;
-    line-height: 1.2;
-    color: white;
-    text-shadow:
-        0 0 15px var(--rosa),
-        0 0 45px var(--morado);
+.ticket {
+  position: relative;
+  color: #201126;
+  background: linear-gradient(135deg, #fff6df, #ffd7ed);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: left;
+  margin: 20px 0;
+  box-shadow: 0 0 35px #ff2d7530;
 }
 
-#revelacion {
-    color: #ffb8ef;
-    font-size: clamp(27px, 7vw, 40px);
-    font-weight: 900;
-    text-transform: uppercase;
+.ticket-top {
+  padding: 18px;
+  color: white;
+  background: linear-gradient(100deg, #29143f, #7b1d72, #29143f);
+  text-align: center;
 }
 
-.boletos {
-    display: grid;
-    gap: 16px;
-    margin: 25px 0;
+.ticket-top small {
+  letter-spacing: 4px;
+  color: #ffb9df;
 }
 
-.boleto {
-    position: relative;
-    overflow: hidden;
-    border: 2px dashed #ff69d5;
-    border-radius: 15px;
-    padding: 20px 12px;
-    background:
-        radial-gradient(circle at 0% 0%, rgba(255, 79, 216, .25), transparent 50%),
-        linear-gradient(135deg, #25113f, #110a22);
-    text-align: left;
+.ticket-top h3 {
+  margin: 10px 0 3px;
+  font-size: 27px;
 }
 
-.boleto::after {
-    content: "✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦";
-    display: block;
-    color: #e6a1ff;
-    font-size: 12px;
-    letter-spacing: 7px;
-    margin-top: 12px;
+.ticket-body { padding: 20px; }
+
+.ticket-title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0 0 12px;
 }
 
-.boleto h3 {
-    color: #ffb6ec;
-    margin: 0 0 10px;
-    font-size: 22px;
+.ticket-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 10px;
+  margin: 18px 0;
 }
 
-.boleto .gaby {
-    font-size: 25px;
-    font-weight: 900;
-    margin: 8px 0;
+.ticket-info small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #765b78;
+  margin-bottom: 4px;
 }
 
-.boleto small {
-    color: #d7c3ee;
-    line-height: 1.7;
+.ticket-info strong { font-size: 14px; }
+
+.ticket-divider {
+  border-top: 2px dashed #9d668c88;
+  margin: 18px 0;
 }
 
-.aviso-boleto {
-    text-align: center;
-    font-size: 11px;
-    color: #bda7d5;
-    margin-top: 10px;
+.ticket-number {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #785c78;
 }
 
-.mensaje-final {
-    border-top: 1px solid rgba(255, 105, 213, .35);
-    margin-top: 25px;
-    padding-top: 25px;
-    color: #f4e8ff;
-    text-align: left;
+.ticket-footer {
+  padding: 15px;
+  background: #f7c9e3;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
 }
 
-.mensaje-final h3 {
-    text-align: center;
-    color: #ffb6ec;
+#confetti {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
 }
 
-.corazon {
-    font-size: 38px;
-    display: block;
-    text-align: center;
-    animation: latidoCorazon 1.1s infinite;
+.balloon {
+  position: fixed;
+  bottom: -150px;
+  z-index: 50;
+  font-size: 42px;
+  animation: floatUp 5s linear forwards;
+  pointer-events: none;
 }
 
-@keyframes latidoCorazon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+@keyframes floatUp {
+  to {
+    transform: translateY(-120vh) rotate(15deg);
+    opacity: 0;
+  }
 }
+
+.heart { color: var(--pink); }
 
 footer {
-    padding: 0 15px 30px;
-    color: #806c9b;
-    font-size: 11px;
-    letter-spacing: 2px;
+  padding: 15px;
+  color: #8f809e;
+  font-size: 11px;
 }
 
-#celebracion {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 10;
+.shake { animation: shake .35s; }
+
+@keyframes shake {
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
 }
 
-.confeti {
-    position: absolute;
-    top: -20px;
-    animation: caer 3.5s linear forwards;
+@media (max-width: 380px) {
+  .panel { padding: 20px 13px; }
+  .mystery-box { font-size: 30px; }
+  .ticket-info strong { font-size: 12px; }
 }
 
-@keyframes caer {
-    to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-    }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
+</style></head><body><!-- NUEVA PANTALLA DE INICIO --><div id="intro-screen">
+  <div class="intro-content">
+    <div class="intro-icon">🔐</div><div class="brand">GABY'S SECRET MISSION ✦ SKZ</div>
 
-@media (max-width: 420px) {
-    .panel {
-        padding: 22px 13px;
-    }
+<h1>¿ACEPTAS EL <span class="neon">RETO?</span></h1>
 
-    .caja {
-        min-height: 120px;
-    }
+<p>
+  Agente Gaby, tienes una misión secreta que cumplir.
+  Supera los desafíos y descubre la sorpresa que
+  papá preparó especialmente para ti.
+</p>
 
-    .nombre-caja {
-        letter-spacing: 1px;
-        font-size: 10px;
-    }
-}
-</style>
-</head>
+<div style="font-size:38px;margin:20px">🎤 ✨ 🎁</div>
 
-<body>
+<button
+  id="accept-challenge"
+  class="primary"
+  type="button"
+  onclick="acceptChallenge()">
+  ¡ACEPTO EL RETO! 🚀
+</button>
 
-<div class="luces"></div>
-<div id="particulas"></div>
-<div id="celebracion"></div>
+<p style="font-size:11px;margin-top:18px">
+  SOLO PARA GABY · ACCESO ULTRASECRETO
+</p>
 
-<header>
-    <div class="etiqueta">✦ Una misión especial ✦</div>
-    <h1>Gaby's Challenge</h1>
-    <p class="subtitulo">
-        Una sorpresa preparada especialmente para alguien muy especial.
+  </div>
+</div><div id="lights"></div>
+<canvas id="confetti"></canvas><header>
+  <div class="brand">GABY'S SECRET MISSION ✦ SKZ</div>
+</header><main>  <div class="musicbar">
+    <span>🎧 MODO CONCIERTO</span>
+    <button id="music-toggle" type="button">▶ Activar música</button>
+  </div>  <audio id="bg-music" loop preload="none">
+    <source src="straykids.mp3" type="audio/mpeg">
+  </audio>  <audio id="win-sound" preload="auto">
+    <source src="victoria.mp3" type="audio/mpeg">
+  </audio>  <audio id="wrong-sound" preload="auto">
+    <source src="error.mp3" type="audio/mpeg">
+  </audio>  <div class="progress-wrap">
+    <div id="progress"></div>
+  </div>  <div id="stage-label">Misión 01 · Acceso autorizado</div>  <!-- PANTALLA 1: BIENVENIDA -->  <section class="screen active" id="welcome">
+    <div class="panel">
+      <div class="icon">🌌</div>  <p class="neon" style="letter-spacing:4px;font-weight:bold">
+    ATENCIÓN, GABY
+  </p>
+
+  <h1>Hay una sorpresa<br>
+  <span class="neon">para ti</span></h1>
+
+  <p>¡Bienvenida a tu misión secreta!</p>
+
+  <p class="muted">
+    Una aventura especial te está esperando.
+    Pero para descubrirla tendrás que demostrar
+    que tienes lo necesario para superar todos
+    los retos.
+  </p>
+
+  <p>¿Estás lista para desbloquear tu sorpresa?</p>
+
+  <div style="font-size:38px;margin:18px">🎤 ✨ 🎶</div>
+
+  <button class="primary" onclick="startMission()">
+    COMENZAR MISIÓN 🚀
+  </button>
+
+  <p class="muted" style="font-size:11px">
+    Solo para Gaby · Acceso ultrasecreto
+  </p>
+</div>
+
+  </section>  <!-- PANTALLA 2: LAS CAJAS -->  <section class="screen" id="boxes-screen">
+    <div class="panel">
+      <div class="icon">🎁</div>  <h2>El reto de las <span class="neon">cajas misteriosas</span></h2>
+
+  <p class="muted">
+    Una estrella ganadora está escondida en una
+    de estas tres cajas.
+  </p>
+
+  <p>Observa bien. ¡La suerte está de tu lado!</p>
+
+  <div class="boxes" id="boxes">
+    <button class="mystery-box" onclick="chooseBox(0)">
+      🎁<span>CAJA 01</span>
+    </button>
+
+    <button class="mystery-box" onclick="chooseBox(1)">
+      🎁<span>CAJA 02</span>
+    </button>
+
+    <button class="mystery-box" onclick="chooseBox(2)">
+      🎁<span>CAJA 03</span>
+    </button>
+  </div>
+
+  <div id="box-result" aria-live="polite">
+    Elige una caja para descubrir lo que esconde.
+  </div>
+
+  <button id="retry-box" class="secondary"
+          onclick="resetBoxes()" hidden>
+    🔄 INTENTAR OTRA VEZ
+  </button>
+
+  <div id="box-success" hidden>
+    <p class="neon">¡LO LOGRASTE, GABY! ⭐</p>
+
+    <p>
+      Has encontrado la estrella ganadora.
+      Pero tu siguiente pista no está aquí...
     </p>
-</header>
 
-<main>
-
-    <div class="progreso-contenedor">
-        <div id="progreso"></div>
+    <div class="panel">
+      <div style="font-size:40px">🎒</div>
+      <strong>¡VE A LA MOCHILA DE PAPÁ!</strong>
+      <p class="muted">
+        Busca el código secreto que está escondido
+        allí. Lo necesitarás para desbloquear
+        el siguiente nivel.
+      </p>
     </div>
 
-    <!-- PANTALLA INICIAL -->
-    <section id="pantallaInicio" class="panel">
-        <div style="font-size:65px; margin-bottom:10px;">💜</div>
+    <button class="primary" onclick="showScreen('code-screen',2)">
+      YA TENGO EL CÓDIGO 🔐
+    </button>
+  </div>
+</div>
 
-        <div class="numero-paso">ATENCIÓN, GABY</div>
+  </section>  <!-- PANTALLA 3: CÓDIGO -->  <section class="screen" id="code-screen">
+    <div class="panel">
+      <div class="icon">🔐</div>  <h2>Acceso <span class="neon">restringido</span></h2>
 
-        <h2>Gaby, tus papás te han puesto un reto.</h2>
+  <p>
+    Agente Gaby, introduce el código que encontraste
+    en la mochila de papá.
+  </p>
 
-        <p>
-            Hemos preparado algo muy especial para ti, pero primero
-            tendrás que superar unas pruebas.
-        </p>
+  <form id="code-form">
+    <input id="secret-code"
+           type="text"
+           placeholder="CÓDIGO SECRETO"
+           autocomplete="off"
+           aria-label="Código secreto"
+           maxlength="20"
+           required>
 
-        <p style="color:#ffb6ec; font-weight:bold; font-size:19px;">
-            ¿Lo aceptas?
-        </p>
+    <button class="primary" type="submit">
+      DESBLOQUEAR NIVEL 🔓
+    </button>
+  </form>
 
-        <p class="texto-suave">
-            Piensa bien tus respuestas, sigue las pistas y descubre
-            la sorpresa que te espera al final.
-        </p>
+  <p id="code-feedback" aria-live="polite"></p>
 
-        <button class="boton boton-aceptar" id="botonAceptar"
-                onclick="aceptarReto()">
-            ¡ACEPTO EL RETO! 💜
-        </button>
-    </section>
+  <p class="muted" style="font-size:12px">
+    Pista: el código está donde papá guarda
+    algunas de sus cosas.
+  </p>
+</div>
 
-    <!-- JUEGO DE LAS CAJAS -->
-    <section id="pantallaCajas" class="panel oculto">
-        <div class="numero-paso">PRUEBA 1 DE 3</div>
-        <h2>¡Encuentra la estrella! ⭐</h2>
+  </section>  <!-- PANTALLA 4: PREGUNTA -->  <section class="screen" id="quiz-screen">
+    <div class="panel">
+      <div class="icon">🧠</div>  <p class="neon" style="letter-spacing:3px">
+    ÚLTIMO DESAFÍO
+  </p>
 
-        <p>
-            Observa bien dónde está la estrella.
-            Las cajas se moverán y tendrás que descubrir
-            dónde quedó escondida.
-        </p>
+  <h2>Una pregunta importante...</h2>
 
-        <p class="texto-suave" id="instruccionCajas">
-            ¡Memoriza la posición de la estrella!
-        </p>
+  <p>
+    Gaby, ¿qué evento especial hay el
+    <strong>sábado 7 de noviembre de 2026</strong>?
+  </p>
 
-        <div class="cajas" id="cajas"></div>
+  <div class="answers">
+    <button class="answer" onclick="answerQuestion(0)">
+      🌧️ A) Un día lluvioso para quedarse en casa.
+    </button>
 
-        <div class="mensaje" id="mensajeCajas" aria-live="polite">
-            ¡Prepárate!
+    <button class="answer" onclick="answerQuestion(1)">
+      💼 B) Papá no va a trabajar.
+    </button>
+
+    <button class="answer" onclick="answerQuestion(2)">
+      🎤 C) ¡La función de cine de Stray Kids
+      en Cinépolis!
+    </button>
+  </div>
+
+  <p id="quiz-feedback" aria-live="polite"></p>
+</div>
+
+  </section>  <!-- PANTALLA 5: CUENTA REGRESIVA -->  <section class="screen" id="countdown-screen">
+    <div class="panel">
+      <div class="icon">🏆</div>  <h2>¡MISIÓN COMPLETADA!</h2>
+
+  <p>Has desbloqueado tu sorpresa, Gaby.</p>
+
+  <p class="neon">¡Prepárate para descubrirla!</p>
+
+  <div id="count-number" class="count-number">3</div>
+
+  <p class="muted">
+    La sorpresa está a punto de revelarse...
+  </p>
+</div>
+
+  </section>  <!-- PANTALLA 6: BOLETOS -->  <section class="screen" id="reveal-screen">
+    <div class="panel">
+      <div class="icon">🎉</div>  <p class="neon" style="letter-spacing:3px">
+    ¡SORPRESA, GABY!
+  </p>
+
+  <h1>¡NOS VAMOS A VER<br>
+  <span class="neon">STRAY KIDS!</span></h1>
+
+  <p>
+    ¡Prepárate para vivir una experiencia
+    increíble con papá! ❤️
+  </p>
+
+  <div class="ticket">
+    <div class="ticket-top">
+      <small>WORLD TOUR</small>
+      <h3>STRAY KIDS</h3>
+      <div>LIVE VIEWING ✦ CINEMA EXPERIENCE</div>
+    </div>
+
+    <div class="ticket-body">
+      <p class="ticket-title">
+        🎟️ BOLETO VIP DE LA SORPRESA
+      </p>
+
+      <p>
+        Este boleto representa una invitación
+        muy especial para compartir un día
+        inolvidable.
+      </p>
+
+      <div class="ticket-info">
+        <div>
+          <small>FECHA</small>
+          <strong>SÁBADO 7 NOV. 2026</strong>
         </div>
 
-        <button id="botonReintentar" class="boton oculto"
-                onclick="reiniciarRonda()">
-            INTENTAR OTRA VEZ 🔄
-        </button>
-    </section>
-
-    <!-- PISTA DE LA MOCHILA -->
-    <section id="pantallaPista" class="panel oculto">
-        <div class="numero-paso">PRUEBA 1 COMPLETADA</div>
-        <div style="font-size:65px;">🎒</div>
-
-        <h2>¡Lo lograste, Gaby!</h2>
-
-        <p>
-            Has encontrado la primera pista.
-            Ahora tendrás que descubrir un secreto.
-        </p>
-
-        <div style="
-            margin:22px 0;
-            padding:18px;
-            border:1px dashed #ff79e5;
-            border-radius:15px;
-            background:rgba(157,78,221,.1);
-        ">
-            <div style="font-size:12px; letter-spacing:3px; color:#d9b4ff;">
-                BUSCA LA CLAVE
-            </div>
-            <p style="font-size:19px; color:#ffb6ec; font-weight:bold;">
-                La mochila de repartir de papá
-            </p>
-            <p class="texto-suave">
-                Ahí encontrarás lo que necesitas para continuar.
-            </p>
+        <div>
+          <small>HORA</small>
+          <strong>12:00 P. M.</strong>
         </div>
 
-        <p>Cuando tengas la clave, presiona el botón.</p>
-
-        <button class="boton" onclick="mostrarCodigo()">
-            YA TENGO MI CLAVE 🔐
-        </button>
-    </section>
-
-    <!-- INGRESO DE CLAVE -->
-    <section id="pantallaCodigo" class="panel oculto">
-        <div class="numero-paso">PRUEBA 2 DE 3</div>
-        <div style="font-size:55px;">🔐</div>
-
-        <h2>El código secreto</h2>
-
-        <p>
-            Escribe la clave que encontraste en la mochila
-            de repartir de papá.
-        </p>
-
-        <form onsubmit="comprobarCodigo(event)">
-            <input id="codigo" type="password"
-                   placeholder="CLAVE SECRETA"
-                   autocomplete="off"
-                   aria-label="Código secreto">
-
-            <br>
-
-            <button class="boton" type="submit">
-                DESBLOQUEAR 🔓
-            </button>
-        </form>
-
-        <div class="mensaje" id="mensajeCodigo" aria-live="polite"></div>
-    </section>
-
-    <!-- PREGUNTA -->
-    <section id="pantallaPregunta" class="panel oculto">
-        <div class="numero-paso">PRUEBA 3 DE 3</div>
-        <div style="font-size:55px;">🧠</div>
-
-        <h2>La última pregunta</h2>
-
-        <p>
-            Gaby, llegó el momento de demostrar que estás lista
-            para descubrir tu sorpresa.
-        </p>
-
-        <p style="font-size:18px; color:#ffb6ec; font-weight:bold;">
-            ¿Qué plan especial hemos preparado para ti?
-        </p>
-
-        <div class="opciones">
-            <button class="opcion" onclick="responder(1)">
-                🌧️ Quedarnos en casa en un día lluvioso.
-            </button>
-
-            <button class="opcion" onclick="responder(2)">
-                🏠 Pasar el día con papá sin salir.
-            </button>
-
-            <button class="opcion" onclick="responder(3)">
-                🎤 ¡Ir a ver Stray Kids en el cine!
-            </button>
+        <div>
+          <small>LUGAR</small>
+          <strong>CINÉPOLIS</strong>
         </div>
 
-        <div class="mensaje" id="mensajePregunta" aria-live="polite"></div>
-    </section>
+        <div>
+          <small>ACOMPAÑANTE</small>
+          <strong>PAPÁ ❤️</strong>
+        </div>
+      </div>
 
-    <!-- CUENTA REGRESIVA -->
-    <section id="pantallaCuenta" class="panel oculto">
-        <div class="numero-paso">MISIÓN COMPLETADA</div>
+      <div class="ticket-divider"></div>
 
-        <h2>¡PREPÁRATE, GABY!</h2>
+      <div class="ticket-number">
+        GABY · ENTRADA ESPECIAL · SKZ-2026
+      </div>
+    </div>
 
-        <p>
-            Has superado todas las pruebas.
-            Tu sorpresa está a punto de revelarse.
-        </p>
+    <div class="ticket-footer">
+      UNA EXPERIENCIA PARA RECORDAR ✨
+    </div>
+  </div>
 
-        <div id="cuenta">3</div>
+  <div class="ticket">
+    <div class="ticket-top">
+      <small>ADMIT ONE</small>
+      <h3>INVITACIÓN ESPECIAL</h3>
+      <div>PARA PAPÁ Y GABY</div>
+    </div>
 
-        <p class="texto-suave">La sorpresa comienza en...</p>
-    </section>
+    <div class="ticket-body">
+      <p class="ticket-title">🎟️ SEGUNDO BOLETO</p>
 
-    <!-- REVELACIÓN FINAL -->
-    <section id="pantallaFinal" class="panel oculto">
-        <div class="numero-paso">✦ SORPRESA DESBLOQUEADA ✦</div>
+      <p>
+        Porque las mejores aventuras se disfrutan
+        juntos.
+      </p>
 
-        <h2>¡LO LOGRASTE, GABY!</h2>
-
-        <p id="revelacion">
-            ¡NOS VAMOS A VER STRAY KIDS!
-        </p>
-
-        <div style="font-size:70px; margin:20px 0;">
-            🎤 💜 🎶
+      <div class="ticket-info">
+        <div>
+          <small>EVENTO</small>
+          <strong>STRAY KIDS</strong>
         </div>
 
-        <p>
-            ¡Prepárate para vivir una experiencia increíble
-            llena de música, emoción y mucha diversión!
-        </p>
-
-        <div class="boletos">
-
-            <div class="boleto">
-                <small>INVITACIÓN ESPECIAL · 01</small>
-                <h3>STRAY KIDS</h3>
-                <div class="gaby">GABY 💜</div>
-                <p style="font-size:19px; font-weight:bold;">
-                    WORLD TOUR
-                </p>
-                <p style="color:#ffb6ec; font-weight:bold;">
-                    RUN IT · LIVE VIEWING
-                </p>
-                <small>
-                    📅 Sábado 7 de noviembre de 2026<br>
-                    🕛 12:00 p. m.<br>
-                    📍 Cinépolis Plaza Las Américas<br>
-                    Mérida, Yucatán
-                </small>
-            </div>
-
-            <div class="boleto">
-                <small>INVITACIÓN ESPECIAL · 02</small>
-                <h3>UN DÍA INOLVIDABLE</h3>
-                <div class="gaby">PARA GABY ✨</div>
-                <p>
-                    Una experiencia para disfrutar,
-                    cantar, emocionarte y crear recuerdos
-                    que siempre llevarás en tu corazón.
-                </p>
-                <small>
-                    Acompañada de las personas que más te quieren.
-                </small>
-            </div>
-
+        <div>
+          <small>FECHA</small>
+          <strong>7 DE NOVIEMBRE</strong>
         </div>
 
-        <p class="aviso-boleto">
-            Estos boletos son una invitación decorativa
-            para tu sorpresa; no son entradas oficiales.
-        </p>
-
-        <div class="mensaje-final">
-            <span class="corazon">❤️</span>
-
-            <h3>Un mensaje de papá para ti</h3>
-
-            <p>
-                Mi niña hermosa, queremos que sepas que eres
-                una de las bendiciones más grandes de nuestras vidas.
-                Verte feliz es uno de los regalos más bonitos
-                que podemos recibir.
-            </p>
-
-            <p>
-                Preparamos esta sorpresa con muchísimo amor,
-                pensando en tu sonrisa y en la emoción que sentirás.
-                Deseamos que disfrutes cada momento y que guardes
-                este recuerdo para siempre.
-            </p>
-
-            <p>
-                Nunca olvides que, sin importar cuántos años cumplas
-                o qué tan grandes sean tus sueños, siempre tendrás
-                a tus papás para apoyarte, cuidarte y celebrar
-                tus alegrías contigo.
-            </p>
-
-            <p style="text-align:center; color:#ffb6ec; font-weight:bold;">
-                Te amamos muchísimo, Gaby. 💜
-            </p>
-
-            <p style="text-align:center;">
-                Con todo nuestro amor,<br>
-                <strong>papá y mamá.</strong>
-            </p>
+        <div>
+          <small>HORA</small>
+          <strong>12:00 P. M.</strong>
         </div>
 
-        <button class="boton" onclick="reiniciarJuego()">
-            VOLVER A CELEBRAR 🎉
-        </button>
-    </section>
+        <div>
+          <small>DESTINO</small>
+          <strong>¡EL CINE!</strong>
+        </div>
+      </div>
 
-</main>
+      <div class="ticket-divider"></div>
 
-<footer>
-    HECHO CON AMOR PARA GABY · UNA SORPRESA DE PAPÁ Y MAMÁ 💜
-</footer>
+      <div class="ticket-number">
+        MISIÓN PADRE E HIJA · RECUERDOS INOLVIDABLES
+      </div>
+    </div>
 
-<audio id="musica" src="straykids.mp3" loop preload="auto"></audio>
-<audio id="sonidoVictoria" src="victoria.mp3" preload="auto"></audio>
-<audio id="sonidoError" src="error.mp3" preload="auto"></audio>
+    <div class="ticket-footer">
+      ¡NOS VEMOS EN EL SHOW! 💜
+    </div>
+  </div>
 
-<script>
-/* =====================================================
-   CONFIGURACIÓN
-   ===================================================== */
+  <div class="panel">
+    <div class="icon">💌</div>
 
-const CLAVE_SECRETA = "SKZ2026";
+    <h2>Un mensaje de <span class="neon">papá</span></h2>
 
-const musica = document.getElementById("musica");
-const sonidoVictoria = document.getElementById("sonidoVictoria");
-const sonidoError = document.getElementById("sonidoError");
+    <p>Mi querida Gaby:</p>
 
-let cajas = [];
-let idCajaGanadora = 0;
-let ronda = 0;
-let mezclando = false;
-let bloqueado = false;
-let temporizadorRonda = null;
+    <p>
+      Espero que estés muy feliz con esta sorpresa.
+      Me hace muchísima ilusión poder acompañarte
+      a disfrutar de algo que te gusta tanto.
+    </p>
 
-/* =====================================================
-   PARTÍCULAS DE FONDO
-   ===================================================== */
+    <p>
+      Quiero que nos la pasemos increíble, que
+      cantemos, que disfrutemos cada momento y
+      que guardemos este día como un recuerdo
+      muy bonito de los dos.
+    </p>
 
-const particulas = document.getElementById("particulas");
+    <p>
+      Porque más allá de la música y de ver a tus
+      artistas favoritos, para mí lo más especial
+      es compartir esta experiencia contigo.
+    </p>
 
-for (let i = 0; i < 22; i++) {
-    const p = document.createElement("div");
-    p.className = "particula";
-    p.style.left = Math.random() * 100 + "%";
-    p.style.animationDuration = (7 + Math.random() * 10) + "s";
-    p.style.animationDelay = (Math.random() * 10) + "s";
-    p.style.opacity = Math.random();
-    particulas.appendChild(p);
+    <h2 class="neon">
+      ¡TE QUIERO MUCHÍSIMO, GABY! ❤️
+    </h2>
+
+    <p>Con todo mi amor,</p>
+
+    <p style="font-size:23px;font-weight:bold">
+      Papá ❤️
+    </p>
+  </div>
+
+  <button class="primary" onclick="celebrateAgain()">
+    🎉 ¡CELEBRAR OTRA VEZ!
+  </button>
+
+  <p class="muted" style="font-size:12px">
+    Esta página es una invitación sorpresa,
+    no un boleto oficial de acceso.
+  </p>
+</div>
+
+  </section></main><footer>
+  HECHO CON AMOR PARA GABY ❤️ · UNA MISIÓN INOLVIDABLE
+</footer><script>
+/* CONFIGURACIÓN PERSONALIZABLE */
+const SECRET_CODE = "SKZ2026";
+const MUSIC_START_SECONDS = 0;
+
+/* NUEVA FUNCIÓN: ACEPTAR EL RETO */
+function acceptChallenge() {
+  document.getElementById("intro-screen").classList.add("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* =====================================================
-   NAVEGACIÓN
-   ===================================================== */
+/* LUCES ANIMADAS */
+const lights = document.getElementById("lights");
 
-function mostrarPantalla(id, porcentaje) {
-    document.querySelectorAll("main > section").forEach(p => {
-        p.classList.add("oculto");
-    });
+for (let i = 0; i < 65; i++) {
+  const light = document.createElement("div");
+  light.className = "light";
+  light.style.left = Math.random() * 100 + "%";
+  light.style.top = Math.random() * 100 + "%";
+  light.style.animationDelay = Math.random() * 3 + "s";
+  light.style.animationDuration = (1 + Math.random() * 3) + "s";
 
-    document.getElementById(id).classList.remove("oculto");
-    document.getElementById("progreso").style.width =
-        porcentaje + "%";
+  if (i % 3 === 0) {
+    light.style.boxShadow = "0 0 12px 3px #ff2d75";
+  } else if (i % 3 === 1) {
+    light.style.boxShadow = "0 0 12px 3px #9d4dff";
+  }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  lights.appendChild(light);
 }
 
-/* =====================================================
-   BOTÓN PARA ACEPTAR EL RETO
-   La música comienza cuando Gaby pulsa el botón.
-   ===================================================== */
+/* MÚSICA */
+const bgMusic = document.getElementById("bg-music");
+const winSound = document.getElementById("win-sound");
+const wrongSound = document.getElementById("wrong-sound");
+const musicToggle = document.getElementById("music-toggle");
 
-function aceptarReto() {
-    const boton = document.getElementById("botonAceptar");
+bgMusic.volume = 0.35;
+winSound.volume = 0.9;
+wrongSound.volume = 0.7;
 
-    boton.disabled = true;
-    boton.textContent = "¡EL RETO HA COMENZADO! 💜";
+let musicEnabled = false;
 
-    musica.volume = 0.55;
-
-    const intentoMusica = musica.play();
-
-    if (intentoMusica && typeof intentoMusica.catch === "function") {
-        intentoMusica.catch(() => {
-            // Algunos navegadores pueden bloquear el audio.
-            // El juego continúa normalmente.
-        });
+musicToggle.addEventListener("click", async () => {
+  if (bgMusic.paused) {
+    try {
+      bgMusic.currentTime = MUSIC_START_SECONDS;
+      await bgMusic.play();
+      musicEnabled = true;
+      musicToggle.textContent = "❚❚ Pausar música";
+    } catch (error) {
+      musicToggle.textContent = "No se pudo reproducir";
     }
+  } else {
+    bgMusic.pause();
+    musicEnabled = false;
+    musicToggle.textContent = "▶ Activar música";
+  }
+});
 
-    iniciarJuegoCajas();
+function playWinSound() {
+  winSound.currentTime = 0;
+  winSound.play().catch(() => {});
 }
 
-/* =====================================================
-   JUEGO DE LAS CAJAS
-   ===================================================== */
-
-function iniciarJuegoCajas() {
-    ronda = 0;
-    reiniciarRonda();
+function playWrongSound() {
+  wrongSound.currentTime = 0;
+  wrongSound.play().catch(() => {});
 }
 
-function crearCajas() {
-    const contenedor = document.getElementById("cajas");
-    contenedor.innerHTML = "";
+/* NAVEGACIÓN */
+const screens = [
+  "welcome",
+  "boxes-screen",
+  "code-screen",
+  "quiz-screen",
+  "countdown-screen",
+  "reveal-screen"
+];
 
-    cajas = [
-        { id: 1, posicion: 0 },
-        { id: 2, posicion: 1 },
-        { id: 3, posicion: 2 }
-    ];
+function showScreen(id, stage) {
+  screens.forEach(screenId => {
+    document.getElementById(screenId).classList.remove("active");
+  });
 
-    idCajaGanadora = cajas[Math.floor(Math.random() * cajas.length)].id;
+  document.getElementById(id).classList.add("active");
 
-    dibujarCajas(true);
+  document.getElementById("progress").style.width =
+    ((stage / 5) * 100) + "%";
+
+  const labels = [
+    "Misión 01 · Acceso autorizado",
+    "Misión 02 · Cajas misteriosas",
+    "Misión 03 · Código secreto",
+    "Misión 04 · Último desafío",
+    "Misión 05 · Revelando sorpresa",
+    "Misión completada · ¡Felicidades, Gaby!"
+  ];
+
+  document.getElementById("stage-label").textContent =
+    labels[stage] || labels[0];
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function dibujarCajas(deshabilitadas) {
-    const contenedor = document.getElementById("cajas");
-    contenedor.innerHTML = "";
-
-    cajas.sort((a, b) => a.posicion - b.posicion);
-
-    cajas.forEach(caja => {
-        const boton = document.createElement("button");
-        boton.className = "caja";
-        boton.dataset.id = caja.id;
-        boton.disabled = deshabilitadas;
-
-        const estrella = document.createElement("span");
-        estrella.className = "estrellita";
-        estrella.textContent = "⭐";
-
-        if (caja.id === idCajaGanadora) {
-            boton.appendChild(estrella);
-        } else {
-            estrella.style.visibility = "hidden";
-            boton.appendChild(estrella);
-        }
-
-        const icono = document.createElement("span");
-        icono.className = "icono-caja";
-        icono.textContent = "🎁";
-        boton.appendChild(icono);
-
-        const nombre = document.createElement("span");
-        nombre.className = "nombre-caja";
-        nombre.textContent = "CAJA " + caja.posicion + 1;
-        nombre.textContent = "CAJA " + (caja.posicion + 1);
-        boton.appendChild(nombre);
-
-        boton.addEventListener("click", () => elegirCaja(caja.id));
-        contenedor.appendChild(boton);
-    });
+function startMission() {
+  showScreen("boxes-screen", 1);
 }
 
-function reiniciarRonda() {
-    clearTimeout(temporizadorRonda);
+/* JUEGO DE LAS CAJAS */
+let winningBox = Math.floor(Math.random() * 3);
+let boxFinished = false;
 
-    ronda++;
-    mezclando = false;
-    bloqueado = true;
+function chooseBox(index) {
+  if (boxFinished) return;
 
-    document.getElementById("botonReintentar").classList.add("oculto");
-    document.getElementById("mensajeCajas").textContent =
-        "Observa bien la estrella... ⭐";
-    document.getElementById("instruccionCajas").textContent =
-        "Memoriza la posición de la estrella.";
+  const buttons = document.querySelectorAll(".mystery-box");
+  const result = document.getElementById("box-result");
 
-    mostrarPantalla("pantallaCajas", 20);
+  if (index === winningBox) {
+    boxFinished = true;
 
-    crearCajas();
+    buttons[index].textContent = "⭐";
+    buttons[index].querySelector("span").textContent = "¡GANASTE!";
 
-    temporizadorRonda = setTimeout(() => {
-        const estrella = document.querySelector(
-            '.caja[data-id="' + idCajaGanadora + '"] .estrellita'
-        );
+    buttons[index].style.borderColor = "#ffd66b";
+    buttons[index].style.boxShadow = "0 0 30px #ffd66b55";
 
-        if (estrella) {
-            estrella.style.visibility = "hidden";
-        }
+    buttons.forEach(button => button.disabled = true);
 
-        mezclarCajas();
-    }, 1500);
+    result.innerHTML =
+      '<span style="color:#ffd66b">¡INCREÍBLE! Encontraste la estrella.</span>';
+
+    document.getElementById("box-success").hidden = false;
+    document.getElementById("retry-box").hidden = true;
+
+    playWinSound();
+    launchConfetti(100);
+    launchBalloons(8);
+
+  } else {
+    buttons[index].textContent = "💨";
+    buttons[index].querySelector("span").textContent = "VACÍA";
+
+    buttons[index].disabled = true;
+
+    result.textContent =
+      "¡Esta caja estaba vacía! Prueba con otra.";
+
+    result.classList.remove("shake");
+    void result.offsetWidth;
+    result.classList.add("shake");
+
+    document.getElementById("retry-box").hidden = false;
+
+    playWrongSound();
+  }
 }
 
-function mezclarCajas() {
-    mezclando = true;
+function resetBoxes() {
+  boxFinished = false;
+  winningBox = Math.floor(Math.random() * 3);
 
-    document.getElementById("mensajeCajas").textContent =
-        "¡Sigue la estrella! 👀";
-    document.getElementById("instruccionCajas").textContent =
-        "Las cajas se están moviendo...";
+  const buttons = document.querySelectorAll(".mystery-box");
 
-    const totalMovimientos = 6 + ronda * 2;
-    let movimiento = 0;
+  buttons.forEach((button, index) => {
+    button.disabled = false;
+    button.innerHTML = "🎁<span>CAJA 0" + (index + 1) + "</span>";
+    button.style.borderColor = "#ffffff30";
+    button.style.boxShadow = "";
+  });
 
-    const intervalo = setInterval(() => {
-        const i = Math.floor(Math.random() * 3);
-        let j = Math.floor(Math.random() * 3);
+  document.getElementById("box-result").textContent =
+    "Elige una caja para descubrir lo que esconde.";
 
-        while (j === i) {
-            j = Math.floor(Math.random() * 3);
-        }
-
-        const posicionTemporal = cajas[i].posicion;
-        cajas[i].posicion = cajas[j].posicion;
-        cajas[j].posicion = posicionTemporal;
-
-        dibujarCajas(true);
-
-        movimiento++;
-
-        if (movimiento >= totalMovimientos) {
-            clearInterval(intervalo);
-
-            dibujarCajas(false);
-            mezclando = false;
-            bloqueado = false;
-
-            document.getElementById("mensajeCajas").textContent =
-                "¿En qué caja está la estrella?";
-            document.getElementById("instruccionCajas").textContent =
-                "¡Elige una caja!";
-        }
-    }, 650);
+  document.getElementById("retry-box").hidden = true;
 }
 
-function elegirCaja(id) {
-    if (mezclando || bloqueado) return;
+/* CÓDIGO SECRETO */
+document.getElementById("code-form").addEventListener("submit", event => {
+  event.preventDefault();
 
-    bloqueado = true;
+  const input = document.getElementById("secret-code");
+  const feedback = document.getElementById("code-feedback");
 
-    if (id === idCajaGanadora) {
-        document.getElementById("mensajeCajas").textContent =
-            "¡CORRECTO! Encontraste la estrella. ⭐💜";
+  if (input.value.trim().toUpperCase() === SECRET_CODE) {
+    feedback.style.color = "#70ffb0";
+    feedback.textContent = "¡CÓDIGO CORRECTO! Acceso autorizado.";
 
-        reproducirSonido(sonidoVictoria);
-
-        document.querySelectorAll(".caja").forEach(b => {
-            b.disabled = true;
-        });
-
-        setTimeout(() => {
-            mostrarPantalla("pantallaPista", 40);
-        }, 1300);
-
-    } else {
-        document.getElementById("mensajeCajas").textContent =
-            "¡Ups! Esa no era. Inténtalo otra vez. 💜";
-
-        reproducirSonido(sonidoError);
-
-        document.getElementById("botonReintentar").classList.remove("oculto");
-
-        document.querySelectorAll(".caja").forEach(b => {
-            b.disabled = true;
-        });
-    }
-}
-
-/* =====================================================
-   CLAVE SECRETA
-   ===================================================== */
-
-function mostrarCodigo() {
-    mostrarPantalla("pantallaCodigo", 55);
-
-    document.getElementById("codigo").value = "";
-    document.getElementById("mensajeCodigo").textContent = "";
+    playWinSound();
+    launchConfetti(45);
 
     setTimeout(() => {
-        document.getElementById("codigo").focus();
-    }, 300);
-}
+      showScreen("quiz-screen", 3);
+    }, 1000);
 
-function comprobarCodigo(event) {
-    event.preventDefault();
+  } else {
+    feedback.style.color = "#ff6489";
+    feedback.textContent = "Código incorrecto. ¡Inténtalo de nuevo!";
 
-    const entrada = document.getElementById("codigo").value.trim().toUpperCase();
-    const mensaje = document.getElementById("mensajeCodigo");
+    input.classList.remove("shake");
+    void input.offsetWidth;
+    input.classList.add("shake");
 
-    if (entrada === CLAVE_SECRETA) {
-        mensaje.textContent = "¡CLAVE CORRECTA! 🔓";
-        mensaje.style.color = "#8dffbd";
+    playWrongSound();
+    input.value = "";
+    input.focus();
+  }
+});
 
-        reproducirSonido(sonidoVictoria);
+/* PREGUNTA FINAL */
+let quizLocked = false;
 
-        setTimeout(() => {
-            mostrarPantalla("pantallaPregunta", 72);
-        }, 1000);
+function answerQuestion(index) {
+  if (quizLocked) return;
 
-    } else {
-        mensaje.textContent = "Esa no es la clave. Busca bien en la mochila. 🎒";
-        mensaje.style.color = "#ff80a9";
+  const feedback = document.getElementById("quiz-feedback");
+  const buttons = document.querySelectorAll(".answer");
 
-        reproducirSonido(sonidoError);
+  if (index === 2) {
+    quizLocked = true;
 
-        const campo = document.getElementById("codigo");
-        campo.value = "";
-        campo.focus();
-    }
-}
+    feedback.style.color = "#70ffb0";
+    feedback.textContent = "¡CORRECTO! ¡PREPÁRATE PARA LA SORPRESA!";
 
-/* =====================================================
-   PREGUNTA FINAL
-   ===================================================== */
+    buttons.forEach(button => button.disabled = true);
 
-function responder(opcion) {
-    const mensaje = document.getElementById("mensajePregunta");
-
-    if (opcion === 3) {
-        mensaje.textContent = "¡SÍÍÍ! ¡ACERTASTE, GABY! 🎤💜";
-        mensaje.style.color = "#8dffbd";
-
-        document.querySelectorAll(".opcion").forEach(b => {
-            b.disabled = true;
-        });
-
-        reproducirSonido(sonidoVictoria);
-
-        setTimeout(() => {
-            comenzarCuentaRegresiva();
-        }, 1100);
-
-    } else {
-        mensaje.textContent =
-            "¡No exactamente! Piénsalo otra vez, Gaby. 💜";
-        mensaje.style.color = "#ff9edc";
-
-        reproducirSonido(sonidoError);
-    }
-}
-
-/* =====================================================
-   CUENTA REGRESIVA Y REVELACIÓN
-   ===================================================== */
-
-function comenzarCuentaRegresiva() {
-    mostrarPantalla("pantallaCuenta", 88);
-
-    const cuenta = document.getElementById("cuenta");
-    const secuencia = ["3", "2", "1", "¡YA!"];
-    let indice = 0;
-
-    cuenta.textContent = secuencia[indice];
-
-    const intervalo = setInterval(() => {
-        indice++;
-
-        if (indice < secuencia.length) {
-            cuenta.textContent = secuencia[indice];
-        } else {
-            clearInterval(intervalo);
-
-            setTimeout(() => {
-                mostrarPantalla("pantallaFinal", 100);
-                lanzarCelebracion();
-            }, 450);
-        }
-    }, 900);
-}
-
-/* =====================================================
-   SONIDOS Y CELEBRACIÓN
-   ===================================================== */
-
-function reproducirSonido(audio) {
-    try {
-        audio.currentTime = 0;
-
-        const intento = audio.play();
-
-        if (intento && typeof intento.catch === "function") {
-            intento.catch(() => {});
-        }
-    } catch (e) {
-        // Si el sonido no está disponible, el juego continúa.
-    }
-}
-
-function lanzarCelebracion() {
-    const contenedor = document.getElementById("celebracion");
-    contenedor.innerHTML = "";
-
-    const simbolos = ["💜", "✨", "🎉", "💖", "⭐", "🎶"];
-
-    for (let i = 0; i < 75; i++) {
-        const elemento = document.createElement("span");
-
-        elemento.className = "confeti";
-        elemento.textContent = simbolos[
-            Math.floor(Math.random() * simbolos.length)
-        ];
-
-        elemento.style.left = Math.random() * 100 + "%";
-        elemento.style.animationDelay = Math.random() * 2 + "s";
-        elemento.style.animationDuration = (2.5 + Math.random() * 2) + "s";
-        elemento.style.fontSize = (12 + Math.random() * 18) + "px";
-
-        contenedor.appendChild(elemento);
-    }
+    playWinSound();
+    launchConfetti(100);
+    launchBalloons(8);
 
     setTimeout(() => {
-        contenedor.innerHTML = "";
-    }, 6500);
+      startCountdown();
+    }, 1800);
+
+  } else {
+    feedback.style.color = "#ff9bb6";
+    feedback.textContent =
+      "Mmm... esa no es la respuesta. ¡Inténtalo otra vez! ❤️";
+
+    playWrongSound();
+  }
 }
 
-/* =====================================================
-   VOLVER A CELEBRAR
-   ===================================================== */
+/* CUENTA REGRESIVA */
+function startCountdown() {
+  showScreen("countdown-screen", 4);
 
-function reiniciarJuego() {
-    clearTimeout(temporizadorRonda);
+  let count = 3;
+  const number = document.getElementById("count-number");
 
-    document.getElementById("celebracion").innerHTML = "";
+  number.textContent = count;
 
-    document.querySelectorAll(".opcion").forEach(b => {
-        b.disabled = false;
+  const timer = setInterval(() => {
+    count--;
+
+    if (count > 0) {
+      number.textContent = count;
+    } else {
+      clearInterval(timer);
+      number.textContent = "🎉";
+
+      playWinSound();
+      launchConfetti(160);
+      launchBalloons(16);
+
+      setTimeout(() => {
+        showScreen("reveal-screen", 5);
+
+        launchConfetti(180);
+        launchBalloons(15);
+      }, 900);
+    }
+  }, 1000);
+}
+
+/* CONFETI */
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+let confettiPieces = [];
+let confettiRunning = false;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth * devicePixelRatio;
+  canvas.height = window.innerHeight * devicePixelRatio;
+
+  ctx.setTransform(
+    devicePixelRatio, 0, 0, devicePixelRatio, 0, 0
+  );
+}
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+function launchConfetti(amount = 100) {
+  const colors = [
+    "#ff2d75",
+    "#9d4dff",
+    "#35d9ff",
+    "#ffd66b",
+    "#ffffff",
+    "#70ffb0"
+  ];
+
+  for (let i = 0; i < amount; i++) {
+    confettiPieces.push({
+      x: Math.random() * window.innerWidth,
+      y: -20 - Math.random() * window.innerHeight * 0.4,
+      w: 4 + Math.random() * 7,
+      h: 5 + Math.random() * 8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: 2 + Math.random() * 5,
+      drift: (Math.random() - .5) * 3,
+      angle: Math.random() * 6,
+      spin: (Math.random() - .5) * .2,
+      life: 0
     });
+  }
 
-    document.getElementById("mensajePregunta").textContent = "";
-
-    document.getElementById("botonAceptar").disabled = false;
-    document.getElementById("botonAceptar").textContent = "¡ACEPTO EL RETO! 💜";
-
-    musica.pause();
-
-    try {
-        musica.currentTime = 0;
-    } catch (e) {}
-
-    mostrarPantalla("pantallaInicio", 0);
+  if (!confettiRunning) {
+    confettiRunning = true;
+    requestAnimationFrame(animateConfetti);
+  }
 }
-</script>
 
-</body>
+function animateConfetti() {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+  confettiPieces = confettiPieces.filter(piece =>
+    piece.y < window.innerHeight + 30 && piece.life < 400
+  );
+
+  confettiPieces.forEach(piece => {
+    piece.y += piece.speed;
+    piece.x += piece.drift;
+    piece.angle += piece.spin;
+    piece.life++;
+
+    ctx.save();
+    ctx.translate(piece.x, piece.y);
+    ctx.rotate(piece.angle);
+    ctx.fillStyle = piece.color;
+    ctx.fillRect(-piece.w / 2, -piece.h / 2, piece.w, piece.h);
+    ctx.restore();
+  });
+
+  if (confettiPieces.length > 0) {
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRunning = false;
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  }
+}
+
+/* GLOBOS FLOTANTES */
+function launchBalloons(amount = 8) {
+  const balloons = ["🎈", "💜", "💖", "🎈", "✨"];
+
+  for (let i = 0; i < amount; i++) {
+    setTimeout(() => {
+      const balloon = document.createElement("div");
+
+      balloon.className = "balloon";
+      balloon.textContent =
+        balloons[Math.floor(Math.random() * balloons.length)];
+
+      balloon.style.left = Math.random() * 90 + "%";
+      balloon.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+      document.body.appendChild(balloon);
+
+      setTimeout(() => balloon.remove(), 7500);
+    }, i * 180);
+  }
+}
+
+function celebrateAgain() {
+  playWinSound();
+  launchConfetti(180);
+  launchBalloons(15);
+}
+</script></body>
 </html>
