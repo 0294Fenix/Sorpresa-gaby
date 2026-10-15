@@ -14,6 +14,7 @@
     --morado: #8b35ff;
     --rosa: #ff42cf;
     --azul: #42d9ff;
+    --rojo: #ff1744;
     --fondo: #10051f;
 }
 
@@ -56,20 +57,17 @@ body::before {
 .light-one {
     left: 5%;
     background: linear-gradient(#ff3be4, transparent);
-    transform: rotate(24deg);
 }
 
 .light-two {
     right: 8%;
     background: linear-gradient(#643cff, transparent);
-    transform: rotate(-24deg);
     animation-delay: 1.5s;
 }
 
 .light-three {
     left: 45%;
     background: linear-gradient(#00c8ff, transparent);
-    transform: rotate(5deg);
     animation-delay: 2.5s;
 }
 
@@ -225,6 +223,127 @@ button:disabled {
     border: 1px solid #ffffff35;
 }
 
+/* PANTALLA INICIAL DEL RETO */
+
+.challenge-screen {
+    min-height: 68vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.challenge-card {
+    width: 100%;
+    padding: 30px 20px;
+    border: 2px solid #ff294f;
+    border-radius: 28px;
+    background:
+        radial-gradient(ellipse at top, #50102e 0%, #1c092c 65%, #10051f 100%);
+    box-shadow:
+        0 0 20px #ff174455,
+        0 0 55px #ff174425,
+        inset 0 0 30px #ff174415;
+    animation: challengeGlow 2s infinite alternate;
+}
+
+@keyframes challengeGlow {
+    from {
+        box-shadow:
+            0 0 18px #ff174455,
+            0 0 35px #ff174420,
+            inset 0 0 20px #ff174410;
+    }
+    to {
+        box-shadow:
+            0 0 30px #ff1744a0,
+            0 0 70px #ff174450,
+            inset 0 0 35px #ff174425;
+    }
+}
+
+.challenge-badge {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ff6684;
+    border-radius: 30px;
+    color: #ffb5c4;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.challenge-title {
+    font-size: clamp(30px, 8vw, 47px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: white;
+    text-shadow:
+        0 0 12px #ff1744,
+        0 0 30px #ff174477;
+}
+
+.challenge-question {
+    font-size: clamp(20px, 5vw, 27px);
+    color: #ffe8f0;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.challenge-deco {
+    font-size: clamp(45px, 12vw, 70px);
+    margin: 15px 0;
+    animation: challengeFloat 2s ease-in-out infinite alternate;
+}
+
+@keyframes challengeFloat {
+    from { transform: translateY(0) rotate(-4deg); }
+    to { transform: translateY(-8px) rotate(4deg); }
+}
+
+.start-button {
+    display: block;
+    width: min(380px, 100%);
+    margin: 25px auto 12px;
+    padding: 20px 14px;
+    border: 2px solid #ff9baa;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #ff1744, #c50030);
+    color: white;
+    font-size: clamp(20px, 5vw, 27px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow:
+        0 0 18px #ff1744a0,
+        0 0 45px #ff174455,
+        inset 0 1px 0 #ffffff55;
+    animation: buttonPulse 1.2s infinite alternate;
+}
+
+@keyframes buttonPulse {
+    from {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    to {
+        transform: scale(1.035);
+        filter: brightness(1.2);
+    }
+}
+
+.start-button:active {
+    transform: scale(.96);
+}
+
+.start-note {
+    color: #d4b9d9;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* JUEGO */
+
 .small-note {
     color: #cbb7e8;
     font-size: 13px;
@@ -318,6 +437,8 @@ input::placeholder {
     background: linear-gradient(90deg, #8e204a, #c92e68);
 }
 
+/* CUENTA REGRESIVA */
+
 #countdown {
     font-size: clamp(75px, 20vw, 130px);
     font-weight: 900;
@@ -332,6 +453,8 @@ input::placeholder {
     from { transform: scale(.9); }
     to { transform: scale(1.1); }
 }
+
+/* BOLETOS DECORATIVOS */
 
 .ticket {
     position: relative;
@@ -455,10 +578,6 @@ footer {
     }
 }
 
-.hidden {
-    display: none !important;
-}
-
 @media (max-width: 420px) {
     .panel {
         padding: 21px 12px;
@@ -471,6 +590,10 @@ footer {
     p {
         font-size: 15px;
     }
+
+    .challenge-card {
+        padding: 27px 15px;
+    }
 }
 </style>
 </head>
@@ -481,8 +604,8 @@ footer {
 <div class="stage-light light-two"></div>
 <div class="stage-light light-three"></div>
 
-<!-- AUDIOS -->
-<audio id="backgroundMusic" src="straykids.mp3" loop preload="auto" autoplay></audio>
+<!-- ARCHIVOS DE AUDIO -->
+<audio id="backgroundMusic" src="straykids.mp3" loop preload="auto"></audio>
 <audio id="victorySound" src="victoria.mp3" preload="auto"></audio>
 <audio id="errorSound" src="error.mp3" preload="auto"></audio>
 
@@ -497,8 +620,42 @@ footer {
 
 <main>
 
-    <!-- PANTALLA 1 -->
-    <section id="welcome-screen" class="screen active">
+    <!-- PANTALLA 0: EL RETO DE PAPÁ Y MAMÁ -->
+    <section id="challenge-screen" class="screen active challenge-screen">
+        <div class="challenge-card">
+
+            <div class="challenge-badge">⚠️ MISIÓN SECRETA ⚠️</div>
+
+            <div class="challenge-deco">💜🐺🔴</div>
+
+            <div class="challenge-title">
+                ¡GABY!
+            </div>
+
+            <h1>¡Tus papás te han puesto un reto!</h1>
+
+            <div class="challenge-question">
+                ¿Lo aceptas? 👀
+            </div>
+
+            <p>
+                Solo las chicas más valientes podrán descubrir
+                la sorpresa que te espera...
+            </p>
+
+            <button class="start-button" id="acceptButton" onclick="acceptChallenge()">
+                🔥 ¡ACEPTO EL RETO! 🔥
+            </button>
+
+            <div class="start-note">
+                💜 TOCA EL BOTÓN PARA COMENZAR 💜
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PANTALLA 1: BIENVENIDA -->
+    <section id="welcome-screen" class="screen">
         <div class="panel">
             <div class="emoji">💜🎤✨</div>
 
@@ -705,7 +862,7 @@ footer {
 </main>
 
 <footer>
-    Una misión secreta preparada con amor por papá 💜
+    Una misión secreta preparada con amor por papá y mamá 💜
 </footer>
 
 <script>
@@ -724,19 +881,12 @@ let boxPositions = [0, 1, 2];
 let gameStarted = false;
 let gameCompleted = false;
 let quizCompleted = false;
-let audioUnlocked = false;
 let countdownStarted = false;
+let mixingInProgress = false;
 
 /* ========================================
-   MÚSICA AUTOMÁTICA
+   MÚSICA DE FONDO
 ======================================== */
-
-/*
-  El navegador intentará reproducir la música al abrir la página.
-  Si el navegador bloquea el autoplay con sonido, se volverá a
-  intentar cuando la persona toque o interactúe con la página.
-  No se muestra ningún botón de música.
-*/
 
 function startBackgroundMusic() {
     if (!backgroundMusic) return;
@@ -746,42 +896,12 @@ function startBackgroundMusic() {
     const playPromise = backgroundMusic.play();
 
     if (playPromise !== undefined) {
-        playPromise
-            .then(() => {
-                audioUnlocked = true;
-            })
-            .catch(() => {
-                // El navegador puede bloquear el autoplay con sonido.
-                // El siguiente toque o interacción volverá a intentarlo.
-            });
+        playPromise.catch(() => {
+            // Si el navegador bloquea la reproducción,
+            // acceptChallenge volverá a intentarlo al tocar el botón.
+        });
     }
 }
-
-// Intentar reproducir al cargar el documento.
-document.addEventListener("DOMContentLoaded", () => {
-    startBackgroundMusic();
-});
-
-// Intentar también al terminar de cargar todos los archivos.
-window.addEventListener("load", () => {
-    startBackgroundMusic();
-});
-
-// Sin botones adicionales: cualquier primera interacción sirve
-// para intentar desbloquear la reproducción automática.
-function unlockAudio() {
-    if (audioUnlocked) return;
-
-    startBackgroundMusic();
-
-    if (backgroundMusic && !backgroundMusic.paused) {
-        audioUnlocked = true;
-    }
-}
-
-document.addEventListener("pointerdown", unlockAudio, { passive: true });
-document.addEventListener("keydown", unlockAudio);
-document.addEventListener("touchstart", unlockAudio, { passive: true });
 
 /* ========================================
    CAMBIO DE PANTALLAS
@@ -802,6 +922,25 @@ function showScreen(screenId, progress) {
 }
 
 /* ========================================
+   ACEPTAR EL RETO
+======================================== */
+
+function acceptChallenge() {
+    const button = document.getElementById("acceptButton");
+
+    // Evitar que un toque doble inicie todo dos veces.
+    button.disabled = true;
+
+    // La música comienza al tocar el botón.
+    startBackgroundMusic();
+
+    // Pequeña pausa para que la música comience antes de la misión.
+    setTimeout(() => {
+        showScreen("welcome-screen", 10);
+    }, 350);
+}
+
+/* ========================================
    EFECTOS DE SONIDO
 ======================================== */
 
@@ -812,26 +951,25 @@ function playSound(audio) {
         audio.currentTime = 0;
         audio.play().catch(() => {});
     } catch (error) {
-        // La experiencia continúa aunque el sonido no esté disponible.
+        // La experiencia continúa aunque no se pueda reproducir el sonido.
     }
 }
 
 /* ========================================
-   INICIO
+   INICIO DEL JUEGO
 ======================================== */
 
 function startGame() {
     startBackgroundMusic();
 
-    gameStarted = true;
+    gameStarted = false;
     gameCompleted = false;
-    quizCompleted = false;
-    countdownStarted = false;
+    mixingInProgress = false;
 
     winningBox = Math.floor(Math.random() * 3);
     boxPositions = [0, 1, 2];
 
-    showScreen("boxes-screen", 20);
+    showScreen("boxes-screen", 25);
 
     document.getElementById("boxInstruction").textContent =
         "¡Memoriza la estrella! Las cajas se mezclarán en un momento.";
@@ -839,24 +977,25 @@ function startGame() {
     document.getElementById("boxMessage").textContent = "";
 
     document.getElementById("mixButton").disabled = true;
+    document.getElementById("mixButton").textContent = "Preparando el reto...";
 
-    renderBoxes();
+    renderBoxes(true);
 
     setTimeout(() => {
-        if (!gameStarted || gameCompleted) return;
+        if (gameCompleted) return;
 
         document.getElementById("boxInstruction").textContent =
             "¡Ahora observa cómo se mezclan las cajas!";
 
         mixBoxes();
-    }, 1400);
+    }, 1600);
 }
 
 /* ========================================
-   JUEGO DE LAS CAJAS
+   DIBUJAR LAS CAJAS
 ======================================== */
 
-function renderBoxes() {
+function renderBoxes(showStar = false) {
     const container = document.getElementById("boxes");
     container.innerHTML = "";
 
@@ -868,14 +1007,14 @@ function renderBoxes() {
         button.type = "button";
         button.dataset.box = originalBox;
 
-        if (!gameCompleted && !gameStarted) {
-            button.disabled = true;
+        if (showStar && originalBox === winningBox) {
+            button.innerHTML = "⭐<span>¡LA ESTRELLA!</span>";
+            button.classList.add("correct");
+        } else {
+            button.innerHTML = `📦<span>CAJA ${position + 1}</span>`;
         }
 
-        button.innerHTML = `
-            📦
-            <span>CAJA ${position + 1}</span>
-        `;
+        button.disabled = true;
 
         button.addEventListener("click", () => selectBox(originalBox, button));
 
@@ -887,38 +1026,30 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+/* ========================================
+   MEZCLAR LAS CAJAS
+======================================== */
+
 async function mixBoxes() {
-    if (gameCompleted) return;
+    if (gameCompleted || mixingInProgress) return;
+
+    mixingInProgress = true;
+    gameStarted = true;
 
     const mixButton = document.getElementById("mixButton");
     const message = document.getElementById("boxMessage");
     const instruction = document.getElementById("boxInstruction");
 
     mixButton.disabled = true;
-    gameStarted = true;
-
     message.textContent = "";
     instruction.textContent = "¡Sigue la estrella con la mirada!";
 
-    // Mostrar momentáneamente dónde está la estrella.
-    renderBoxes();
+    renderBoxes(true);
 
-    const buttonsBeforeMix = [...document.querySelectorAll(".box")];
+    await sleep(1200);
 
-    buttonsBeforeMix.forEach((button, position) => {
-        if (boxPositions[position] === winningBox) {
-            button.innerHTML = `⭐<span>¡LA ESTRELLA!</span>`;
-            button.classList.add("correct");
-        }
-        button.disabled = true;
-    });
+    renderBoxes(false);
 
-    await sleep(1000);
-
-    // Ocultar la estrella antes de mezclar.
-    renderBoxes();
-
-    // Realizar varios intercambios de posiciones.
     for (let i = 0; i < 7; i++) {
         const first = Math.floor(Math.random() * 3);
         let second = Math.floor(Math.random() * 3);
@@ -938,7 +1069,7 @@ async function mixBoxes() {
         boxPositions[first] = boxPositions[second];
         boxPositions[second] = temp;
 
-        renderBoxes();
+        renderBoxes(false);
 
         await sleep(180);
     }
@@ -948,17 +1079,24 @@ async function mixBoxes() {
 
     message.textContent = "¿Dónde se escondió? ⭐";
 
-    renderBoxes();
+    renderBoxes(false);
 
     document.querySelectorAll(".box").forEach(button => {
         button.disabled = false;
     });
 
+    mixButton.textContent = "Elige una caja de arriba ☝️";
     mixButton.disabled = true;
+
+    mixingInProgress = false;
 }
 
+/* ========================================
+   ELEGIR UNA CAJA
+======================================== */
+
 function selectBox(originalBox, button) {
-    if (gameCompleted) return;
+    if (gameCompleted || mixingInProgress) return;
 
     if (originalBox === winningBox) {
         gameCompleted = true;
@@ -978,13 +1116,10 @@ function selectBox(originalBox, button) {
             box.disabled = true;
         });
 
-        document.getElementById("mixButton").textContent =
-            "Continuar la misión 💜";
-
-        document.getElementById("mixButton").disabled = false;
-        document.getElementById("mixButton").onclick = () => {
-            showScreen("code-screen", 40);
-        };
+        const mixButton = document.getElementById("mixButton");
+        mixButton.textContent = "Continuar la misión 💜";
+        mixButton.disabled = false;
+        mixButton.onclick = () => showScreen("code-screen", 45);
 
     } else {
         playSound(errorSound);
@@ -995,9 +1130,13 @@ function selectBox(originalBox, button) {
         document.getElementById("boxMessage").textContent =
             "¡Uy! Esa no era. Observa las cajas e inténtalo otra vez.";
 
+        document.querySelectorAll(".box").forEach(box => {
+            box.disabled = true;
+        });
+
         setTimeout(() => {
             if (!gameCompleted) {
-                renderBoxes();
+                renderBoxes(false);
 
                 document.querySelectorAll(".box").forEach(box => {
                     box.disabled = false;
@@ -1037,7 +1176,6 @@ function checkCode() {
     }
 }
 
-/* Permitir enviar el código con la tecla Enter. */
 document.getElementById("secretCode").addEventListener("keydown", event => {
     if (event.key === "Enter") {
         checkCode();
@@ -1060,7 +1198,8 @@ function answerQuiz(answer) {
         buttons[2].classList.add("correct-answer");
         buttons.forEach(button => button.disabled = true);
 
-        message.textContent = "¡CORRECTO, GABY! ¡PREPÁRATE PARA LA SORPRESA! 💜";
+        message.textContent =
+            "¡CORRECTO, GABY! ¡PREPÁRATE PARA LA SORPRESA! 💜";
 
         playSound(victorySound);
 
@@ -1121,13 +1260,12 @@ function startCountdown() {
 function revealSurprise() {
     showScreen("reveal-screen", 100);
 
-    // Reproducir el sonido de victoria al revelar la sorpresa.
     playSound(victorySound);
 
     createConfetti();
     createBalloons();
 
-    // Asegurar que la música siga sonando durante la revelación.
+    // La canción principal debe continuar durante la revelación.
     if (backgroundMusic.paused) {
         startBackgroundMusic();
     }
