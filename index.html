@@ -1,9 +1,13 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090610">
-<title>Una misión secreta para Gaby</title><style>
+
+<title>Una misión secreta para Gaby</title>
+
+<style>
 :root {
   --pink: #ff2d75;
   --purple: #9d4dff;
@@ -13,7 +17,9 @@
   --panel: rgba(25, 16, 40, .91);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -27,65 +33,13 @@ body {
   overflow-x: hidden;
 }
 
-button, input { font: inherit; }
+button, input {
+  font: inherit;
+}
 
 button {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-}
-
-/* NUEVA PANTALLA INICIAL */
-#intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background:
-    radial-gradient(ellipse at 50% 0%, #382050 0%, transparent 55%),
-    linear-gradient(160deg, #090610, #160a27 65%, #07050c);
-}
-
-#intro-screen.hidden {
-  display: none;
-}
-
-.intro-content {
-  width: min(100%, 480px);
-  padding: 30px 22px;
-  border: 1px solid #ffffff25;
-  border-radius: 24px;
-  background: rgba(25, 16, 40, .91);
-  box-shadow: 0 15px 55px #0006, 0 0 30px #9d4dff20;
-  animation: appear .8s ease both;
-}
-
-.intro-icon {
-  font-size: 75px;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 0 20px #a64dff75);
-}
-
-.intro-content h1 {
-  font-size: clamp(32px, 8vw, 48px);
-  line-height: 1;
-  margin: 25px 0;
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: -1px;
-  text-shadow: 0 0 25px #a63dff75;
-}
-
-.intro-content p {
-  color: #c5b8d7;
-  line-height: 1.65;
-}
-
-#accept-challenge {
-  margin-top: 25px;
-  animation: pulse 1.2s infinite alternate;
 }
 
 #lights {
@@ -116,7 +70,9 @@ header, main, footer {
   z-index: 1;
 }
 
-header { padding: 18px 12px 0; }
+header {
+  padding: 18px 12px 0;
+}
 
 .brand {
   display: inline-block;
@@ -150,14 +106,18 @@ h2 {
   margin-top: 10px;
 }
 
-p { line-height: 1.65; }
+p {
+  line-height: 1.65;
+}
 
 .neon {
   color: var(--pink);
   text-shadow: 0 0 15px #ff2d7590;
 }
 
-.muted { color: #c5b8d7; }
+.muted {
+  color: #c5b8d7;
+}
 
 .panel {
   background: var(--panel);
@@ -174,7 +134,9 @@ p { line-height: 1.65; }
   animation: appear .55s ease both;
 }
 
-.screen.active { display: block; }
+.screen.active {
+  display: block;
+}
 
 @keyframes appear {
   from { opacity: 0; transform: translateY(18px); }
@@ -196,7 +158,9 @@ button.primary {
   margin-top: 14px;
 }
 
-button.primary:active { transform: scale(.97); }
+button.primary:active {
+  transform: scale(.97);
+}
 
 button.secondary {
   background: #ffffff0c;
@@ -221,7 +185,7 @@ button.secondary {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  background: #100b1bef;
+  background: #100b1beF;
   border: 1px solid #ffffff25;
   border-radius: 14px;
   padding: 10px 12px;
@@ -278,7 +242,9 @@ button.secondary {
   transition: transform .2s, border-color .2s;
 }
 
-.mystery-box:active { transform: scale(.95); }
+.mystery-box:active {
+  transform: scale(.95);
+}
 
 .mystery-box span {
   display: block;
@@ -318,7 +284,9 @@ input:focus {
   box-shadow: 0 0 18px #35d9ff22;
 }
 
-#code-feedback { min-height: 28px; }
+#code-feedback {
+  min-height: 28px;
+}
 
 .answers {
   display: grid;
@@ -343,7 +311,9 @@ input:focus {
   background: #9d4dff16;
 }
 
-.answer:disabled { opacity: .8; }
+.answer:disabled {
+  opacity: .8;
+}
 
 #quiz-feedback {
   min-height: 35px;
@@ -391,7 +361,9 @@ input:focus {
   font-size: 27px;
 }
 
-.ticket-body { padding: 20px; }
+.ticket-body {
+  padding: 20px;
+}
 
 .ticket-title {
   font-size: 24px;
@@ -414,7 +386,9 @@ input:focus {
   margin-bottom: 4px;
 }
 
-.ticket-info strong { font-size: 14px; }
+.ticket-info strong {
+  font-size: 14px;
+}
 
 .ticket-divider {
   border-top: 2px dashed #9d668c88;
@@ -461,7 +435,9 @@ input:focus {
   }
 }
 
-.heart { color: var(--pink); }
+.heart {
+  color: var(--pink);
+}
 
 footer {
   padding: 15px;
@@ -469,7 +445,9 @@ footer {
   font-size: 11px;
 }
 
-.shake { animation: shake .35s; }
+.shake {
+  animation: shake .35s;
+}
 
 @keyframes shake {
   25% { transform: translateX(-6px); }
@@ -490,389 +468,434 @@ footer {
     scroll-behavior: auto !important;
   }
 }
-</style></head><body><!-- NUEVA PANTALLA DE INICIO --><div id="intro-screen">
-  <div class="intro-content">
-    <div class="intro-icon">🔐</div><div class="brand">GABY'S SECRET MISSION ✦ SKZ</div>
+</style>
+</head>
 
-<h1>¿ACEPTAS EL <span class="neon">RETO?</span></h1>
+<body>
 
-<p>
-  Agente Gaby, tienes una misión secreta que cumplir.
-  Supera los desafíos y descubre la sorpresa que
-  papá preparó especialmente para ti.
-</p>
+<div id="lights"></div>
+<canvas id="confetti"></canvas>
 
-<div style="font-size:38px;margin:20px">🎤 ✨ 🎁</div>
-
-<button
-  id="accept-challenge"
-  class="primary"
-  type="button"
-  onclick="acceptChallenge()">
-  ¡ACEPTO EL RETO! 🚀
-</button>
-
-<p style="font-size:11px;margin-top:18px">
-  SOLO PARA GABY · ACCESO ULTRASECRETO
-</p>
-
-  </div>
-</div><div id="lights"></div>
-<canvas id="confetti"></canvas><header>
+<header>
   <div class="brand">GABY'S SECRET MISSION ✦ SKZ</div>
-</header><main>  <div class="musicbar">
+</header>
+
+<main>
+
+  <div class="musicbar">
     <span>🎧 MODO CONCIERTO</span>
     <button id="music-toggle" type="button">▶ Activar música</button>
-  </div>  <audio id="bg-music" loop preload="none">
+  </div>
+
+  <audio id="bg-music" loop preload="none">
     <source src="straykids.mp3" type="audio/mpeg">
-  </audio>  <audio id="win-sound" preload="auto">
+  </audio>
+
+  <audio id="win-sound" preload="auto">
     <source src="victoria.mp3" type="audio/mpeg">
-  </audio>  <audio id="wrong-sound" preload="auto">
+  </audio>
+
+  <audio id="wrong-sound" preload="auto">
     <source src="error.mp3" type="audio/mpeg">
-  </audio>  <div class="progress-wrap">
+  </audio>
+
+  <div class="progress-wrap">
     <div id="progress"></div>
-  </div>  <div id="stage-label">Misión 01 · Acceso autorizado</div>  <!-- PANTALLA 1: BIENVENIDA -->  <section class="screen active" id="welcome">
-    <div class="panel">
-      <div class="icon">🌌</div>  <p class="neon" style="letter-spacing:4px;font-weight:bold">
-    ATENCIÓN, GABY
-  </p>
-
-  <h1>Hay una sorpresa<br>
-  <span class="neon">para ti</span></h1>
-
-  <p>¡Bienvenida a tu misión secreta!</p>
-
-  <p class="muted">
-    Una aventura especial te está esperando.
-    Pero para descubrirla tendrás que demostrar
-    que tienes lo necesario para superar todos
-    los retos.
-  </p>
-
-  <p>¿Estás lista para desbloquear tu sorpresa?</p>
-
-  <div style="font-size:38px;margin:18px">🎤 ✨ 🎶</div>
-
-  <button class="primary" onclick="startMission()">
-    COMENZAR MISIÓN 🚀
-  </button>
-
-  <p class="muted" style="font-size:11px">
-    Solo para Gaby · Acceso ultrasecreto
-  </p>
-</div>
-
-  </section>  <!-- PANTALLA 2: LAS CAJAS -->  <section class="screen" id="boxes-screen">
-    <div class="panel">
-      <div class="icon">🎁</div>  <h2>El reto de las <span class="neon">cajas misteriosas</span></h2>
-
-  <p class="muted">
-    Una estrella ganadora está escondida en una
-    de estas tres cajas.
-  </p>
-
-  <p>Observa bien. ¡La suerte está de tu lado!</p>
-
-  <div class="boxes" id="boxes">
-    <button class="mystery-box" onclick="chooseBox(0)">
-      🎁<span>CAJA 01</span>
-    </button>
-
-    <button class="mystery-box" onclick="chooseBox(1)">
-      🎁<span>CAJA 02</span>
-    </button>
-
-    <button class="mystery-box" onclick="chooseBox(2)">
-      🎁<span>CAJA 03</span>
-    </button>
   </div>
 
-  <div id="box-result" aria-live="polite">
-    Elige una caja para descubrir lo que esconde.
-  </div>
+  <div id="stage-label">Misión 01 · Acceso autorizado</div>
 
-  <button id="retry-box" class="secondary"
-          onclick="resetBoxes()" hidden>
-    🔄 INTENTAR OTRA VEZ
-  </button>
+  <!-- PANTALLA 1: BIENVENIDA -->
 
-  <div id="box-success" hidden>
-    <p class="neon">¡LO LOGRASTE, GABY! ⭐</p>
-
-    <p>
-      Has encontrado la estrella ganadora.
-      Pero tu siguiente pista no está aquí...
-    </p>
-
+  <section class="screen active" id="welcome">
     <div class="panel">
-      <div style="font-size:40px">🎒</div>
-      <strong>¡VE A LA MOCHILA DE PAPÁ!</strong>
+      <div class="icon">🌌</div>
+
+      <p class="neon" style="letter-spacing:4px;font-weight:bold">
+        ATENCIÓN, GABY
+      </p>
+
+      <h1>Hay una sorpresa<br>
+      <span class="neon">para ti</span></h1>
+
+      <p>
+        ¡Bienvenida a tu misión secreta!
+      </p>
+
       <p class="muted">
-        Busca el código secreto que está escondido
-        allí. Lo necesitarás para desbloquear
-        el siguiente nivel.
-      </p>
-    </div>
-
-    <button class="primary" onclick="showScreen('code-screen',2)">
-      YA TENGO EL CÓDIGO 🔐
-    </button>
-  </div>
-</div>
-
-  </section>  <!-- PANTALLA 3: CÓDIGO -->  <section class="screen" id="code-screen">
-    <div class="panel">
-      <div class="icon">🔐</div>  <h2>Acceso <span class="neon">restringido</span></h2>
-
-  <p>
-    Agente Gaby, introduce el código que encontraste
-    en la mochila de papá.
-  </p>
-
-  <form id="code-form">
-    <input id="secret-code"
-           type="text"
-           placeholder="CÓDIGO SECRETO"
-           autocomplete="off"
-           aria-label="Código secreto"
-           maxlength="20"
-           required>
-
-    <button class="primary" type="submit">
-      DESBLOQUEAR NIVEL 🔓
-    </button>
-  </form>
-
-  <p id="code-feedback" aria-live="polite"></p>
-
-  <p class="muted" style="font-size:12px">
-    Pista: el código está donde papá guarda
-    algunas de sus cosas.
-  </p>
-</div>
-
-  </section>  <!-- PANTALLA 4: PREGUNTA -->  <section class="screen" id="quiz-screen">
-    <div class="panel">
-      <div class="icon">🧠</div>  <p class="neon" style="letter-spacing:3px">
-    ÚLTIMO DESAFÍO
-  </p>
-
-  <h2>Una pregunta importante...</h2>
-
-  <p>
-    Gaby, ¿qué evento especial hay el
-    <strong>sábado 7 de noviembre de 2026</strong>?
-  </p>
-
-  <div class="answers">
-    <button class="answer" onclick="answerQuestion(0)">
-      🌧️ A) Un día lluvioso para quedarse en casa.
-    </button>
-
-    <button class="answer" onclick="answerQuestion(1)">
-      💼 B) Papá no va a trabajar.
-    </button>
-
-    <button class="answer" onclick="answerQuestion(2)">
-      🎤 C) ¡La función de cine de Stray Kids
-      en Cinépolis!
-    </button>
-  </div>
-
-  <p id="quiz-feedback" aria-live="polite"></p>
-</div>
-
-  </section>  <!-- PANTALLA 5: CUENTA REGRESIVA -->  <section class="screen" id="countdown-screen">
-    <div class="panel">
-      <div class="icon">🏆</div>  <h2>¡MISIÓN COMPLETADA!</h2>
-
-  <p>Has desbloqueado tu sorpresa, Gaby.</p>
-
-  <p class="neon">¡Prepárate para descubrirla!</p>
-
-  <div id="count-number" class="count-number">3</div>
-
-  <p class="muted">
-    La sorpresa está a punto de revelarse...
-  </p>
-</div>
-
-  </section>  <!-- PANTALLA 6: BOLETOS -->  <section class="screen" id="reveal-screen">
-    <div class="panel">
-      <div class="icon">🎉</div>  <p class="neon" style="letter-spacing:3px">
-    ¡SORPRESA, GABY!
-  </p>
-
-  <h1>¡NOS VAMOS A VER<br>
-  <span class="neon">STRAY KIDS!</span></h1>
-
-  <p>
-    ¡Prepárate para vivir una experiencia
-    increíble con papá! ❤️
-  </p>
-
-  <div class="ticket">
-    <div class="ticket-top">
-      <small>WORLD TOUR</small>
-      <h3>STRAY KIDS</h3>
-      <div>LIVE VIEWING ✦ CINEMA EXPERIENCE</div>
-    </div>
-
-    <div class="ticket-body">
-      <p class="ticket-title">
-        🎟️ BOLETO VIP DE LA SORPRESA
+        Una aventura especial te está esperando.
+        Pero para descubrirla tendrás que demostrar
+        que tienes lo necesario para superar todos
+        los retos.
       </p>
 
       <p>
-        Este boleto representa una invitación
-        muy especial para compartir un día
-        inolvidable.
+        ¿Estás lista para desbloquear tu sorpresa?
       </p>
 
-      <div class="ticket-info">
-        <div>
-          <small>FECHA</small>
-          <strong>SÁBADO 7 NOV. 2026</strong>
-        </div>
+      <div style="font-size:38px;margin:18px">🎤 ✨ 🎶</div>
 
-        <div>
-          <small>HORA</small>
-          <strong>12:00 P. M.</strong>
-        </div>
+      <button class="primary" onclick="startMission()">
+        COMENZAR MISIÓN 🚀
+      </button>
 
-        <div>
-          <small>LUGAR</small>
-          <strong>CINÉPOLIS</strong>
-        </div>
-
-        <div>
-          <small>ACOMPAÑANTE</small>
-          <strong>PAPÁ ❤️</strong>
-        </div>
-      </div>
-
-      <div class="ticket-divider"></div>
-
-      <div class="ticket-number">
-        GABY · ENTRADA ESPECIAL · SKZ-2026
-      </div>
+      <p class="muted" style="font-size:11px">
+        Solo para Gaby · Acceso ultrasecreto
+      </p>
     </div>
+  </section>
 
-    <div class="ticket-footer">
-      UNA EXPERIENCIA PARA RECORDAR ✨
-    </div>
-  </div>
+  <!-- PANTALLA 2: LAS CAJAS -->
 
-  <div class="ticket">
-    <div class="ticket-top">
-      <small>ADMIT ONE</small>
-      <h3>INVITACIÓN ESPECIAL</h3>
-      <div>PARA PAPÁ Y GABY</div>
-    </div>
+  <section class="screen" id="boxes-screen">
+    <div class="panel">
+      <div class="icon">🎁</div>
 
-    <div class="ticket-body">
-      <p class="ticket-title">🎟️ SEGUNDO BOLETO</p>
+      <h2>El reto de las <span class="neon">cajas misteriosas</span></h2>
+
+      <p class="muted">
+        Una estrella ganadora está escondida en una
+        de estas tres cajas.
+      </p>
 
       <p>
-        Porque las mejores aventuras se disfrutan
-        juntos.
+        Observa bien. ¡La suerte está de tu lado!
       </p>
 
-      <div class="ticket-info">
-        <div>
-          <small>EVENTO</small>
-          <strong>STRAY KIDS</strong>
+      <div class="boxes" id="boxes">
+        <button class="mystery-box" onclick="chooseBox(0)">
+          🎁<span>CAJA 01</span>
+        </button>
+
+        <button class="mystery-box" onclick="chooseBox(1)">
+          🎁<span>CAJA 02</span>
+        </button>
+
+        <button class="mystery-box" onclick="chooseBox(2)">
+          🎁<span>CAJA 03</span>
+        </button>
+      </div>
+
+      <div id="box-result" aria-live="polite">
+        Elige una caja para descubrir lo que esconde.
+      </div>
+
+      <button id="retry-box" class="secondary"
+              onclick="resetBoxes()" hidden>
+        🔄 INTENTAR OTRA VEZ
+      </button>
+
+      <div id="box-success" hidden>
+        <p class="neon">¡LO LOGRASTE, GABY! ⭐</p>
+
+        <p>
+          Has encontrado la estrella ganadora.
+          Pero tu siguiente pista no está aquí...
+        </p>
+
+        <div class="panel">
+          <div style="font-size:40px">🎒</div>
+          <strong>¡VE A LA MOCHILA DE PAPÁ!</strong>
+          <p class="muted">
+            Busca el código secreto que está escondido
+            allí. Lo necesitarás para desbloquear
+            el siguiente nivel.
+          </p>
         </div>
 
-        <div>
-          <small>FECHA</small>
-          <strong>7 DE NOVIEMBRE</strong>
+        <button class="primary" onclick="showScreen('code-screen',2)">
+          YA TENGO EL CÓDIGO 🔐
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 3: CÓDIGO -->
+
+  <section class="screen" id="code-screen">
+    <div class="panel">
+      <div class="icon">🔐</div>
+
+      <h2>Acceso <span class="neon">restringido</span></h2>
+
+      <p>
+        Agente Gaby, introduce el código que encontraste
+        en la mochila de papá.
+      </p>
+
+      <form id="code-form">
+        <input id="secret-code"
+               type="text"
+               placeholder="CÓDIGO SECRETO"
+               autocomplete="off"
+               aria-label="Código secreto"
+               maxlength="20"
+               required>
+
+        <button class="primary" type="submit">
+          DESBLOQUEAR NIVEL 🔓
+        </button>
+      </form>
+
+      <p id="code-feedback" aria-live="polite"></p>
+
+      <p class="muted" style="font-size:12px">
+        Pista: el código está donde papá guarda
+        algunas de sus cosas.
+      </p>
+    </div>
+  </section>
+
+  <!-- PANTALLA 4: PREGUNTA -->
+
+  <section class="screen" id="quiz-screen">
+    <div class="panel">
+      <div class="icon">🧠</div>
+
+      <p class="neon" style="letter-spacing:3px">
+        ÚLTIMO DESAFÍO
+      </p>
+
+      <h2>Una pregunta importante...</h2>
+
+      <p>
+        Gaby, ¿qué evento especial hay el
+        <strong>sábado 7 de noviembre de 2026</strong>?
+      </p>
+
+      <div class="answers">
+        <button class="answer" onclick="answerQuestion(0)">
+          🌧️ A) Un día lluvioso para quedarse en casa.
+        </button>
+
+        <button class="answer" onclick="answerQuestion(1)">
+          💼 B) Papá no va a trabajar.
+        </button>
+
+        <button class="answer" onclick="answerQuestion(2)">
+          🎤 C) ¡La función de cine de Stray Kids
+          en Cinépolis!
+        </button>
+      </div>
+
+      <p id="quiz-feedback" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- PANTALLA 5: CUENTA REGRESIVA -->
+
+  <section class="screen" id="countdown-screen">
+    <div class="panel">
+      <div class="icon">🏆</div>
+
+      <h2>¡MISIÓN COMPLETADA!</h2>
+
+      <p>
+        Has desbloqueado tu sorpresa, Gaby.
+      </p>
+
+      <p class="neon">
+        ¡Prepárate para descubrirla!
+      </p>
+
+      <div id="count-number" class="count-number">3</div>
+
+      <p class="muted">
+        La sorpresa está a punto de revelarse...
+      </p>
+    </div>
+  </section>
+
+  <!-- PANTALLA 6: BOLETOS -->
+
+  <section class="screen" id="reveal-screen">
+    <div class="panel">
+      <div class="icon">🎉</div>
+
+      <p class="neon" style="letter-spacing:3px">
+        ¡SORPRESA, GABY!
+      </p>
+
+      <h1>¡NOS VAMOS A VER<br>
+      <span class="neon">STRAY KIDS!</span></h1>
+
+      <p>
+        ¡Prepárate para vivir una experiencia
+        increíble con papá! ❤️
+      </p>
+
+      <div class="ticket">
+        <div class="ticket-top">
+          <small>WORLD TOUR</small>
+          <h3>STRAY KIDS</h3>
+          <div>LIVE VIEWING ✦ CINEMA EXPERIENCE</div>
         </div>
 
-        <div>
-          <small>HORA</small>
-          <strong>12:00 P. M.</strong>
+        <div class="ticket-body">
+          <p class="ticket-title">
+            🎟️ BOLETO VIP DE LA SORPRESA
+          </p>
+
+          <p>
+            Este boleto representa una invitación
+            muy especial para compartir un día
+            inolvidable.
+          </p>
+
+          <div class="ticket-info">
+            <div>
+              <small>FECHA</small>
+              <strong>SÁBADO 7 NOV. 2026</strong>
+            </div>
+
+            <div>
+              <small>HORA</small>
+              <strong>12:00 P. M.</strong>
+            </div>
+
+            <div>
+              <small>LUGAR</small>
+              <strong>CINÉPOLIS</strong>
+            </div>
+
+            <div>
+              <small>ACOMPAÑANTE</small>
+              <strong>PAPÁ ❤️</strong>
+            </div>
+          </div>
+
+          <div class="ticket-divider"></div>
+
+          <div class="ticket-number">
+            GABY · ENTRADA ESPECIAL · SKZ-2026
+          </div>
         </div>
 
-        <div>
-          <small>DESTINO</small>
-          <strong>¡EL CINE!</strong>
+        <div class="ticket-footer">
+          UNA EXPERIENCIA PARA RECORDAR ✨
         </div>
       </div>
 
-      <div class="ticket-divider"></div>
+      <div class="ticket">
+        <div class="ticket-top">
+          <small>ADMIT ONE</small>
+          <h3>INVITACIÓN ESPECIAL</h3>
+          <div>PARA PAPÁ Y GABY</div>
+        </div>
 
-      <div class="ticket-number">
-        MISIÓN PADRE E HIJA · RECUERDOS INOLVIDABLES
+        <div class="ticket-body">
+          <p class="ticket-title">🎟️ SEGUNDO BOLETO</p>
+
+          <p>
+            Porque las mejores aventuras se disfrutan
+            juntos.
+          </p>
+
+          <div class="ticket-info">
+            <div>
+              <small>EVENTO</small>
+              <strong>STRAY KIDS</strong>
+            </div>
+
+            <div>
+              <small>FECHA</small>
+              <strong>7 DE NOVIEMBRE</strong>
+            </div>
+
+            <div>
+              <small>HORA</small>
+              <strong>12:00 P. M.</strong>
+            </div>
+
+            <div>
+              <small>DESTINO</small>
+              <strong>¡EL CINE!</strong>
+            </div>
+          </div>
+
+          <div class="ticket-divider"></div>
+
+          <div class="ticket-number">
+            MISIÓN PADRE E HIJA · RECUERDOS INOLVIDABLES
+          </div>
+        </div>
+
+        <div class="ticket-footer">
+          ¡NOS VEMOS EN EL SHOW! 💜
+        </div>
       </div>
+
+      <div class="panel">
+        <div class="icon">💌</div>
+
+        <h2>Un mensaje de <span class="neon">papá</span></h2>
+
+        <p>
+          Mi querida Gaby:
+        </p>
+
+        <p>
+          Espero que estés muy feliz con esta sorpresa.
+          Me hace muchísima ilusión poder acompañarte
+          a disfrutar de algo que te gusta tanto.
+        </p>
+
+        <p>
+          Quiero que nos la pasemos increíble, que
+          cantemos, que disfrutemos cada momento y
+          que guardemos este día como un recuerdo
+          muy bonito de los dos.
+        </p>
+
+        <p>
+          Porque más allá de la música y de ver a tus
+          artistas favoritos, para mí lo más especial
+          es compartir esta experiencia contigo.
+        </p>
+
+        <h2 class="neon">
+          ¡TE QUIERO MUCHÍSIMO, GABY! ❤️
+        </h2>
+
+        <p>Con todo mi amor,</p>
+
+        <p style="font-size:23px;font-weight:bold">
+          Papá ❤️
+        </p>
+      </div>
+
+      <button class="primary" onclick="celebrateAgain()">
+        🎉 ¡CELEBRAR OTRA VEZ!
+      </button>
+
+      <p class="muted" style="font-size:12px">
+        Esta página es una invitación sorpresa,
+        no un boleto oficial de acceso.
+      </p>
     </div>
+  </section>
 
-    <div class="ticket-footer">
-      ¡NOS VEMOS EN EL SHOW! 💜
-    </div>
-  </div>
+</main>
 
-  <div class="panel">
-    <div class="icon">💌</div>
-
-    <h2>Un mensaje de <span class="neon">papá</span></h2>
-
-    <p>Mi querida Gaby:</p>
-
-    <p>
-      Espero que estés muy feliz con esta sorpresa.
-      Me hace muchísima ilusión poder acompañarte
-      a disfrutar de algo que te gusta tanto.
-    </p>
-
-    <p>
-      Quiero que nos la pasemos increíble, que
-      cantemos, que disfrutemos cada momento y
-      que guardemos este día como un recuerdo
-      muy bonito de los dos.
-    </p>
-
-    <p>
-      Porque más allá de la música y de ver a tus
-      artistas favoritos, para mí lo más especial
-      es compartir esta experiencia contigo.
-    </p>
-
-    <h2 class="neon">
-      ¡TE QUIERO MUCHÍSIMO, GABY! ❤️
-    </h2>
-
-    <p>Con todo mi amor,</p>
-
-    <p style="font-size:23px;font-weight:bold">
-      Papá ❤️
-    </p>
-  </div>
-
-  <button class="primary" onclick="celebrateAgain()">
-    🎉 ¡CELEBRAR OTRA VEZ!
-  </button>
-
-  <p class="muted" style="font-size:12px">
-    Esta página es una invitación sorpresa,
-    no un boleto oficial de acceso.
-  </p>
-</div>
-
-  </section></main><footer>
+<footer>
   HECHO CON AMOR PARA GABY ❤️ · UNA MISIÓN INOLVIDABLE
-</footer><script>
-/* CONFIGURACIÓN PERSONALIZABLE */
+</footer>
+
+<script>
+/* ==========================================
+   CONFIGURACIÓN PERSONALIZABLE
+   ========================================== */
+
 const SECRET_CODE = "SKZ2026";
+
+// Si quieres que la música comience a partir de
+// una parte concreta, cambia currentTime abajo.
 const MUSIC_START_SECONDS = 0;
 
-/* NUEVA FUNCIÓN: ACEPTAR EL RETO */
-function acceptChallenge() {
-  document.getElementById("intro-screen").classList.add("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+/* ==========================================
+   LUCES ANIMADAS
+   ========================================== */
 
-/* LUCES ANIMADAS */
 const lights = document.getElementById("lights");
 
 for (let i = 0; i < 65; i++) {
@@ -892,7 +915,10 @@ for (let i = 0; i < 65; i++) {
   lights.appendChild(light);
 }
 
-/* MÚSICA */
+/* ==========================================
+   MÚSICA
+   ========================================== */
+
 const bgMusic = document.getElementById("bg-music");
 const winSound = document.getElementById("win-sound");
 const wrongSound = document.getElementById("wrong-sound");
@@ -931,7 +957,10 @@ function playWrongSound() {
   wrongSound.play().catch(() => {});
 }
 
-/* NAVEGACIÓN */
+/* ==========================================
+   NAVEGACIÓN
+   ========================================== */
+
 const screens = [
   "welcome",
   "boxes-screen",
@@ -970,7 +999,10 @@ function startMission() {
   showScreen("boxes-screen", 1);
 }
 
-/* JUEGO DE LAS CAJAS */
+/* ==========================================
+   JUEGO DE LAS CAJAS
+   ========================================== */
+
 let winningBox = Math.floor(Math.random() * 3);
 let boxFinished = false;
 
@@ -1009,7 +1041,6 @@ function chooseBox(index) {
 
     result.textContent =
       "¡Esta caja estaba vacía! Prueba con otra.";
-
     result.classList.remove("shake");
     void result.offsetWidth;
     result.classList.add("shake");
@@ -1039,7 +1070,10 @@ function resetBoxes() {
   document.getElementById("retry-box").hidden = true;
 }
 
-/* CÓDIGO SECRETO */
+/* ==========================================
+   CÓDIGO SECRETO
+   ========================================== */
+
 document.getElementById("code-form").addEventListener("submit", event => {
   event.preventDefault();
 
@@ -1071,7 +1105,10 @@ document.getElementById("code-form").addEventListener("submit", event => {
   }
 });
 
-/* PREGUNTA FINAL */
+/* ==========================================
+   PREGUNTA FINAL
+   ========================================== */
+
 let quizLocked = false;
 
 function answerQuestion(index) {
@@ -1105,7 +1142,10 @@ function answerQuestion(index) {
   }
 }
 
-/* CUENTA REGRESIVA */
+/* ==========================================
+   CUENTA REGRESIVA
+   ========================================== */
+
 function startCountdown() {
   showScreen("countdown-screen", 4);
 
@@ -1137,7 +1177,10 @@ function startCountdown() {
   }, 1000);
 }
 
-/* CONFETI */
+/* ==========================================
+   CONFETI
+   ========================================== */
+
 const canvas = document.getElementById("confetti");
 const ctx = canvas.getContext("2d");
 
@@ -1216,7 +1259,10 @@ function animateConfetti() {
   }
 }
 
-/* GLOBOS FLOTANTES */
+/* ==========================================
+   GLOBOS FLOTANTES
+   ========================================== */
+
 function launchBalloons(amount = 8) {
   const balloons = ["🎈", "💜", "💖", "🎈", "✨"];
 
@@ -1243,5 +1289,7 @@ function celebrateAgain() {
   launchConfetti(180);
   launchBalloons(15);
 }
-</script></body>
+</script>
+
+</body>
 </html>
