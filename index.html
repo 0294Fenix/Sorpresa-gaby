@@ -3,719 +3,499 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10051f">
-<title>La misión secreta de Gaby 💜</title>
+<title>Un reto para Gaby 💜</title>
 
 <style>
-* {
-    box-sizing: border-box;
+:root {
+    --morado: #9d4edd;
+    --rosa: #ff4fd8;
+    --azul: #39d5ff;
+    --fondo: #080510;
 }
 
-:root {
-    --morado: #8b35ff;
-    --rosa: #ff42cf;
-    --azul: #42d9ff;
-    --rojo: #ff1744;
-    --fondo: #10051f;
+* {
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     background:
-        radial-gradient(ellipse at top, #39105e 0%, #1a0930 42%, #080510 100%);
+        radial-gradient(ellipse at top, #38105e 0%, transparent 55%),
+        radial-gradient(ellipse at bottom, #170a38 0%, transparent 60%),
+        var(--fondo);
+    overflow-x: hidden;
 }
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: -2;
     pointer-events: none;
-    background:
-        radial-gradient(circle at 15% 25%, #a52cff25, transparent 25%),
-        radial-gradient(circle at 85% 35%, #ff27bd20, transparent 25%),
-        radial-gradient(circle at 50% 85%, #273cff20, transparent 30%);
-}
-
-.stage-light {
-    position: fixed;
-    top: -100px;
-    width: 150px;
-    height: 100vh;
+    background: repeating-linear-gradient(
+        120deg,
+        transparent 0px,
+        transparent 70px,
+        rgba(180, 70, 255, .035) 71px,
+        transparent 73px
+    );
     z-index: -1;
+}
+
+.luces {
+    position: fixed;
+    top: -120px;
+    left: 10%;
+    width: 80%;
+    height: 400px;
+    background: radial-gradient(
+        ellipse,
+        rgba(165, 55, 255, .19),
+        transparent 70%
+    );
+    filter: blur(35px);
     pointer-events: none;
-    opacity: .24;
-    filter: blur(24px);
-    transform-origin: top center;
-    animation: lightMove 7s ease-in-out infinite alternate;
+    animation: luces 5s ease-in-out infinite alternate;
+    z-index: -1;
 }
 
-.light-one {
-    left: 5%;
-    background: linear-gradient(#ff3be4, transparent);
+@keyframes luces {
+    from { opacity: .45; transform: scale(.9); }
+    to { opacity: 1; transform: scale(1.15); }
 }
 
-.light-two {
-    right: 8%;
-    background: linear-gradient(#643cff, transparent);
-    animation-delay: 1.5s;
+.particula {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--rosa);
+    box-shadow: 0 0 12px var(--rosa);
+    animation: flotar linear infinite;
+    pointer-events: none;
+    z-index: -1;
 }
 
-.light-three {
-    left: 45%;
-    background: linear-gradient(#00c8ff, transparent);
-    animation-delay: 2.5s;
-}
-
-@keyframes lightMove {
-    from { transform: rotate(-25deg); }
-    to { transform: rotate(25deg); }
+@keyframes flotar {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+    15% { opacity: 1; }
+    to {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
 }
 
 header {
-    padding: 20px 12px 5px;
+    padding: 24px 15px 10px;
 }
 
-.logo {
-    font-size: clamp(28px, 7vw, 45px);
-    font-weight: 900;
-    letter-spacing: 3px;
-    text-shadow:
-        0 0 8px var(--rosa),
-        0 0 22px var(--morado),
-        0 0 40px var(--rosa);
-}
-
-.subtitle {
-    color: #e9cfff;
-    letter-spacing: 3px;
+.etiqueta {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid rgba(255, 79, 216, .6);
+    border-radius: 30px;
+    color: #ffc8f5;
     font-size: 11px;
-    margin-top: 8px;
-}
-
-.progress-wrap {
-    width: min(420px, 85%);
-    height: 7px;
-    background: #ffffff20;
-    border-radius: 20px;
-    margin: 20px auto;
-    overflow: hidden;
-}
-
-#progress {
-    height: 100%;
-    width: 0%;
-    border-radius: 20px;
-    background: linear-gradient(90deg, var(--rosa), var(--morado), var(--azul));
-    transition: width .5s;
-    box-shadow: 0 0 15px var(--rosa);
-}
-
-main {
-    width: min(700px, 92%);
-    margin: 0 auto;
-    padding-bottom: 40px;
-}
-
-.panel {
-    border: 1px solid #ffffff25;
-    border-radius: 24px;
-    padding: 25px 18px;
-    margin: 15px auto;
-    background: linear-gradient(145deg, #ffffff12, #ffffff05);
-    box-shadow: 0 0 25px #8b35ff18, inset 0 0 25px #ffffff05;
-    backdrop-filter: blur(8px);
-}
-
-.screen {
-    display: none;
-    animation: appear .6s ease both;
-}
-
-.screen.active {
-    display: block;
-}
-
-@keyframes appear {
-    from { opacity: 0; transform: translateY(15px) scale(.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255, 79, 216, .15);
 }
 
 h1 {
-    font-size: clamp(27px, 6vw, 39px);
-    margin: 8px 0 18px;
-    line-height: 1.15;
+    font-size: clamp(30px, 8vw, 55px);
+    margin: 18px 0 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(
+        90deg,
+        #fff,
+        #ff79e5,
+        #a879ff,
+        #67e8ff
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: brillo 4s linear infinite;
+}
+
+@keyframes brillo {
+    to { background-position: 200% center; }
+}
+
+.subtitulo {
+    color: #d8c8f0;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 550px;
+    margin: 0 auto;
+}
+
+main {
+    width: min(100% - 30px, 720px);
+    margin: 15px auto 45px;
+}
+
+.panel {
+    background: rgba(19, 10, 35, .83);
+    border: 1px solid rgba(171, 100, 255, .42);
+    border-radius: 22px;
+    padding: 25px 18px;
+    box-shadow:
+        0 0 35px rgba(144, 54, 255, .13),
+        inset 0 0 25px rgba(255, 255, 255, .015);
+    backdrop-filter: blur(10px);
+    animation: aparecer .6s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.oculto {
+    display: none !important;
 }
 
 h2 {
-    font-size: clamp(22px, 5vw, 30px);
-    color: #ffb8f0;
+    color: #ffb5f0;
+    font-size: clamp(23px, 6vw, 32px);
+    margin-top: 0;
 }
 
 p {
-    font-size: 16px;
     line-height: 1.7;
-    color: #f0e7ff;
 }
 
-.highlight {
-    color: #ff8ce8;
-    font-weight: bold;
-    text-shadow: 0 0 12px #ff42cf80;
+.texto-suave {
+    color: #c9bada;
+    font-size: 14px;
 }
 
-.emoji {
-    font-size: 55px;
-    margin: 8px 0;
-    filter: drop-shadow(0 0 14px #ff42cf60);
-}
-
-button {
-    font-family: inherit;
-    cursor: pointer;
-    color: white;
+.boton {
+    display: inline-block;
     border: 0;
-    border-radius: 14px;
-    padding: 14px 20px;
-    margin: 8px 4px;
-    font-size: 16px;
-    font-weight: bold;
-    background: linear-gradient(100deg, #8b35ff, #e735c5);
-    box-shadow: 0 0 20px #a32cff45;
+    border-radius: 12px;
+    padding: 15px 22px;
+    margin: 12px 4px 0;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: linear-gradient(110deg, #9d4edd, #ec38bc);
+    box-shadow: 0 0 24px rgba(207, 68, 255, .3);
     transition: transform .2s, filter .2s;
 }
 
-button:hover:not(:disabled) {
+.boton:hover {
     transform: translateY(-2px);
     filter: brightness(1.15);
 }
 
-button:active:not(:disabled) {
-    transform: scale(.97);
+.boton:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
 }
 
-button:disabled {
-    opacity: .65;
+.boton-aceptar {
+    background: linear-gradient(110deg, #ff2e88, #9d4edd);
+    font-size: 16px;
+    padding: 19px 25px;
+    animation: latido 1.7s infinite;
+}
+
+@keyframes latido {
+    0%, 100% { box-shadow: 0 0 16px rgba(255, 46, 136, .35); }
+    50% { box-shadow: 0 0 34px rgba(255, 46, 136, .75); }
+}
+
+.progreso-contenedor {
+    width: 100%;
+    height: 6px;
+    background: #281638;
+    border-radius: 10px;
+    margin: 0 0 22px;
+    overflow: hidden;
+}
+
+#progreso {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--rosa), var(--azul));
+    transition: width .5s;
+}
+
+.numero-paso {
+    color: #bca6d7;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.cajas {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 9px;
+    margin: 32px auto 20px;
+    max-width: 500px;
+}
+
+.caja {
+    position: relative;
+    width: 31%;
+    min-width: 0;
+    padding: 0;
+    border: 1px solid rgba(198, 128, 255, .7);
+    border-radius: 15px;
+    background: linear-gradient(145deg, #40166b, #170b2c);
+    min-height: 140px;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .25);
+    transition:
+        left .65s ease-in-out,
+        transform .2s,
+        border-color .2s,
+        box-shadow .2s;
+}
+
+.caja:hover:not(:disabled) {
+    transform: translateY(-7px);
+    border-color: var(--rosa);
+    box-shadow: 0 0 22px rgba(255, 79, 216, .25);
+}
+
+.caja:disabled {
     cursor: default;
 }
 
-button:focus-visible,
-input:focus-visible {
-    outline: 3px solid var(--azul);
-    outline-offset: 3px;
+.icono-caja {
+    display: block;
+    font-size: clamp(40px, 11vw, 65px);
+    margin: 15px 0 8px;
+    filter: drop-shadow(0 0 10px rgba(255, 79, 216, .4));
 }
 
-/* PANTALLA INICIAL */
-
-.challenge-screen {
-    min-height: 65vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.nombre-caja {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding-bottom: 15px;
+    color: #e5c8ff;
 }
 
-.challenge-card {
-    width: 100%;
-    padding: 30px 20px;
-    border: 2px solid #ff294f;
-    border-radius: 28px;
-    background: radial-gradient(ellipse at top, #50102e, #1c092c 65%, #10051f);
-    box-shadow: 0 0 25px #ff174455, 0 0 55px #ff174425;
-    animation: challengeGlow 2s infinite alternate;
+.estrellita {
+    position: absolute;
+    top: -19px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 27px;
+    filter: drop-shadow(0 0 9px #ffe66d);
+    animation: flotarEstrella .8s ease-in-out infinite alternate;
 }
 
-@keyframes challengeGlow {
-    from { box-shadow: 0 0 18px #ff174455, 0 0 35px #ff174420; }
-    to { box-shadow: 0 0 30px #ff1744a0, 0 0 70px #ff174450; }
+@keyframes flotarEstrella {
+    to { transform: translateX(-50%) translateY(-5px); }
 }
 
-.challenge-badge {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid #ff6684;
-    border-radius: 30px;
-    color: #ffb5c4;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-}
-
-.challenge-title {
-    font-size: clamp(34px, 8vw, 48px);
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 0 12px #ff1744, 0 0 30px #ff174477;
-}
-
-.challenge-deco {
-    font-size: clamp(45px, 12vw, 70px);
+.mensaje {
+    min-height: 25px;
     margin: 15px 0;
-    animation: float 2s ease-in-out infinite alternate;
-}
-
-@keyframes float {
-    from { transform: translateY(0) rotate(-4deg); }
-    to { transform: translateY(-8px) rotate(4deg); }
-}
-
-.challenge-question {
-    font-size: clamp(20px, 5vw, 27px);
-    color: #ffe8f0;
     font-weight: bold;
+    color: #ffd5f6;
+}
+
+#codigo {
+    width: min(100%, 300px);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #a66bdf;
+    background: #10091d;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 4px;
+    outline: none;
+    text-transform: uppercase;
+}
+
+#codigo:focus {
+    border-color: var(--rosa);
+    box-shadow: 0 0 15px rgba(255, 79, 216, .2);
+}
+
+.opciones {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.opcion {
+    padding: 16px 12px;
+    border: 1px solid #644081;
+    background: #1b1030;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.opcion:hover {
+    background: #392050;
+    border-color: var(--rosa);
+}
+
+.opcion:disabled {
+    cursor: default;
+    opacity: .8;
+}
+
+#cuenta {
+    font-size: clamp(80px, 20vw, 135px);
+    font-weight: 900;
+    line-height: 1.2;
+    color: white;
+    text-shadow:
+        0 0 15px var(--rosa),
+        0 0 45px var(--morado);
+}
+
+#revelacion {
+    color: #ffb8ef;
+    font-size: clamp(27px, 7vw, 40px);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.boletos {
+    display: grid;
+    gap: 16px;
     margin: 25px 0;
 }
 
-.start-button {
-    display: block;
-    width: min(380px, 100%);
-    margin: 25px auto 12px;
-    padding: 20px 14px;
-    border: 2px solid #ff9baa;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #ff1744, #c50030);
-    color: white;
-    font-size: clamp(20px, 5vw, 27px);
-    font-weight: 900;
-    letter-spacing: 1px;
-    box-shadow: 0 0 18px #ff1744a0, 0 0 45px #ff174455;
-    animation: buttonPulse 1.2s infinite alternate;
-}
-
-@keyframes buttonPulse {
-    from { transform: scale(1); filter: brightness(1); }
-    to { transform: scale(1.035); filter: brightness(1.2); }
-}
-
-.start-note, .small-note {
-    color: #cbb7e8;
-    font-size: 13px;
-}
-
-/* JUEGO DE LAS CAJAS */
-
-.game-panel {
-    overflow: hidden;
-}
-
-.game-status {
-    display: inline-block;
-    padding: 8px 15px;
-    margin: 6px 0 12px;
-    border: 1px solid #bd79ff;
-    border-radius: 30px;
-    background: #8b35ff20;
-    color: #e8caff;
-    font-size: 12px;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
-
-.star-display {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffeaa1, #ffae18);
-    box-shadow: 0 0 12px #ffda55, 0 0 32px #ffbd30;
-    font-size: 35px;
-    margin: 8px 0;
-    animation: starPulse 1s infinite alternate;
-}
-
-@keyframes starPulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.12); }
-}
-
-#boxInstruction {
-    min-height: 50px;
-    margin: 12px auto;
-}
-
-.game-area {
+.boleto {
     position: relative;
-    width: 100%;
-    max-width: 510px;
-    height: 190px;
-    margin: 12px auto 18px;
     overflow: hidden;
-    border: 1px solid #ffffff15;
-    border-radius: 20px;
+    border: 2px dashed #ff69d5;
+    border-radius: 15px;
+    padding: 20px 12px;
     background:
-        radial-gradient(ellipse at center, #37175b 0%, #1a0b2d 75%);
-    box-shadow: inset 0 0 30px #00000035;
+        radial-gradient(circle at 0% 0%, rgba(255, 79, 216, .25), transparent 50%),
+        linear-gradient(135deg, #25113f, #110a22);
+    text-align: left;
 }
 
-.game-floor {
-    position: absolute;
-    left: 4%;
-    right: 4%;
-    bottom: 17px;
-    height: 3px;
-    border-radius: 50%;
-    background: #b75bff;
-    box-shadow: 0 0 12px #b75bff;
-    opacity: .7;
-}
-
-.box-object {
-    position: absolute;
-    top: 27px;
-    width: 29%;
-    max-width: 135px;
-    height: 125px;
-    border: 0;
-    border-radius: 16px;
-    padding: 0;
-    margin: 0;
-    overflow: visible;
-    background: transparent;
-    box-shadow: none;
-    transform: translateX(0);
-    transition:
-        left .55s cubic-bezier(.22,.8,.25,1),
-        transform .35s ease,
-        filter .3s ease;
-    will-change: left, transform;
-}
-
-.box-object:disabled {
-    opacity: 1;
-}
-
-.box-object:not(:disabled):hover {
-    transform: translateY(-5px);
-    filter: brightness(1.2);
-}
-
-.box-shadow {
-    position: absolute;
-    left: 12%;
-    right: 12%;
-    bottom: -4px;
-    height: 12px;
-    border-radius: 50%;
-    background: #00000080;
-    filter: blur(4px);
-}
-
-.box-art {
-    position: absolute;
-    left: 4%;
-    right: 4%;
-    top: 10px;
-    height: 95px;
-    border: 2px solid #e8baff;
-    border-radius: 10px 10px 14px 14px;
-    background: linear-gradient(145deg, #9b4bff, #4b158c 70%);
-    box-shadow: 0 0 15px #9b4bff50, inset 0 0 15px #ffffff12;
-    transition: background .3s, box-shadow .3s;
-}
-
-.box-art::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 13px;
-    height: 12px;
-    border-top: 2px solid #d9a1ff;
-    border-bottom: 2px solid #d9a1ff;
-    background: #b56bff40;
-}
-
-.box-art::after {
-    content: "";
-    position: absolute;
-    top: -7px;
-    left: -3%;
-    width: 106%;
-    height: 19px;
-    border: 2px solid #f1d6ff;
-    border-radius: 7px;
-    background: linear-gradient(90deg, #9b4bff, #d38aff, #8a37e5);
-    box-shadow: 0 0 10px #a855f7;
-}
-
-.box-ribbon {
-    position: absolute;
-    z-index: 2;
-    top: 10px;
-    bottom: 0;
-    left: 42%;
-    width: 16%;
-    border-left: 2px solid #f3d4ff;
-    border-right: 2px solid #f3d4ff;
-    background: linear-gradient(90deg, #ff4bd8, #ffb3ef, #ff4bd8);
-    opacity: .95;
-    pointer-events: none;
-}
-
-.box-number {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    font-size: 12px;
-    color: #f1dfff;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 0 0 7px #000;
-}
-
-.box-object .star {
-    position: absolute;
-    z-index: 5;
-    top: -2px;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(.2);
-    font-size: 49px;
-    opacity: 0;
-    transition: opacity .35s, transform .35s;
-    filter: drop-shadow(0 0 12px #ffe66d);
-    pointer-events: none;
-}
-
-.box-object.show-star .star {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.box-object.show-star .box-art {
-    border-color: #fff1a3;
-    box-shadow: 0 0 25px #ffdc4d, inset 0 0 18px #ffe66d50;
-}
-
-.box-object.correct-box .box-art {
-    background: linear-gradient(145deg, #ffd95b, #ff8b19);
-    border-color: #fff1a3;
-    box-shadow: 0 0 28px #ffcf43;
-}
-
-.box-object.correct-box .box-ribbon {
-    background: linear-gradient(90deg, #ff1744, #ffb2c1, #ff1744);
-}
-
-.box-object.wrong-box {
-    animation: wrongShake .4s;
-}
-
-@keyframes wrongShake {
-    0%,100% { margin-left: 0; }
-    20% { margin-left: -6px; }
-    40% { margin-left: 6px; }
-    60% { margin-left: -4px; }
-    80% { margin-left: 4px; }
-}
-
-.game-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin: 12px auto;
-}
-
-.game-actions button {
-    min-width: 170px;
-}
-
-.message {
-    min-height: 28px;
-    color: #ffb2e9;
-    font-weight: bold;
-    line-height: 1.5;
-    margin: 12px 0;
-}
-
-.primary-action {
-    background: linear-gradient(100deg, #8b35ff, #e735c5);
-}
-
-.secondary {
-    background: linear-gradient(100deg, #25203b, #49356c);
-    border: 1px solid #ffffff35;
-}
-
-/* CÓDIGO Y PREGUNTA */
-
-input {
-    width: min(350px, 95%);
-    padding: 15px;
-    border: 1px solid #d79aff;
-    border-radius: 12px;
-    color: white;
-    background: #160a29;
-    text-align: center;
-    font-size: 18px;
-    letter-spacing: 2px;
-    margin: 10px 0;
-    outline: none;
-}
-
-input::placeholder {
-    color: #a99bbd;
-}
-
-.answer {
+.boleto::after {
+    content: "✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦";
     display: block;
-    width: min(480px, 100%);
-    margin: 12px auto;
-    background: #ffffff0c;
-    border: 1px solid #ffffff35;
-    box-shadow: none;
-    line-height: 1.5;
-}
-
-.answer.correct-answer {
-    background: linear-gradient(90deg, #168c70, #1cba89);
-}
-
-.answer.wrong-answer {
-    background: linear-gradient(90deg, #8e204a, #c92e68);
-}
-
-/* CUENTA REGRESIVA */
-
-#countdown {
-    font-size: clamp(75px, 20vw, 130px);
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 0 15px var(--rosa), 0 0 40px var(--morado);
-    animation: pulse .8s infinite alternate;
-}
-
-@keyframes pulse {
-    from { transform: scale(.9); }
-    to { transform: scale(1.1); }
-}
-
-/* BOLETOS DECORATIVOS */
-
-.ticket {
-    position: relative;
-    overflow: hidden;
-    margin: 22px auto;
-    max-width: 520px;
-    padding: 25px 18px;
-    border: 2px dashed #ffd4ff;
-    border-radius: 22px;
-    color: #27113d;
-    background: linear-gradient(135deg, #fff2ff, #e4c9ff 55%, #ffc8f1);
-    box-shadow: 0 0 30px #ff42cf50;
-    animation: ticketIn .9s ease both;
-}
-
-@keyframes ticketIn {
-    from { opacity: 0; transform: translateY(35px) rotate(-2deg) scale(.85); }
-    to { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
-}
-
-.ticket::before,
-.ticket::after {
-    content: "";
-    position: absolute;
-    top: 48%;
-    width: 26px;
-    height: 26px;
-    background: #170824;
-    border-radius: 50%;
-}
-
-.ticket::before { left: -15px; }
-.ticket::after { right: -15px; }
-
-.ticket-label {
+    color: #e6a1ff;
     font-size: 12px;
-    letter-spacing: 3px;
-    font-weight: 900;
-    color: #7e28b2;
+    letter-spacing: 7px;
+    margin-top: 12px;
 }
 
-.ticket h2 {
-    color: #6311a0;
-    font-size: clamp(25px, 6vw, 36px);
-    margin: 13px 0;
-}
-
-.ticket p {
-    color: #321647;
-    line-height: 1.5;
-    margin: 9px 0;
-}
-
-.ticket-date {
+.boleto h3 {
+    color: #ffb6ec;
+    margin: 0 0 10px;
     font-size: 22px;
+}
+
+.boleto .gaby {
+    font-size: 25px;
     font-weight: 900;
-    color: #b21b91;
+    margin: 8px 0;
 }
 
-.ticket-note {
+.boleto small {
+    color: #d7c3ee;
+    line-height: 1.7;
+}
+
+.aviso-boleto {
+    text-align: center;
     font-size: 11px;
-    color: #5e456d;
-    margin-top: 16px;
+    color: #bda7d5;
+    margin-top: 10px;
 }
 
-.love-message {
-    font-size: 18px;
-    line-height: 1.8;
-    color: #fff0ff;
+.mensaje-final {
+    border-top: 1px solid rgba(255, 105, 213, .35);
+    margin-top: 25px;
+    padding-top: 25px;
+    color: #f4e8ff;
+    text-align: left;
+}
+
+.mensaje-final h3 {
+    text-align: center;
+    color: #ffb6ec;
+}
+
+.corazon {
+    font-size: 38px;
+    display: block;
+    text-align: center;
+    animation: latidoCorazon 1.1s infinite;
+}
+
+@keyframes latidoCorazon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
 }
 
 footer {
-    padding: 12px;
-    font-size: 12px;
-    color: #9f8bb7;
+    padding: 0 15px 30px;
+    color: #806c9b;
+    font-size: 11px;
+    letter-spacing: 2px;
 }
 
-.confetti {
+#celebracion {
     position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.confeti {
+    position: absolute;
     top: -20px;
-    z-index: 20;
-    pointer-events: none;
-    animation: confettiFall linear forwards;
+    animation: caer 3.5s linear forwards;
 }
 
-@keyframes confettiFall {
-    to { transform: translateY(110vh) rotate(800deg); opacity: .1; }
-}
-
-.balloon {
-    position: fixed;
-    bottom: -150px;
-    z-index: 19;
-    font-size: 40px;
-    pointer-events: none;
-    animation: balloonUp 7s linear forwards;
-}
-
-@keyframes balloonUp {
-    to { transform: translateY(-125vh) rotate(18deg); opacity: 0; }
+@keyframes caer {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
 }
 
 @media (max-width: 420px) {
-    .panel { padding: 21px 12px; }
-    button { padding: 13px 16px; }
-    p { font-size: 15px; }
-    .challenge-card { padding: 27px 15px; }
-    .game-area { height: 175px; }
-    .box-object { height: 115px; }
-    .box-art { height: 88px; }
-}
+    .panel {
+        padding: 22px 13px;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+    .caja {
+        min-height: 120px;
+    }
+
+    .nombre-caja {
+        letter-spacing: 1px;
+        font-size: 10px;
     }
 }
 </style>
@@ -723,765 +503,719 @@ footer {
 
 <body>
 
-<div class="stage-light light-one"></div>
-<div class="stage-light light-two"></div>
-<div class="stage-light light-three"></div>
-
-<audio id="backgroundMusic" src="straykids.mp3" loop preload="auto"></audio>
-<audio id="victorySound" src="victoria.mp3" preload="auto"></audio>
-<audio id="errorSound" src="error.mp3" preload="auto"></audio>
+<div class="luces"></div>
+<div id="particulas"></div>
+<div id="celebracion"></div>
 
 <header>
-    <div class="logo">GABY ✦ STAY</div>
-    <div class="subtitle">UNA MISIÓN ESPECIAL TE ESPERA</div>
-    <div class="progress-wrap">
-        <div id="progress"></div>
-    </div>
+    <div class="etiqueta">✦ Una misión especial ✦</div>
+    <h1>Gaby's Challenge</h1>
+    <p class="subtitulo">
+        Una sorpresa preparada especialmente para alguien muy especial.
+    </p>
 </header>
 
 <main>
 
-    <!-- PANTALLA INICIAL: ACEPTAR EL RETO -->
-    <section id="challenge-screen" class="screen active challenge-screen">
-        <div class="challenge-card">
-            <div class="challenge-badge">⚠️ MISIÓN SECRETA ⚠️</div>
-            <div class="challenge-deco">💜🐺🔴</div>
-            <div class="challenge-title">¡GABY!</div>
+    <div class="progreso-contenedor">
+        <div id="progreso"></div>
+    </div>
 
-            <h1>¡Tus papás te han puesto un reto!</h1>
+    <!-- PANTALLA INICIAL -->
+    <section id="pantallaInicio" class="panel">
+        <div style="font-size:65px; margin-bottom:10px;">💜</div>
 
-            <div class="challenge-question">¿Lo aceptas? 👀</div>
+        <div class="numero-paso">ATENCIÓN, GABY</div>
 
-            <p>
-                Solo las chicas más valientes podrán descubrir
-                la sorpresa que te espera...
-            </p>
+        <h2>Gaby, tus papás te han puesto un reto.</h2>
 
-            <button class="start-button" id="acceptButton" onclick="acceptChallenge()">
-                🔥 ¡ACEPTO EL RETO! 🔥
-            </button>
+        <p>
+            Hemos preparado algo muy especial para ti, pero primero
+            tendrás que superar unas pruebas.
+        </p>
 
-            <div class="start-note">💜 TOCA EL BOTÓN PARA COMENZAR 💜</div>
-        </div>
+        <p style="color:#ffb6ec; font-weight:bold; font-size:19px;">
+            ¿Lo aceptas?
+        </p>
+
+        <p class="texto-suave">
+            Piensa bien tus respuestas, sigue las pistas y descubre
+            la sorpresa que te espera al final.
+        </p>
+
+        <button class="boton boton-aceptar" id="botonAceptar"
+                onclick="aceptarReto()">
+            ¡ACEPTO EL RETO! 💜
+        </button>
     </section>
 
-    <!-- RETO DE LAS CAJAS: ES LA PRIMERA PANTALLA TRAS ACEPTAR -->
-    <section id="boxes-screen" class="screen">
-        <div class="panel game-panel">
-            <div class="emoji">⭐📦⭐</div>
-            <h1>Reto 1: Sigue la estrella</h1>
+    <!-- JUEGO DE LAS CAJAS -->
+    <section id="pantallaCajas" class="panel oculto">
+        <div class="numero-paso">PRUEBA 1 DE 3</div>
+        <h2>¡Encuentra la estrella! ⭐</h2>
 
-            <div class="game-status" id="gameStatus">PREPÁRATE PARA OBSERVAR</div>
+        <p>
+            Observa bien dónde está la estrella.
+            Las cajas se moverán y tendrás que descubrir
+            dónde quedó escondida.
+        </p>
 
-            <p id="boxInstruction">
-                Memoriza qué caja tiene la estrella. Después, las cajas se mezclarán.
-            </p>
+        <p class="texto-suave" id="instruccionCajas">
+            ¡Memoriza la posición de la estrella!
+        </p>
 
-            <div class="star-display" aria-label="Estrella">⭐</div>
+        <div class="cajas" id="cajas"></div>
 
-            <div class="game-area" id="gameArea">
-                <div class="game-floor"></div>
-                <div id="boxes"></div>
-            </div>
-
-            <div id="boxMessage" class="message" aria-live="polite"></div>
-
-            <div class="game-actions">
-                <button id="mixButton" class="primary-action" onclick="beginMixing()" disabled>
-                    Mezclar cajas 🔀
-                </button>
-
-                <button id="retryButton" class="secondary" onclick="restartBoxRound()" hidden>
-                    Intentar otra vez 🔄
-                </button>
-
-                <button id="continueButton" class="primary-action" onclick="continueAfterBoxes()" hidden>
-                    Continuar la misión 💜
-                </button>
-            </div>
-
-            <p class="small-note">
-                Consejo: sigue la estrella con tus ojos y no te distraigas. 👀
-            </p>
+        <div class="mensaje" id="mensajeCajas" aria-live="polite">
+            ¡Prepárate!
         </div>
+
+        <button id="botonReintentar" class="boton oculto"
+                onclick="reiniciarRonda()">
+            INTENTAR OTRA VEZ 🔄
+        </button>
     </section>
 
-    <!-- CÓDIGO SECRETO -->
-    <section id="code-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">🎒🔐💜</div>
+    <!-- PISTA DE LA MOCHILA -->
+    <section id="pantallaPista" class="panel oculto">
+        <div class="numero-paso">PRUEBA 1 COMPLETADA</div>
+        <div style="font-size:65px;">🎒</div>
 
-            <h1>¡Excelente, Gaby!</h1>
+        <h2>¡Lo lograste, Gaby!</h2>
 
-            <p>
-                Has superado el primer reto. Ahora tienes que buscar una pista muy importante.
+        <p>
+            Has encontrado la primera pista.
+            Ahora tendrás que descubrir un secreto.
+        </p>
+
+        <div style="
+            margin:22px 0;
+            padding:18px;
+            border:1px dashed #ff79e5;
+            border-radius:15px;
+            background:rgba(157,78,221,.1);
+        ">
+            <div style="font-size:12px; letter-spacing:3px; color:#d9b4ff;">
+                BUSCA LA CLAVE
+            </div>
+            <p style="font-size:19px; color:#ffb6ec; font-weight:bold;">
+                La mochila de repartir de papá
             </p>
-
-            <p>
-                Ve a revisar <span class="highlight">la mochila de repartir de papá</span>.
-                Allí encontrarás un código secreto.
+            <p class="texto-suave">
+                Ahí encontrarás lo que necesitas para continuar.
             </p>
+        </div>
 
-            <p>Cuando lo encuentres, escríbelo aquí:</p>
+        <p>Cuando tengas la clave, presiona el botón.</p>
 
-            <input
-                id="secretCode"
-                type="text"
-                placeholder="ESCRIBE EL CÓDIGO"
-                autocomplete="off"
-                autocapitalize="characters"
-                maxlength="30"
-            >
+        <button class="boton" onclick="mostrarCodigo()">
+            YA TENGO MI CLAVE 🔐
+        </button>
+    </section>
+
+    <!-- INGRESO DE CLAVE -->
+    <section id="pantallaCodigo" class="panel oculto">
+        <div class="numero-paso">PRUEBA 2 DE 3</div>
+        <div style="font-size:55px;">🔐</div>
+
+        <h2>El código secreto</h2>
+
+        <p>
+            Escribe la clave que encontraste en la mochila
+            de repartir de papá.
+        </p>
+
+        <form onsubmit="comprobarCodigo(event)">
+            <input id="codigo" type="password"
+                   placeholder="CLAVE SECRETA"
+                   autocomplete="off"
+                   aria-label="Código secreto">
 
             <br>
 
-            <button onclick="checkCode()">Desbloquear siguiente reto 🔓</button>
-            <div id="codeMessage" class="message" aria-live="polite"></div>
-        </div>
+            <button class="boton" type="submit">
+                DESBLOQUEAR 🔓
+            </button>
+        </form>
+
+        <div class="mensaje" id="mensajeCodigo" aria-live="polite"></div>
     </section>
 
     <!-- PREGUNTA -->
-    <section id="quiz-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">🤔🎶💫</div>
+    <section id="pantallaPregunta" class="panel oculto">
+        <div class="numero-paso">PRUEBA 3 DE 3</div>
+        <div style="font-size:55px;">🧠</div>
 
-            <h1>Reto 2: La pregunta especial</h1>
+        <h2>La última pregunta</h2>
 
-            <p>
-                ¡Ya casi llegas al final! Demuestra que sabes qué está preparando papá.
-            </p>
+        <p>
+            Gaby, llegó el momento de demostrar que estás lista
+            para descubrir tu sorpresa.
+        </p>
 
-            <h2>¿Qué evento especial hay el sábado 7 de noviembre?</h2>
+        <p style="font-size:18px; color:#ffb6ec; font-weight:bold;">
+            ¿Qué plan especial hemos preparado para ti?
+        </p>
 
-            <button class="answer" onclick="answerQuiz(0)">
-                A) Un día lluvioso para quedarse en casa 🌧️
+        <div class="opciones">
+            <button class="opcion" onclick="responder(1)">
+                🌧️ Quedarnos en casa en un día lluvioso.
             </button>
 
-            <button class="answer" onclick="answerQuiz(1)">
-                B) Papá no va a trabajar ese día 😎
+            <button class="opcion" onclick="responder(2)">
+                🏠 Pasar el día con papá sin salir.
             </button>
 
-            <button class="answer" onclick="answerQuiz(2)">
-                C) ¡Una función de Stray Kids en el cine! 🐺🎤
+            <button class="opcion" onclick="responder(3)">
+                🎤 ¡Ir a ver Stray Kids en el cine!
             </button>
-
-            <div id="quizMessage" class="message" aria-live="polite"></div>
         </div>
+
+        <div class="mensaje" id="mensajePregunta" aria-live="polite"></div>
     </section>
 
     <!-- CUENTA REGRESIVA -->
-    <section id="countdown-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">🎉💜🎉</div>
-            <h1>¡LO LOGRASTE, GABY!</h1>
-            <p>Tu sorpresa está a punto de revelarse...</p>
-            <div id="countdown">3</div>
-            <p class="highlight">¡Prepárate para la sorpresa! ✨</p>
-        </div>
+    <section id="pantallaCuenta" class="panel oculto">
+        <div class="numero-paso">MISIÓN COMPLETADA</div>
+
+        <h2>¡PREPÁRATE, GABY!</h2>
+
+        <p>
+            Has superado todas las pruebas.
+            Tu sorpresa está a punto de revelarse.
+        </p>
+
+        <div id="cuenta">3</div>
+
+        <p class="texto-suave">La sorpresa comienza en...</p>
     </section>
 
-    <!-- REVELACIÓN -->
-    <section id="reveal-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">🐺💜🎤</div>
+    <!-- REVELACIÓN FINAL -->
+    <section id="pantallaFinal" class="panel oculto">
+        <div class="numero-paso">✦ SORPRESA DESBLOQUEADA ✦</div>
 
-            <h1>¡NOS VAMOS A VER STRAY KIDS!</h1>
+        <h2>¡LO LOGRASTE, GABY!</h2>
 
-            <p>Gaby, ¡tu misión ha terminado y la sorpresa se ha revelado!</p>
+        <p id="revelacion">
+            ¡NOS VAMOS A VER STRAY KIDS!
+        </p>
 
-            <p class="highlight">¡Prepárate para vivir una experiencia increíble!</p>
+        <div style="font-size:70px; margin:20px 0;">
+            🎤 💜 🎶
+        </div>
 
-            <div class="ticket">
-                <div class="ticket-label">INVITACIÓN ESPECIAL</div>
-                <h2>STRAY KIDS</h2>
-                <p><strong>LIVE VIEWING EN EL CINE</strong></p>
-                <p class="ticket-date">SÁBADO 7 DE NOVIEMBRE</p>
-                <p><strong>Hora:</strong> 12:00 del mediodía</p>
-                <p><strong>Lugar:</strong> Cinépolis Plaza Las Américas</p>
-                <p>Mérida, Yucatán</p>
-                <div class="ticket-note">
-                    PASE DECORATIVO DE SORPRESA FAMILIAR · NO ES UN BOLETO OFICIAL
-                </div>
-            </div>
+        <p>
+            ¡Prepárate para vivir una experiencia increíble
+            llena de música, emoción y mucha diversión!
+        </p>
 
-            <div class="ticket">
-                <div class="ticket-label">UN RECUERDO PARA SIEMPRE</div>
-                <h2>¡Gaby + Stray Kids! 💜</h2>
-                <p>
-                    Prepárate para cantar, emocionarte y disfrutar
-                    de este momento tan especial.
+        <div class="boletos">
+
+            <div class="boleto">
+                <small>INVITACIÓN ESPECIAL · 01</small>
+                <h3>STRAY KIDS</h3>
+                <div class="gaby">GABY 💜</div>
+                <p style="font-size:19px; font-weight:bold;">
+                    WORLD TOUR
                 </p>
-                <p class="ticket-date">¡TU SUEÑO NOS ESPERA!</p>
-                <div class="ticket-note">
-                    UNA SORPRESA PREPARADA CON MUCHO AMOR POR PAPÁ
-                </div>
+                <p style="color:#ffb6ec; font-weight:bold;">
+                    RUN IT · LIVE VIEWING
+                </p>
+                <small>
+                    📅 Sábado 7 de noviembre de 2026<br>
+                    🕛 12:00 p. m.<br>
+                    📍 Cinépolis Plaza Las Américas<br>
+                    Mérida, Yucatán
+                </small>
             </div>
 
-            <p class="love-message">
-                💜 Mi niña hermosa, quiero verte feliz y regalarte
-                momentos que guardes para siempre en tu corazón.
-                Esta sorpresa es para ti, con todo el amor de papá.
-                ¡Te quiero muchísimo, Gaby! 💜
+            <div class="boleto">
+                <small>INVITACIÓN ESPECIAL · 02</small>
+                <h3>UN DÍA INOLVIDABLE</h3>
+                <div class="gaby">PARA GABY ✨</div>
+                <p>
+                    Una experiencia para disfrutar,
+                    cantar, emocionarte y crear recuerdos
+                    que siempre llevarás en tu corazón.
+                </p>
+                <small>
+                    Acompañada de las personas que más te quieren.
+                </small>
+            </div>
+
+        </div>
+
+        <p class="aviso-boleto">
+            Estos boletos son una invitación decorativa
+            para tu sorpresa; no son entradas oficiales.
+        </p>
+
+        <div class="mensaje-final">
+            <span class="corazon">❤️</span>
+
+            <h3>Un mensaje de papá para ti</h3>
+
+            <p>
+                Mi niña hermosa, queremos que sepas que eres
+                una de las bendiciones más grandes de nuestras vidas.
+                Verte feliz es uno de los regalos más bonitos
+                que podemos recibir.
             </p>
 
-            <div class="emoji">🫶🏻🐺✨💜</div>
-            <p class="small-note">
-                Recuerda este día: ¡tu papá preparó algo especial para ti!
+            <p>
+                Preparamos esta sorpresa con muchísimo amor,
+                pensando en tu sonrisa y en la emoción que sentirás.
+                Deseamos que disfrutes cada momento y que guardes
+                este recuerdo para siempre.
+            </p>
+
+            <p>
+                Nunca olvides que, sin importar cuántos años cumplas
+                o qué tan grandes sean tus sueños, siempre tendrás
+                a tus papás para apoyarte, cuidarte y celebrar
+                tus alegrías contigo.
+            </p>
+
+            <p style="text-align:center; color:#ffb6ec; font-weight:bold;">
+                Te amamos muchísimo, Gaby. 💜
+            </p>
+
+            <p style="text-align:center;">
+                Con todo nuestro amor,<br>
+                <strong>papá y mamá.</strong>
             </p>
         </div>
+
+        <button class="boton" onclick="reiniciarJuego()">
+            VOLVER A CELEBRAR 🎉
+        </button>
     </section>
 
 </main>
 
-<footer>Una misión secreta preparada con amor por papá y mamá 💜</footer>
+<footer>
+    HECHO CON AMOR PARA GABY · UNA SORPRESA DE PAPÁ Y MAMÁ 💜
+</footer>
+
+<audio id="musica" src="straykids.mp3" loop preload="auto"></audio>
+<audio id="sonidoVictoria" src="victoria.mp3" preload="auto"></audio>
+<audio id="sonidoError" src="error.mp3" preload="auto"></audio>
 
 <script>
-/* =========================================
+/* =====================================================
    CONFIGURACIÓN
-========================================= */
+   ===================================================== */
 
-const SECRET_CODE = "SKZ2026";
+const CLAVE_SECRETA = "SKZ2026";
 
-const backgroundMusic = document.getElementById("backgroundMusic");
-const victorySound = document.getElementById("victorySound");
-const errorSound = document.getElementById("errorSound");
+const musica = document.getElementById("musica");
+const sonidoVictoria = document.getElementById("sonidoVictoria");
+const sonidoError = document.getElementById("sonidoError");
 
-const boxesContainer = document.getElementById("boxes");
-const boxInstruction = document.getElementById("boxInstruction");
-const boxMessage = document.getElementById("boxMessage");
-const gameStatus = document.getElementById("gameStatus");
-const mixButton = document.getElementById("mixButton");
-const retryButton = document.getElementById("retryButton");
-const continueButton = document.getElementById("continueButton");
+let cajas = [];
+let idCajaGanadora = 0;
+let ronda = 0;
+let mezclando = false;
+let bloqueado = false;
+let temporizadorRonda = null;
 
-let winningBoxId = 0;
-let boxObjects = [];
-let roundInProgress = false;
-let mixingInProgress = false;
-let gameCompleted = false;
-let quizCompleted = false;
-let countdownStarted = false;
-let roundNumber = 0;
-let boxClickLocked = false;
+/* =====================================================
+   PARTÍCULAS DE FONDO
+   ===================================================== */
 
-/* =========================================
-   MÚSICA Y SONIDOS
-========================================= */
+const particulas = document.getElementById("particulas");
 
-function startBackgroundMusic() {
-    backgroundMusic.volume = 0.35;
-
-    if (backgroundMusic.paused) {
-        backgroundMusic.play().catch(() => {
-            // El toque del botón de aceptar es el gesto que permite
-            // al navegador autorizar la reproducción de audio.
-        });
-    }
+for (let i = 0; i < 22; i++) {
+    const p = document.createElement("div");
+    p.className = "particula";
+    p.style.left = Math.random() * 100 + "%";
+    p.style.animationDuration = (7 + Math.random() * 10) + "s";
+    p.style.animationDelay = (Math.random() * 10) + "s";
+    p.style.opacity = Math.random();
+    particulas.appendChild(p);
 }
 
-function playSound(audio) {
-    if (!audio) return;
+/* =====================================================
+   NAVEGACIÓN
+   ===================================================== */
 
-    try {
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-    } catch (error) {
-        // El juego continúa aunque un efecto de sonido falle.
-    }
-}
-
-/* =========================================
-   CAMBIO DE PANTALLAS
-========================================= */
-
-function showScreen(screenId, progress) {
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
+function mostrarPantalla(id, porcentaje) {
+    document.querySelectorAll("main > section").forEach(p => {
+        p.classList.add("oculto");
     });
 
-    document.getElementById(screenId).classList.add("active");
-    document.getElementById("progress").style.width = progress + "%";
+    document.getElementById(id).classList.remove("oculto");
+    document.getElementById("progreso").style.width =
+        porcentaje + "%";
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* =========================================
-   ACEPTAR EL RETO
-   Comienza la canción y entra directamente
-   al juego de las cajas, sin bienvenida extra.
-========================================= */
+/* =====================================================
+   BOTÓN PARA ACEPTAR EL RETO
+   La música comienza cuando Gaby pulsa el botón.
+   ===================================================== */
 
-function acceptChallenge() {
-    const button = document.getElementById("acceptButton");
+function aceptarReto() {
+    const boton = document.getElementById("botonAceptar");
 
-    if (button.disabled) return;
-    button.disabled = true;
+    boton.disabled = true;
+    boton.textContent = "¡EL RETO HA COMENZADO! 💜";
 
-    startBackgroundMusic();
+    musica.volume = 0.55;
 
-    showScreen("boxes-screen", 20);
-    restartBoxRound();
-}
+    const intentoMusica = musica.play();
 
-/* =========================================
-   UTILIDADES
-========================================= */
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+    if (intentoMusica && typeof intentoMusica.catch === "function") {
+        intentoMusica.catch(() => {
+            // Algunos navegadores pueden bloquear el audio.
+            // El juego continúa normalmente.
+        });
     }
-    return array;
+
+    iniciarJuegoCajas();
 }
 
-/* =========================================
-   PREPARAR UNA RONDA NUEVA
-========================================= */
+/* =====================================================
+   JUEGO DE LAS CAJAS
+   ===================================================== */
 
-async function restartBoxRound() {
-    if (mixingInProgress) return;
+function iniciarJuegoCajas() {
+    ronda = 0;
+    reiniciarRonda();
+}
 
-    roundInProgress = true;
-    gameCompleted = false;
-    boxClickLocked = true;
-    roundNumber++;
+function crearCajas() {
+    const contenedor = document.getElementById("cajas");
+    contenedor.innerHTML = "";
 
-    retryButton.hidden = true;
-    continueButton.hidden = true;
-
-    mixButton.hidden = false;
-    mixButton.disabled = true;
-    mixButton.textContent = "Observa la estrella ⭐";
-
-    gameStatus.textContent = "RONDA " + roundNumber;
-    boxInstruction.textContent =
-        "¡Memoriza la caja que tiene la estrella! Después tendrás que seguirla.";
-
-    boxMessage.textContent = "";
-
-    /*
-      Cada caja conserva su identidad.
-      La posición visual puede cambiar, pero la estrella siempre
-      permanece dentro de la misma caja.
-    */
-    winningBoxId = Math.floor(Math.random() * 3);
-
-    boxObjects = [
-        { id: 0, position: 0 },
-        { id: 1, position: 1 },
-        { id: 2, position: 2 }
+    cajas = [
+        { id: 1, posicion: 0 },
+        { id: 2, posicion: 1 },
+        { id: 3, posicion: 2 }
     ];
 
-    renderBoxObjects(true);
+    idCajaGanadora = cajas[Math.floor(Math.random() * cajas.length)].id;
 
-    await sleep(1500);
-
-    if (gameCompleted) return;
-
-    boxInstruction.textContent =
-        "¡Atención! Mira dónde está la estrella. Las cajas van a mezclarse.";
-
-    await sleep(900);
-
-    await animateMixing();
-
-    if (gameCompleted) return;
-
-    roundInProgress = false;
-    boxClickLocked = false;
-
-    boxInstruction.textContent =
-        "¡Ahora elige la caja que crees que esconde la estrella!";
-
-    gameStatus.textContent = "¡TU TURNO!";
-    boxMessage.textContent = "Toca una de las tres cajas. 👇";
-
-    mixButton.hidden = true;
-
-    renderBoxObjects(false);
+    dibujarCajas(true);
 }
 
-/* =========================================
-   DIBUJAR LAS CAJAS
-========================================= */
+function dibujarCajas(deshabilitadas) {
+    const contenedor = document.getElementById("cajas");
+    contenedor.innerHTML = "";
 
-function renderBoxObjects(showStar) {
-    boxesContainer.innerHTML = "";
+    cajas.sort((a, b) => a.posicion - b.posicion);
 
-    // El contenedor ocupa el área de juego; las cajas se posicionan
-    // según su posición actual.
-    boxObjects.forEach(box => {
-        const button = document.createElement("button");
+    cajas.forEach(caja => {
+        const boton = document.createElement("button");
+        boton.className = "caja";
+        boton.dataset.id = caja.id;
+        boton.disabled = deshabilitadas;
 
-        button.type = "button";
-        button.className = "box-object";
-        button.dataset.boxId = box.id;
-        button.setAttribute(
-            "aria-label",
-            "Caja " + (box.position + 1)
-        );
+        const estrella = document.createElement("span");
+        estrella.className = "estrellita";
+        estrella.textContent = "⭐";
 
-        // Tres posiciones horizontales relativas al área de juego.
-        const leftPositions = ["3%", "35.5%", "68%"];
-        button.style.left = leftPositions[box.position];
-
-        button.innerHTML = `
-            <span class="star" aria-hidden="true">⭐</span>
-            <span class="box-art"></span>
-            <span class="box-ribbon"></span>
-            <span class="box-shadow"></span>
-            <span class="box-number">CAJA ${box.position + 1}</span>
-        `;
-
-        if (showStar && box.id === winningBoxId) {
-            button.classList.add("show-star");
+        if (caja.id === idCajaGanadora) {
+            boton.appendChild(estrella);
+        } else {
+            estrella.style.visibility = "hidden";
+            boton.appendChild(estrella);
         }
 
-        button.disabled = true;
+        const icono = document.createElement("span");
+        icono.className = "icono-caja";
+        icono.textContent = "🎁";
+        boton.appendChild(icono);
 
-        button.addEventListener("click", () => selectBox(box.id));
+        const nombre = document.createElement("span");
+        nombre.className = "nombre-caja";
+        nombre.textContent = "CAJA " + caja.posicion + 1;
+        nombre.textContent = "CAJA " + (caja.posicion + 1);
+        boton.appendChild(nombre);
 
-        boxesContainer.appendChild(button);
+        boton.addEventListener("click", () => elegirCaja(caja.id));
+        contenedor.appendChild(boton);
     });
 }
 
-/* =========================================
-   ANIMACIÓN DEL JUEGO
-========================================= */
+function reiniciarRonda() {
+    clearTimeout(temporizadorRonda);
 
-async function animateMixing() {
-    if (mixingInProgress) return;
+    ronda++;
+    mezclando = false;
+    bloqueado = true;
 
-    mixingInProgress = true;
-    boxClickLocked = true;
+    document.getElementById("botonReintentar").classList.add("oculto");
+    document.getElementById("mensajeCajas").textContent =
+        "Observa bien la estrella... ⭐";
+    document.getElementById("instruccionCajas").textContent =
+        "Memoriza la posición de la estrella.";
 
-    gameStatus.textContent = "SIGUE LA ESTRELLA";
-    boxMessage.textContent = "¡No pierdas de vista la estrella! 👀";
+    mostrarPantalla("pantallaCajas", 20);
 
-    // Ocultar la estrella antes de empezar los intercambios.
-    document.querySelectorAll(".box-object").forEach(button => {
-        button.classList.remove("show-star");
-    });
+    crearCajas();
 
-    await sleep(450);
-
-    /*
-      En cada intercambio se eligen dos cajas distintas.
-      Se intercambian sus posiciones lógicas y CSS anima el movimiento.
-      Como la estrella pertenece al ID de la caja ganadora, nunca se
-      separa de su caja real.
-    */
-    const swaps = 7 + Math.min(roundNumber, 3);
-
-    for (let i = 0; i < swaps; i++) {
-        const firstIndex = Math.floor(Math.random() * 3);
-        let secondIndex = Math.floor(Math.random() * 3);
-
-        while (secondIndex === firstIndex) {
-            secondIndex = Math.floor(Math.random() * 3);
-        }
-
-        const firstBox = boxObjects[firstIndex];
-        const secondBox = boxObjects[secondIndex];
-
-        const firstButton = document.querySelector(
-            `.box-object[data-box-id="${firstBox.id}"]`
+    temporizadorRonda = setTimeout(() => {
+        const estrella = document.querySelector(
+            '.caja[data-id="' + idCajaGanadora + '"] .estrellita'
         );
 
-        const secondButton = document.querySelector(
-            `.box-object[data-box-id="${secondBox.id}"]`
-        );
-
-        if (firstButton) firstButton.style.transform = "translateY(-12px) scale(1.05)";
-        if (secondButton) secondButton.style.transform = "translateY(8px) scale(.96)";
-
-        await sleep(220);
-
-        const oldPosition = firstBox.position;
-        firstBox.position = secondBox.position;
-        secondBox.position = oldPosition;
-
-        // Animación de desplazamiento suave a la nueva posición.
-        const leftPositions = ["3%", "35.5%", "68%"];
-
-        if (firstButton) {
-            firstButton.style.left = leftPositions[firstBox.position];
+        if (estrella) {
+            estrella.style.visibility = "hidden";
         }
 
-        if (secondButton) {
-            secondButton.style.left = leftPositions[secondBox.position];
-        }
-
-        await sleep(550);
-
-        if (firstButton) firstButton.style.transform = "";
-        if (secondButton) secondButton.style.transform = "";
-
-        // Pequeña pausa entre intercambios para que pueda seguirlos.
-        await sleep(130);
-    }
-
-    // Asegurar que cada caja tenga la posición correcta y una etiqueta
-    // actualizada después de todos los intercambios.
-    renderBoxObjects(false);
-
-    document.querySelectorAll(".box-object").forEach(button => {
-        button.disabled = false;
-    });
-
-    mixingInProgress = false;
+        mezclarCajas();
+    }, 1500);
 }
 
-/* =========================================
-   ELEGIR UNA CAJA
-========================================= */
+function mezclarCajas() {
+    mezclando = true;
 
-async function selectBox(boxId) {
-    if (roundInProgress || mixingInProgress || boxClickLocked || gameCompleted) {
-        return;
-    }
+    document.getElementById("mensajeCajas").textContent =
+        "¡Sigue la estrella! 👀";
+    document.getElementById("instruccionCajas").textContent =
+        "Las cajas se están moviendo...";
 
-    boxClickLocked = true;
+    const totalMovimientos = 6 + ronda * 2;
+    let movimiento = 0;
 
-    const selectedButton = document.querySelector(
-        `.box-object[data-box-id="${boxId}"]`
-    );
+    const intervalo = setInterval(() => {
+        const i = Math.floor(Math.random() * 3);
+        let j = Math.floor(Math.random() * 3);
 
-    if (!selectedButton) {
-        boxClickLocked = false;
-        return;
-    }
+        while (j === i) {
+            j = Math.floor(Math.random() * 3);
+        }
 
-    if (boxId === winningBoxId) {
-        gameCompleted = true;
-        roundInProgress = false;
+        const posicionTemporal = cajas[i].posicion;
+        cajas[i].posicion = cajas[j].posicion;
+        cajas[j].posicion = posicionTemporal;
 
-        selectedButton.classList.add("correct-box", "show-star");
+        dibujarCajas(true);
 
-        document.querySelectorAll(".box-object").forEach(button => {
-            button.disabled = true;
+        movimiento++;
+
+        if (movimiento >= totalMovimientos) {
+            clearInterval(intervalo);
+
+            dibujarCajas(false);
+            mezclando = false;
+            bloqueado = false;
+
+            document.getElementById("mensajeCajas").textContent =
+                "¿En qué caja está la estrella?";
+            document.getElementById("instruccionCajas").textContent =
+                "¡Elige una caja!";
+        }
+    }, 650);
+}
+
+function elegirCaja(id) {
+    if (mezclando || bloqueado) return;
+
+    bloqueado = true;
+
+    if (id === idCajaGanadora) {
+        document.getElementById("mensajeCajas").textContent =
+            "¡CORRECTO! Encontraste la estrella. ⭐💜";
+
+        reproducirSonido(sonidoVictoria);
+
+        document.querySelectorAll(".caja").forEach(b => {
+            b.disabled = true;
         });
-
-        playSound(victorySound);
-
-        gameStatus.textContent = "¡RETO SUPERADO!";
-        boxInstruction.textContent = "¡Encontraste la estrella mágica!";
-        boxMessage.textContent =
-            "¡Excelente, Gaby! Tienes una vista increíble. ⭐💜";
-
-        mixButton.hidden = true;
-        retryButton.hidden = true;
-
-        continueButton.hidden = false;
-        continueButton.textContent = "Descubrir la siguiente pista 💜";
-
-    } else {
-        playSound(errorSound);
-
-        selectedButton.classList.add("wrong-box");
-
-        gameStatus.textContent = "¡CASI LO LOGRAS!";
-        boxMessage.textContent =
-            "¡Esa no era! No te preocupes, puedes volver a intentarlo. 💪";
-
-        document.querySelectorAll(".box-object").forEach(button => {
-            button.disabled = true;
-        });
-
-        await sleep(700);
-
-        if (gameCompleted) return;
-
-        retryButton.hidden = false;
-        retryButton.textContent = "Volver a intentarlo 🔄";
-
-        continueButton.hidden = true;
-        boxInstruction.textContent =
-            "Concéntrate y vuelve a seguir la estrella.";
-        boxClickLocked = true;
-    }
-}
-
-/* =========================================
-   CONTINUAR TRAS ENCONTRAR LA ESTRELLA
-========================================= */
-
-function continueAfterBoxes() {
-    if (!gameCompleted) return;
-
-    showScreen("code-screen", 45);
-}
-
-/* =========================================
-   CÓDIGO SECRETO
-========================================= */
-
-function checkCode() {
-    const input = document.getElementById("secretCode");
-    const message = document.getElementById("codeMessage");
-
-    const enteredCode = input.value.trim().toUpperCase();
-
-    if (enteredCode === SECRET_CODE.toUpperCase()) {
-        playSound(victorySound);
-        message.textContent = "¡Código correcto! ¡Vamos al siguiente reto! 💜";
 
         setTimeout(() => {
-            showScreen("quiz-screen", 65);
+            mostrarPantalla("pantallaPista", 40);
+        }, 1300);
+
+    } else {
+        document.getElementById("mensajeCajas").textContent =
+            "¡Ups! Esa no era. Inténtalo otra vez. 💜";
+
+        reproducirSonido(sonidoError);
+
+        document.getElementById("botonReintentar").classList.remove("oculto");
+
+        document.querySelectorAll(".caja").forEach(b => {
+            b.disabled = true;
+        });
+    }
+}
+
+/* =====================================================
+   CLAVE SECRETA
+   ===================================================== */
+
+function mostrarCodigo() {
+    mostrarPantalla("pantallaCodigo", 55);
+
+    document.getElementById("codigo").value = "";
+    document.getElementById("mensajeCodigo").textContent = "";
+
+    setTimeout(() => {
+        document.getElementById("codigo").focus();
+    }, 300);
+}
+
+function comprobarCodigo(event) {
+    event.preventDefault();
+
+    const entrada = document.getElementById("codigo").value.trim().toUpperCase();
+    const mensaje = document.getElementById("mensajeCodigo");
+
+    if (entrada === CLAVE_SECRETA) {
+        mensaje.textContent = "¡CLAVE CORRECTA! 🔓";
+        mensaje.style.color = "#8dffbd";
+
+        reproducirSonido(sonidoVictoria);
+
+        setTimeout(() => {
+            mostrarPantalla("pantallaPregunta", 72);
         }, 1000);
 
     } else {
-        playSound(errorSound);
-        message.textContent =
-            "Ese no es el código correcto. Revisa bien la mochila de repartir de papá. 🎒";
+        mensaje.textContent = "Esa no es la clave. Busca bien en la mochila. 🎒";
+        mensaje.style.color = "#ff80a9";
 
-        input.value = "";
-        input.focus();
+        reproducirSonido(sonidoError);
+
+        const campo = document.getElementById("codigo");
+        campo.value = "";
+        campo.focus();
     }
 }
 
-document.getElementById("secretCode").addEventListener("keydown", event => {
-    if (event.key === "Enter") checkCode();
-});
+/* =====================================================
+   PREGUNTA FINAL
+   ===================================================== */
 
-/* =========================================
-   PREGUNTA DE OPCIÓN MÚLTIPLE
-========================================= */
+function responder(opcion) {
+    const mensaje = document.getElementById("mensajePregunta");
 
-function answerQuiz(answer) {
-    if (quizCompleted) return;
+    if (opcion === 3) {
+        mensaje.textContent = "¡SÍÍÍ! ¡ACERTASTE, GABY! 🎤💜";
+        mensaje.style.color = "#8dffbd";
 
-    const buttons = document.querySelectorAll(".answer");
-    const message = document.getElementById("quizMessage");
+        document.querySelectorAll(".opcion").forEach(b => {
+            b.disabled = true;
+        });
 
-    if (answer === 2) {
-        quizCompleted = true;
-
-        buttons[2].classList.add("correct-answer");
-        buttons.forEach(button => button.disabled = true);
-
-        message.textContent =
-            "¡CORRECTO, GABY! ¡PREPÁRATE PARA LA SORPRESA! 💜";
-
-        playSound(victorySound);
-
-        setTimeout(startCountdown, 1200);
-
-    } else {
-        buttons[answer].classList.add("wrong-answer");
-
-        playSound(errorSound);
-
-        message.textContent =
-            "¡Esa no es! Piénsalo otra vez. ¿Qué evento especial te espera? 🐺";
+        reproducirSonido(sonidoVictoria);
 
         setTimeout(() => {
-            buttons[answer].classList.remove("wrong-answer");
-        }, 800);
+            comenzarCuentaRegresiva();
+        }, 1100);
+
+    } else {
+        mensaje.textContent =
+            "¡No exactamente! Piénsalo otra vez, Gaby. 💜";
+        mensaje.style.color = "#ff9edc";
+
+        reproducirSonido(sonidoError);
     }
 }
 
-/* =========================================
-   CUENTA REGRESIVA
-========================================= */
+/* =====================================================
+   CUENTA REGRESIVA Y REVELACIÓN
+   ===================================================== */
 
-function startCountdown() {
-    if (countdownStarted) return;
+function comenzarCuentaRegresiva() {
+    mostrarPantalla("pantallaCuenta", 88);
 
-    countdownStarted = true;
+    const cuenta = document.getElementById("cuenta");
+    const secuencia = ["3", "2", "1", "¡YA!"];
+    let indice = 0;
 
-    showScreen("countdown-screen", 85);
+    cuenta.textContent = secuencia[indice];
 
-    let count = 3;
-    const countdown = document.getElementById("countdown");
+    const intervalo = setInterval(() => {
+        indice++;
 
-    countdown.textContent = count;
-
-    const timer = setInterval(() => {
-        count--;
-
-        if (count > 0) {
-            countdown.textContent = count;
+        if (indice < secuencia.length) {
+            cuenta.textContent = secuencia[indice];
         } else {
-            clearInterval(timer);
-            countdown.textContent = "¡SORPRESA!";
+            clearInterval(intervalo);
 
-            setTimeout(revealSurprise, 800);
+            setTimeout(() => {
+                mostrarPantalla("pantallaFinal", 100);
+                lanzarCelebracion();
+            }, 450);
         }
-    }, 1000);
+    }, 900);
 }
 
-/* =========================================
-   REVELACIÓN FINAL
-========================================= */
+/* =====================================================
+   SONIDOS Y CELEBRACIÓN
+   ===================================================== */
 
-function revealSurprise() {
-    showScreen("reveal-screen", 100);
+function reproducirSonido(audio) {
+    try {
+        audio.currentTime = 0;
 
-    playSound(victorySound);
+        const intento = audio.play();
 
-    createConfetti();
-    createBalloons();
-
-    if (backgroundMusic.paused) {
-        startBackgroundMusic();
+        if (intento && typeof intento.catch === "function") {
+            intento.catch(() => {});
+        }
+    } catch (e) {
+        // Si el sonido no está disponible, el juego continúa.
     }
 }
 
-/* =========================================
-   CONFETI
-========================================= */
+function lanzarCelebracion() {
+    const contenedor = document.getElementById("celebracion");
+    contenedor.innerHTML = "";
 
-function createConfetti() {
-    const symbols = ["💜", "💖", "✨", "⭐", "🎉", "🐺"];
+    const simbolos = ["💜", "✨", "🎉", "💖", "⭐", "🎶"];
 
-    for (let i = 0; i < 65; i++) {
-        const confetti = document.createElement("div");
+    for (let i = 0; i < 75; i++) {
+        const elemento = document.createElement("span");
 
-        confetti.className = "confetti";
-        confetti.textContent = symbols[
-            Math.floor(Math.random() * symbols.length)
+        elemento.className = "confeti";
+        elemento.textContent = simbolos[
+            Math.floor(Math.random() * simbolos.length)
         ];
 
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.fontSize = (12 + Math.random() * 20) + "px";
-        confetti.style.animationDuration = (3 + Math.random() * 4) + "s";
-        confetti.style.animationDelay = (Math.random() * 2) + "s";
+        elemento.style.left = Math.random() * 100 + "%";
+        elemento.style.animationDelay = Math.random() * 2 + "s";
+        elemento.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+        elemento.style.fontSize = (12 + Math.random() * 18) + "px";
 
-        document.body.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 9000);
+        contenedor.appendChild(elemento);
     }
+
+    setTimeout(() => {
+        contenedor.innerHTML = "";
+    }, 6500);
 }
 
-/* =========================================
-   GLOBOS
-========================================= */
+/* =====================================================
+   VOLVER A CELEBRAR
+   ===================================================== */
 
-function createBalloons() {
-    const symbols = ["🎈", "💜", "💖", "🎈", "✨"];
+function reiniciarJuego() {
+    clearTimeout(temporizadorRonda);
 
-    for (let i = 0; i < 15; i++) {
-        const balloon = document.createElement("div");
+    document.getElementById("celebracion").innerHTML = "";
 
-        balloon.className = "balloon";
-        balloon.textContent = symbols[
-            Math.floor(Math.random() * symbols.length)
-        ];
+    document.querySelectorAll(".opcion").forEach(b => {
+        b.disabled = false;
+    });
 
-        balloon.style.left = Math.random() * 100 + "vw";
-        balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
-        balloon.style.animationDelay = (Math.random() * 3) + "s";
+    document.getElementById("mensajePregunta").textContent = "";
 
-        document.body.appendChild(balloon);
+    document.getElementById("botonAceptar").disabled = false;
+    document.getElementById("botonAceptar").textContent = "¡ACEPTO EL RETO! 💜";
 
-        setTimeout(() => balloon.remove(), 11000);
-    }
+    musica.pause();
+
+    try {
+        musica.currentTime = 0;
+    } catch (e) {}
+
+    mostrarPantalla("pantallaInicio", 0);
 }
 </script>
 
