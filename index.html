@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Una sorpresa para Gaby 💜</title>
+<meta name="theme-color" content="#10051f">
+<title>La misión secreta de Gaby 💜</title>
 
 <style>
 * {
@@ -43,8 +44,8 @@ body::before {
 
 .stage-light {
     position: fixed;
-    top: -120px;
-    width: 180px;
+    top: -100px;
+    width: 150px;
     height: 100vh;
     z-index: -1;
     pointer-events: none;
@@ -77,14 +78,13 @@ body::before {
 }
 
 header {
-    padding: 22px 12px 5px;
+    padding: 20px 12px 5px;
 }
 
 .logo {
-    font-size: clamp(28px, 7vw, 48px);
+    font-size: clamp(28px, 7vw, 45px);
     font-weight: 900;
     letter-spacing: 3px;
-    color: #fff;
     text-shadow:
         0 0 8px var(--rosa),
         0 0 22px var(--morado),
@@ -94,16 +94,16 @@ header {
 .subtitle {
     color: #e9cfff;
     letter-spacing: 3px;
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 8px;
 }
 
 .progress-wrap {
     width: min(420px, 85%);
-    height: 8px;
+    height: 7px;
     background: #ffffff20;
     border-radius: 20px;
-    margin: 22px auto;
+    margin: 20px auto;
     overflow: hidden;
 }
 
@@ -119,7 +119,7 @@ header {
 main {
     width: min(700px, 92%);
     margin: 0 auto;
-    padding-bottom: 45px;
+    padding-bottom: 40px;
 }
 
 .panel {
@@ -128,15 +128,13 @@ main {
     padding: 25px 18px;
     margin: 15px auto;
     background: linear-gradient(145deg, #ffffff12, #ffffff05);
-    box-shadow:
-        0 0 25px #8b35ff18,
-        inset 0 0 25px #ffffff05;
+    box-shadow: 0 0 25px #8b35ff18, inset 0 0 25px #ffffff05;
     backdrop-filter: blur(8px);
 }
 
 .screen {
     display: none;
-    animation: appear .65s ease both;
+    animation: appear .6s ease both;
 }
 
 .screen.active {
@@ -144,18 +142,12 @@ main {
 }
 
 @keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(.98);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(15px) scale(.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 h1 {
-    font-size: clamp(27px, 6vw, 40px);
+    font-size: clamp(27px, 6vw, 39px);
     margin: 8px 0 18px;
     line-height: 1.15;
 }
@@ -178,7 +170,7 @@ p {
 }
 
 .emoji {
-    font-size: 58px;
+    font-size: 55px;
     margin: 8px 0;
     filter: drop-shadow(0 0 14px #ff42cf60);
 }
@@ -189,7 +181,7 @@ button {
     color: white;
     border: 0;
     border-radius: 14px;
-    padding: 14px 21px;
+    padding: 14px 20px;
     margin: 8px 4px;
     font-size: 16px;
     font-weight: bold;
@@ -198,13 +190,18 @@ button {
     transition: transform .2s, filter .2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     transform: translateY(-2px);
     filter: brightness(1.15);
 }
 
-button:active {
+button:active:not(:disabled) {
     transform: scale(.97);
+}
+
+button:disabled {
+    opacity: .65;
+    cursor: default;
 }
 
 button:focus-visible,
@@ -213,20 +210,10 @@ input:focus-visible {
     outline-offset: 3px;
 }
 
-button:disabled {
-    opacity: .65;
-    cursor: wait;
-}
-
-.secondary {
-    background: linear-gradient(100deg, #25203b, #49356c);
-    border: 1px solid #ffffff35;
-}
-
-/* PANTALLA INICIAL DEL RETO */
+/* PANTALLA INICIAL */
 
 .challenge-screen {
-    min-height: 68vh;
+    min-height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -237,28 +224,14 @@ button:disabled {
     padding: 30px 20px;
     border: 2px solid #ff294f;
     border-radius: 28px;
-    background:
-        radial-gradient(ellipse at top, #50102e 0%, #1c092c 65%, #10051f 100%);
-    box-shadow:
-        0 0 20px #ff174455,
-        0 0 55px #ff174425,
-        inset 0 0 30px #ff174415;
+    background: radial-gradient(ellipse at top, #50102e, #1c092c 65%, #10051f);
+    box-shadow: 0 0 25px #ff174455, 0 0 55px #ff174425;
     animation: challengeGlow 2s infinite alternate;
 }
 
 @keyframes challengeGlow {
-    from {
-        box-shadow:
-            0 0 18px #ff174455,
-            0 0 35px #ff174420,
-            inset 0 0 20px #ff174410;
-    }
-    to {
-        box-shadow:
-            0 0 30px #ff1744a0,
-            0 0 70px #ff174450,
-            inset 0 0 35px #ff174425;
-    }
+    from { box-shadow: 0 0 18px #ff174455, 0 0 35px #ff174420; }
+    to { box-shadow: 0 0 30px #ff1744a0, 0 0 70px #ff174450; }
 }
 
 .challenge-badge {
@@ -274,13 +247,21 @@ button:disabled {
 }
 
 .challenge-title {
-    font-size: clamp(30px, 8vw, 47px);
+    font-size: clamp(34px, 8vw, 48px);
     font-weight: 900;
-    line-height: 1.15;
     color: white;
-    text-shadow:
-        0 0 12px #ff1744,
-        0 0 30px #ff174477;
+    text-shadow: 0 0 12px #ff1744, 0 0 30px #ff174477;
+}
+
+.challenge-deco {
+    font-size: clamp(45px, 12vw, 70px);
+    margin: 15px 0;
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translateY(0) rotate(-4deg); }
+    to { transform: translateY(-8px) rotate(4deg); }
 }
 
 .challenge-question {
@@ -288,17 +269,6 @@ button:disabled {
     color: #ffe8f0;
     font-weight: bold;
     margin: 25px 0;
-}
-
-.challenge-deco {
-    font-size: clamp(45px, 12vw, 70px);
-    margin: 15px 0;
-    animation: challengeFloat 2s ease-in-out infinite alternate;
-}
-
-@keyframes challengeFloat {
-    from { transform: translateY(0) rotate(-4deg); }
-    to { transform: translateY(-8px) rotate(4deg); }
 }
 
 .start-button {
@@ -313,86 +283,269 @@ button:disabled {
     font-size: clamp(20px, 5vw, 27px);
     font-weight: 900;
     letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow:
-        0 0 18px #ff1744a0,
-        0 0 45px #ff174455,
-        inset 0 1px 0 #ffffff55;
+    box-shadow: 0 0 18px #ff1744a0, 0 0 45px #ff174455;
     animation: buttonPulse 1.2s infinite alternate;
 }
 
 @keyframes buttonPulse {
-    from {
-        transform: scale(1);
-        filter: brightness(1);
-    }
-    to {
-        transform: scale(1.035);
-        filter: brightness(1.2);
-    }
+    from { transform: scale(1); filter: brightness(1); }
+    to { transform: scale(1.035); filter: brightness(1.2); }
 }
 
-.start-button:active {
-    transform: scale(.96);
-}
-
-.start-note {
-    color: #d4b9d9;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-/* JUEGO */
-
-.small-note {
+.start-note, .small-note {
     color: #cbb7e8;
     font-size: 13px;
 }
 
-.boxes {
-    display: flex;
+/* JUEGO DE LAS CAJAS */
+
+.game-panel {
+    overflow: hidden;
+}
+
+.game-status {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 6px 0 12px;
+    border: 1px solid #bd79ff;
+    border-radius: 30px;
+    background: #8b35ff20;
+    color: #e8caff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.star-display {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(7px, 3vw, 18px);
-    margin: 28px auto;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffeaa1, #ffae18);
+    box-shadow: 0 0 12px #ffda55, 0 0 32px #ffbd30;
+    font-size: 35px;
+    margin: 8px 0;
+    animation: starPulse 1s infinite alternate;
 }
 
-.box {
-    width: clamp(80px, 24vw, 145px);
-    height: clamp(100px, 28vw, 145px);
-    border: 2px solid #e6a8ff;
-    border-radius: 17px;
-    background: linear-gradient(145deg, #7a24dc, #34106a);
-    box-shadow: 0 0 22px #a32cff50;
-    font-size: clamp(35px, 10vw, 55px);
+@keyframes starPulse {
+    from { transform: scale(1); }
+    to { transform: scale(1.12); }
+}
+
+#boxInstruction {
+    min-height: 50px;
+    margin: 12px auto;
+}
+
+.game-area {
     position: relative;
+    width: 100%;
+    max-width: 510px;
+    height: 190px;
+    margin: 12px auto 18px;
     overflow: hidden;
-    padding: 8px;
+    border: 1px solid #ffffff15;
+    border-radius: 20px;
+    background:
+        radial-gradient(ellipse at center, #37175b 0%, #1a0b2d 75%);
+    box-shadow: inset 0 0 30px #00000035;
 }
 
-.box span {
-    display: block;
+.game-floor {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: 17px;
+    height: 3px;
+    border-radius: 50%;
+    background: #b75bff;
+    box-shadow: 0 0 12px #b75bff;
+    opacity: .7;
+}
+
+.box-object {
+    position: absolute;
+    top: 27px;
+    width: 29%;
+    max-width: 135px;
+    height: 125px;
+    border: 0;
+    border-radius: 16px;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+    transform: translateX(0);
+    transition:
+        left .55s cubic-bezier(.22,.8,.25,1),
+        transform .35s ease,
+        filter .3s ease;
+    will-change: left, transform;
+}
+
+.box-object:disabled {
+    opacity: 1;
+}
+
+.box-object:not(:disabled):hover {
+    transform: translateY(-5px);
+    filter: brightness(1.2);
+}
+
+.box-shadow {
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: -4px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00000080;
+    filter: blur(4px);
+}
+
+.box-art {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 10px;
+    height: 95px;
+    border: 2px solid #e8baff;
+    border-radius: 10px 10px 14px 14px;
+    background: linear-gradient(145deg, #9b4bff, #4b158c 70%);
+    box-shadow: 0 0 15px #9b4bff50, inset 0 0 15px #ffffff12;
+    transition: background .3s, box-shadow .3s;
+}
+
+.box-art::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 13px;
+    height: 12px;
+    border-top: 2px solid #d9a1ff;
+    border-bottom: 2px solid #d9a1ff;
+    background: #b56bff40;
+}
+
+.box-art::after {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: -3%;
+    width: 106%;
+    height: 19px;
+    border: 2px solid #f1d6ff;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #9b4bff, #d38aff, #8a37e5);
+    box-shadow: 0 0 10px #a855f7;
+}
+
+.box-ribbon {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    bottom: 0;
+    left: 42%;
+    width: 16%;
+    border-left: 2px solid #f3d4ff;
+    border-right: 2px solid #f3d4ff;
+    background: linear-gradient(90deg, #ff4bd8, #ffb3ef, #ff4bd8);
+    opacity: .95;
+    pointer-events: none;
+}
+
+.box-number {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
     font-size: 12px;
-    margin-top: 7px;
-    letter-spacing: 1px;
+    color: #f1dfff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 7px #000;
 }
 
-.box.correct {
+.box-object .star {
+    position: absolute;
+    z-index: 5;
+    top: -2px;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.2);
+    font-size: 49px;
+    opacity: 0;
+    transition: opacity .35s, transform .35s;
+    filter: drop-shadow(0 0 12px #ffe66d);
+    pointer-events: none;
+}
+
+.box-object.show-star .star {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.box-object.show-star .box-art {
+    border-color: #fff1a3;
+    box-shadow: 0 0 25px #ffdc4d, inset 0 0 18px #ffe66d50;
+}
+
+.box-object.correct-box .box-art {
     background: linear-gradient(145deg, #ffd95b, #ff8b19);
-    color: #381048;
-    border-color: #fff0a5;
-    box-shadow: 0 0 30px #ffcf43;
+    border-color: #fff1a3;
+    box-shadow: 0 0 28px #ffcf43;
 }
 
-.box.wrong {
-    animation: shake .35s;
+.box-object.correct-box .box-ribbon {
+    background: linear-gradient(90deg, #ff1744, #ffb2c1, #ff1744);
 }
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
+.box-object.wrong-box {
+    animation: wrongShake .4s;
 }
+
+@keyframes wrongShake {
+    0%,100% { margin-left: 0; }
+    20% { margin-left: -6px; }
+    40% { margin-left: 6px; }
+    60% { margin-left: -4px; }
+    80% { margin-left: 4px; }
+}
+
+.game-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px auto;
+}
+
+.game-actions button {
+    min-width: 170px;
+}
+
+.message {
+    min-height: 28px;
+    color: #ffb2e9;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 12px 0;
+}
+
+.primary-action {
+    background: linear-gradient(100deg, #8b35ff, #e735c5);
+}
+
+.secondary {
+    background: linear-gradient(100deg, #25203b, #49356c);
+    border: 1px solid #ffffff35;
+}
+
+/* CÓDIGO Y PREGUNTA */
 
 input {
     width: min(350px, 95%);
@@ -410,13 +563,6 @@ input {
 
 input::placeholder {
     color: #a99bbd;
-}
-
-.message {
-    min-height: 28px;
-    color: #ffb2e9;
-    font-weight: bold;
-    margin: 12px 0;
 }
 
 .answer {
@@ -443,9 +589,7 @@ input::placeholder {
     font-size: clamp(75px, 20vw, 130px);
     font-weight: 900;
     color: white;
-    text-shadow:
-        0 0 15px var(--rosa),
-        0 0 40px var(--morado);
+    text-shadow: 0 0 15px var(--rosa), 0 0 40px var(--morado);
     animation: pulse .8s infinite alternate;
 }
 
@@ -470,19 +614,9 @@ input::placeholder {
     animation: ticketIn .9s ease both;
 }
 
-.ticket:nth-child(2) {
-    animation-delay: .35s;
-}
-
 @keyframes ticketIn {
-    from {
-        opacity: 0;
-        transform: translateY(35px) rotate(-2deg) scale(.85);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) rotate(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(35px) rotate(-2deg) scale(.85); }
+    to { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
 }
 
 .ticket::before,
@@ -496,13 +630,8 @@ input::placeholder {
     border-radius: 50%;
 }
 
-.ticket::before {
-    left: -15px;
-}
-
-.ticket::after {
-    right: -15px;
-}
+.ticket::before { left: -15px; }
+.ticket::after { right: -15px; }
 
 .ticket-label {
     font-size: 12px;
@@ -556,10 +685,7 @@ footer {
 }
 
 @keyframes confettiFall {
-    to {
-        transform: translateY(110vh) rotate(800deg);
-        opacity: .1;
-    }
+    to { transform: translateY(110vh) rotate(800deg); opacity: .1; }
 }
 
 .balloon {
@@ -572,27 +698,24 @@ footer {
 }
 
 @keyframes balloonUp {
-    to {
-        transform: translateY(-125vh) rotate(18deg);
-        opacity: 0;
-    }
+    to { transform: translateY(-125vh) rotate(18deg); opacity: 0; }
 }
 
 @media (max-width: 420px) {
-    .panel {
-        padding: 21px 12px;
-    }
+    .panel { padding: 21px 12px; }
+    button { padding: 13px 16px; }
+    p { font-size: 15px; }
+    .challenge-card { padding: 27px 15px; }
+    .game-area { height: 175px; }
+    .box-object { height: 115px; }
+    .box-art { height: 88px; }
+}
 
-    button {
-        padding: 13px 16px;
-    }
-
-    p {
-        font-size: 15px;
-    }
-
-    .challenge-card {
-        padding: 27px 15px;
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
     }
 }
 </style>
@@ -604,7 +727,6 @@ footer {
 <div class="stage-light light-two"></div>
 <div class="stage-light light-three"></div>
 
-<!-- ARCHIVOS DE AUDIO -->
 <audio id="backgroundMusic" src="straykids.mp3" loop preload="auto"></audio>
 <audio id="victorySound" src="victoria.mp3" preload="auto"></audio>
 <audio id="errorSound" src="error.mp3" preload="auto"></audio>
@@ -612,7 +734,6 @@ footer {
 <header>
     <div class="logo">GABY ✦ STAY</div>
     <div class="subtitle">UNA MISIÓN ESPECIAL TE ESPERA</div>
-
     <div class="progress-wrap">
         <div id="progress"></div>
     </div>
@@ -620,23 +741,16 @@ footer {
 
 <main>
 
-    <!-- PANTALLA 0: EL RETO DE PAPÁ Y MAMÁ -->
+    <!-- PANTALLA INICIAL: ACEPTAR EL RETO -->
     <section id="challenge-screen" class="screen active challenge-screen">
         <div class="challenge-card">
-
             <div class="challenge-badge">⚠️ MISIÓN SECRETA ⚠️</div>
-
             <div class="challenge-deco">💜🐺🔴</div>
-
-            <div class="challenge-title">
-                ¡GABY!
-            </div>
+            <div class="challenge-title">¡GABY!</div>
 
             <h1>¡Tus papás te han puesto un reto!</h1>
 
-            <div class="challenge-question">
-                ¿Lo aceptas? 👀
-            </div>
+            <div class="challenge-question">¿Lo aceptas? 👀</div>
 
             <p>
                 Solo las chicas más valientes podrán descubrir
@@ -647,71 +761,52 @@ footer {
                 🔥 ¡ACEPTO EL RETO! 🔥
             </button>
 
-            <div class="start-note">
-                💜 TOCA EL BOTÓN PARA COMENZAR 💜
+            <div class="start-note">💜 TOCA EL BOTÓN PARA COMENZAR 💜</div>
+        </div>
+    </section>
+
+    <!-- RETO DE LAS CAJAS: ES LA PRIMERA PANTALLA TRAS ACEPTAR -->
+    <section id="boxes-screen" class="screen">
+        <div class="panel game-panel">
+            <div class="emoji">⭐📦⭐</div>
+            <h1>Reto 1: Sigue la estrella</h1>
+
+            <div class="game-status" id="gameStatus">PREPÁRATE PARA OBSERVAR</div>
+
+            <p id="boxInstruction">
+                Memoriza qué caja tiene la estrella. Después, las cajas se mezclarán.
+            </p>
+
+            <div class="star-display" aria-label="Estrella">⭐</div>
+
+            <div class="game-area" id="gameArea">
+                <div class="game-floor"></div>
+                <div id="boxes"></div>
             </div>
 
-        </div>
-    </section>
+            <div id="boxMessage" class="message" aria-live="polite"></div>
 
-    <!-- PANTALLA 1: BIENVENIDA -->
-    <section id="welcome-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">💜🎤✨</div>
+            <div class="game-actions">
+                <button id="mixButton" class="primary-action" onclick="beginMixing()" disabled>
+                    Mezclar cajas 🔀
+                </button>
 
-            <h1>¡Bienvenida, Gaby!</h1>
+                <button id="retryButton" class="secondary" onclick="restartBoxRound()" hidden>
+                    Intentar otra vez 🔄
+                </button>
 
-            <p>
-                Hay una sorpresa muy especial esperándote,
-                pero primero tendrás que completar todos los retos.
-            </p>
-
-            <p>
-                Prepárate para una misión llena de
-                <span class="highlight">música, emoción y magia</span>.
-            </p>
-
-            <p>
-                ¿Estás lista para descubrir lo que papá preparó para ti?
-            </p>
-
-            <button onclick="startGame()">¡Comenzar la misión! 💜</button>
+                <button id="continueButton" class="primary-action" onclick="continueAfterBoxes()" hidden>
+                    Continuar la misión 💜
+                </button>
+            </div>
 
             <p class="small-note">
-                Pista: observa con atención y no te rindas.
+                Consejo: sigue la estrella con tus ojos y no te distraigas. 👀
             </p>
         </div>
     </section>
 
-    <!-- PANTALLA 2: JUEGO DE CAJAS -->
-    <section id="boxes-screen" class="screen">
-        <div class="panel">
-            <div class="emoji">⭐📦⭐</div>
-
-            <h1>Reto 1: Encuentra la estrella</h1>
-
-            <p>
-                Una de estas tres cajas esconde una estrella mágica.
-                ¡Observa muy bien dónde está!
-            </p>
-
-            <p id="boxInstruction" class="highlight">
-                ¡Prepárate! Las cajas van a mezclarse...
-            </p>
-
-            <div id="boxes" class="boxes"></div>
-
-            <div id="boxMessage" class="message"></div>
-
-            <button id="mixButton" onclick="mixBoxes()">¡Mezclar las cajas! 🔀</button>
-
-            <p class="small-note">
-                Sigue la estrella con mucha atención.
-            </p>
-        </div>
-    </section>
-
-    <!-- PANTALLA 3: CÓDIGO SECRETO -->
+    <!-- CÓDIGO SECRETO -->
     <section id="code-screen" class="screen">
         <div class="panel">
             <div class="emoji">🎒🔐💜</div>
@@ -719,8 +814,7 @@ footer {
             <h1>¡Excelente, Gaby!</h1>
 
             <p>
-                Has superado el primer reto.
-                Ahora tienes que buscar una pista muy importante.
+                Has superado el primer reto. Ahora tienes que buscar una pista muy importante.
             </p>
 
             <p>
@@ -742,12 +836,11 @@ footer {
             <br>
 
             <button onclick="checkCode()">Desbloquear siguiente reto 🔓</button>
-
-            <div id="codeMessage" class="message"></div>
+            <div id="codeMessage" class="message" aria-live="polite"></div>
         </div>
     </section>
 
-    <!-- PANTALLA 4: PREGUNTA -->
+    <!-- PREGUNTA -->
     <section id="quiz-screen" class="screen">
         <div class="panel">
             <div class="emoji">🤔🎶💫</div>
@@ -755,8 +848,7 @@ footer {
             <h1>Reto 2: La pregunta especial</h1>
 
             <p>
-                ¡Ya casi llegas al final!
-                Demuestra que sabes qué está preparando papá.
+                ¡Ya casi llegas al final! Demuestra que sabes qué está preparando papá.
             </p>
 
             <h2>¿Qué evento especial hay el sábado 7 de noviembre?</h2>
@@ -773,55 +865,40 @@ footer {
                 C) ¡Una función de Stray Kids en el cine! 🐺🎤
             </button>
 
-            <div id="quizMessage" class="message"></div>
+            <div id="quizMessage" class="message" aria-live="polite"></div>
         </div>
     </section>
 
-    <!-- PANTALLA 5: CUENTA REGRESIVA -->
+    <!-- CUENTA REGRESIVA -->
     <section id="countdown-screen" class="screen">
         <div class="panel">
             <div class="emoji">🎉💜🎉</div>
-
             <h1>¡LO LOGRASTE, GABY!</h1>
-
             <p>Tu sorpresa está a punto de revelarse...</p>
-
             <div id="countdown">3</div>
-
             <p class="highlight">¡Prepárate para la sorpresa! ✨</p>
         </div>
     </section>
 
-    <!-- PANTALLA 6: REVELACIÓN -->
+    <!-- REVELACIÓN -->
     <section id="reveal-screen" class="screen">
         <div class="panel">
             <div class="emoji">🐺💜🎤</div>
 
             <h1>¡NOS VAMOS A VER STRAY KIDS!</h1>
 
-            <p>
-                Gaby, ¡tu misión ha terminado y la sorpresa se ha revelado!
-            </p>
+            <p>Gaby, ¡tu misión ha terminado y la sorpresa se ha revelado!</p>
 
-            <p class="highlight">
-                ¡Prepárate para vivir una experiencia increíble!
-            </p>
+            <p class="highlight">¡Prepárate para vivir una experiencia increíble!</p>
 
             <div class="ticket">
                 <div class="ticket-label">INVITACIÓN ESPECIAL</div>
-
                 <h2>STRAY KIDS</h2>
-
                 <p><strong>LIVE VIEWING EN EL CINE</strong></p>
-
                 <p class="ticket-date">SÁBADO 7 DE NOVIEMBRE</p>
-
                 <p><strong>Hora:</strong> 12:00 del mediodía</p>
-
                 <p><strong>Lugar:</strong> Cinépolis Plaza Las Américas</p>
-
                 <p>Mérida, Yucatán</p>
-
                 <div class="ticket-note">
                     PASE DECORATIVO DE SORPRESA FAMILIAR · NO ES UN BOLETO OFICIAL
                 </div>
@@ -829,16 +906,12 @@ footer {
 
             <div class="ticket">
                 <div class="ticket-label">UN RECUERDO PARA SIEMPRE</div>
-
                 <h2>¡Gaby + Stray Kids! 💜</h2>
-
                 <p>
                     Prepárate para cantar, emocionarte y disfrutar
                     de este momento tan especial.
                 </p>
-
                 <p class="ticket-date">¡TU SUEÑO NOS ESPERA!</p>
-
                 <div class="ticket-note">
                     UNA SORPRESA PREPARADA CON MUCHO AMOR POR PAPÁ
                 </div>
@@ -852,23 +925,20 @@ footer {
             </p>
 
             <div class="emoji">🫶🏻🐺✨💜</div>
-
             <p class="small-note">
-                Recuerda este día: ¡tu papá preparó algo especial solo para ti!
+                Recuerda este día: ¡tu papá preparó algo especial para ti!
             </p>
         </div>
     </section>
 
 </main>
 
-<footer>
-    Una misión secreta preparada con amor por papá y mamá 💜
-</footer>
+<footer>Una misión secreta preparada con amor por papá y mamá 💜</footer>
 
 <script>
-/* ========================================
+/* =========================================
    CONFIGURACIÓN
-======================================== */
+========================================= */
 
 const SECRET_CODE = "SKZ2026";
 
@@ -876,36 +946,53 @@ const backgroundMusic = document.getElementById("backgroundMusic");
 const victorySound = document.getElementById("victorySound");
 const errorSound = document.getElementById("errorSound");
 
-let winningBox = 0;
-let boxPositions = [0, 1, 2];
-let gameStarted = false;
+const boxesContainer = document.getElementById("boxes");
+const boxInstruction = document.getElementById("boxInstruction");
+const boxMessage = document.getElementById("boxMessage");
+const gameStatus = document.getElementById("gameStatus");
+const mixButton = document.getElementById("mixButton");
+const retryButton = document.getElementById("retryButton");
+const continueButton = document.getElementById("continueButton");
+
+let winningBoxId = 0;
+let boxObjects = [];
+let roundInProgress = false;
+let mixingInProgress = false;
 let gameCompleted = false;
 let quizCompleted = false;
 let countdownStarted = false;
-let mixingInProgress = false;
+let roundNumber = 0;
+let boxClickLocked = false;
 
-/* ========================================
-   MÚSICA DE FONDO
-======================================== */
+/* =========================================
+   MÚSICA Y SONIDOS
+========================================= */
 
 function startBackgroundMusic() {
-    if (!backgroundMusic) return;
-
     backgroundMusic.volume = 0.35;
 
-    const playPromise = backgroundMusic.play();
-
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            // Si el navegador bloquea la reproducción,
-            // acceptChallenge volverá a intentarlo al tocar el botón.
+    if (backgroundMusic.paused) {
+        backgroundMusic.play().catch(() => {
+            // El toque del botón de aceptar es el gesto que permite
+            // al navegador autorizar la reproducción de audio.
         });
     }
 }
 
-/* ========================================
+function playSound(audio) {
+    if (!audio) return;
+
+    try {
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+    } catch (error) {
+        // El juego continúa aunque un efecto de sonido falle.
+    }
+}
+
+/* =========================================
    CAMBIO DE PANTALLAS
-======================================== */
+========================================= */
 
 function showScreen(screenId, progress) {
     document.querySelectorAll(".screen").forEach(screen => {
@@ -915,240 +1002,324 @@ function showScreen(screenId, progress) {
     document.getElementById(screenId).classList.add("active");
     document.getElementById("progress").style.width = progress + "%";
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* ========================================
+/* =========================================
    ACEPTAR EL RETO
-======================================== */
+   Comienza la canción y entra directamente
+   al juego de las cajas, sin bienvenida extra.
+========================================= */
 
 function acceptChallenge() {
     const button = document.getElementById("acceptButton");
 
-    // Evitar que un toque doble inicie todo dos veces.
+    if (button.disabled) return;
     button.disabled = true;
 
-    // La música comienza al tocar el botón.
     startBackgroundMusic();
 
-    // Pequeña pausa para que la música comience antes de la misión.
-    setTimeout(() => {
-        showScreen("welcome-screen", 10);
-    }, 350);
+    showScreen("boxes-screen", 20);
+    restartBoxRound();
 }
 
-/* ========================================
-   EFECTOS DE SONIDO
-======================================== */
-
-function playSound(audio) {
-    if (!audio) return;
-
-    try {
-        audio.currentTime = 0;
-        audio.play().catch(() => {});
-    } catch (error) {
-        // La experiencia continúa aunque no se pueda reproducir el sonido.
-    }
-}
-
-/* ========================================
-   INICIO DEL JUEGO
-======================================== */
-
-function startGame() {
-    startBackgroundMusic();
-
-    gameStarted = false;
-    gameCompleted = false;
-    mixingInProgress = false;
-
-    winningBox = Math.floor(Math.random() * 3);
-    boxPositions = [0, 1, 2];
-
-    showScreen("boxes-screen", 25);
-
-    document.getElementById("boxInstruction").textContent =
-        "¡Memoriza la estrella! Las cajas se mezclarán en un momento.";
-
-    document.getElementById("boxMessage").textContent = "";
-
-    document.getElementById("mixButton").disabled = true;
-    document.getElementById("mixButton").textContent = "Preparando el reto...";
-
-    renderBoxes(true);
-
-    setTimeout(() => {
-        if (gameCompleted) return;
-
-        document.getElementById("boxInstruction").textContent =
-            "¡Ahora observa cómo se mezclan las cajas!";
-
-        mixBoxes();
-    }, 1600);
-}
-
-/* ========================================
-   DIBUJAR LAS CAJAS
-======================================== */
-
-function renderBoxes(showStar = false) {
-    const container = document.getElementById("boxes");
-    container.innerHTML = "";
-
-    for (let position = 0; position < 3; position++) {
-        const originalBox = boxPositions[position];
-
-        const button = document.createElement("button");
-        button.className = "box";
-        button.type = "button";
-        button.dataset.box = originalBox;
-
-        if (showStar && originalBox === winningBox) {
-            button.innerHTML = "⭐<span>¡LA ESTRELLA!</span>";
-            button.classList.add("correct");
-        } else {
-            button.innerHTML = `📦<span>CAJA ${position + 1}</span>`;
-        }
-
-        button.disabled = true;
-
-        button.addEventListener("click", () => selectBox(originalBox, button));
-
-        container.appendChild(button);
-    }
-}
+/* =========================================
+   UTILIDADES
+========================================= */
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-/* ========================================
-   MEZCLAR LAS CAJAS
-======================================== */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
-async function mixBoxes() {
-    if (gameCompleted || mixingInProgress) return;
+/* =========================================
+   PREPARAR UNA RONDA NUEVA
+========================================= */
 
-    mixingInProgress = true;
-    gameStarted = true;
+async function restartBoxRound() {
+    if (mixingInProgress) return;
 
-    const mixButton = document.getElementById("mixButton");
-    const message = document.getElementById("boxMessage");
-    const instruction = document.getElementById("boxInstruction");
+    roundInProgress = true;
+    gameCompleted = false;
+    boxClickLocked = true;
+    roundNumber++;
 
+    retryButton.hidden = true;
+    continueButton.hidden = true;
+
+    mixButton.hidden = false;
     mixButton.disabled = true;
-    message.textContent = "";
-    instruction.textContent = "¡Sigue la estrella con la mirada!";
+    mixButton.textContent = "Observa la estrella ⭐";
 
-    renderBoxes(true);
+    gameStatus.textContent = "RONDA " + roundNumber;
+    boxInstruction.textContent =
+        "¡Memoriza la caja que tiene la estrella! Después tendrás que seguirla.";
 
-    await sleep(1200);
+    boxMessage.textContent = "";
 
-    renderBoxes(false);
+    /*
+      Cada caja conserva su identidad.
+      La posición visual puede cambiar, pero la estrella siempre
+      permanece dentro de la misma caja.
+    */
+    winningBoxId = Math.floor(Math.random() * 3);
 
-    for (let i = 0; i < 7; i++) {
-        const first = Math.floor(Math.random() * 3);
-        let second = Math.floor(Math.random() * 3);
+    boxObjects = [
+        { id: 0, position: 0 },
+        { id: 1, position: 1 },
+        { id: 2, position: 2 }
+    ];
 
-        while (second === first) {
-            second = Math.floor(Math.random() * 3);
+    renderBoxObjects(true);
+
+    await sleep(1500);
+
+    if (gameCompleted) return;
+
+    boxInstruction.textContent =
+        "¡Atención! Mira dónde está la estrella. Las cajas van a mezclarse.";
+
+    await sleep(900);
+
+    await animateMixing();
+
+    if (gameCompleted) return;
+
+    roundInProgress = false;
+    boxClickLocked = false;
+
+    boxInstruction.textContent =
+        "¡Ahora elige la caja que crees que esconde la estrella!";
+
+    gameStatus.textContent = "¡TU TURNO!";
+    boxMessage.textContent = "Toca una de las tres cajas. 👇";
+
+    mixButton.hidden = true;
+
+    renderBoxObjects(false);
+}
+
+/* =========================================
+   DIBUJAR LAS CAJAS
+========================================= */
+
+function renderBoxObjects(showStar) {
+    boxesContainer.innerHTML = "";
+
+    // El contenedor ocupa el área de juego; las cajas se posicionan
+    // según su posición actual.
+    boxObjects.forEach(box => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "box-object";
+        button.dataset.boxId = box.id;
+        button.setAttribute(
+            "aria-label",
+            "Caja " + (box.position + 1)
+        );
+
+        // Tres posiciones horizontales relativas al área de juego.
+        const leftPositions = ["3%", "35.5%", "68%"];
+        button.style.left = leftPositions[box.position];
+
+        button.innerHTML = `
+            <span class="star" aria-hidden="true">⭐</span>
+            <span class="box-art"></span>
+            <span class="box-ribbon"></span>
+            <span class="box-shadow"></span>
+            <span class="box-number">CAJA ${box.position + 1}</span>
+        `;
+
+        if (showStar && box.id === winningBoxId) {
+            button.classList.add("show-star");
         }
 
-        const currentButtons = [...document.querySelectorAll(".box")];
+        button.disabled = true;
 
-        currentButtons[first].style.transform = "translateY(-12px) rotate(-5deg)";
-        currentButtons[second].style.transform = "translateY(12px) rotate(5deg)";
+        button.addEventListener("click", () => selectBox(box.id));
 
-        await sleep(180);
+        boxesContainer.appendChild(button);
+    });
+}
 
-        const temp = boxPositions[first];
-        boxPositions[first] = boxPositions[second];
-        boxPositions[second] = temp;
+/* =========================================
+   ANIMACIÓN DEL JUEGO
+========================================= */
 
-        renderBoxes(false);
+async function animateMixing() {
+    if (mixingInProgress) return;
 
-        await sleep(180);
-    }
+    mixingInProgress = true;
+    boxClickLocked = true;
 
-    instruction.textContent =
-        "¡Elige la caja que crees que contiene la estrella!";
+    gameStatus.textContent = "SIGUE LA ESTRELLA";
+    boxMessage.textContent = "¡No pierdas de vista la estrella! 👀";
 
-    message.textContent = "¿Dónde se escondió? ⭐";
-
-    renderBoxes(false);
-
-    document.querySelectorAll(".box").forEach(button => {
-        button.disabled = false;
+    // Ocultar la estrella antes de empezar los intercambios.
+    document.querySelectorAll(".box-object").forEach(button => {
+        button.classList.remove("show-star");
     });
 
-    mixButton.textContent = "Elige una caja de arriba ☝️";
-    mixButton.disabled = true;
+    await sleep(450);
+
+    /*
+      En cada intercambio se eligen dos cajas distintas.
+      Se intercambian sus posiciones lógicas y CSS anima el movimiento.
+      Como la estrella pertenece al ID de la caja ganadora, nunca se
+      separa de su caja real.
+    */
+    const swaps = 7 + Math.min(roundNumber, 3);
+
+    for (let i = 0; i < swaps; i++) {
+        const firstIndex = Math.floor(Math.random() * 3);
+        let secondIndex = Math.floor(Math.random() * 3);
+
+        while (secondIndex === firstIndex) {
+            secondIndex = Math.floor(Math.random() * 3);
+        }
+
+        const firstBox = boxObjects[firstIndex];
+        const secondBox = boxObjects[secondIndex];
+
+        const firstButton = document.querySelector(
+            `.box-object[data-box-id="${firstBox.id}"]`
+        );
+
+        const secondButton = document.querySelector(
+            `.box-object[data-box-id="${secondBox.id}"]`
+        );
+
+        if (firstButton) firstButton.style.transform = "translateY(-12px) scale(1.05)";
+        if (secondButton) secondButton.style.transform = "translateY(8px) scale(.96)";
+
+        await sleep(220);
+
+        const oldPosition = firstBox.position;
+        firstBox.position = secondBox.position;
+        secondBox.position = oldPosition;
+
+        // Animación de desplazamiento suave a la nueva posición.
+        const leftPositions = ["3%", "35.5%", "68%"];
+
+        if (firstButton) {
+            firstButton.style.left = leftPositions[firstBox.position];
+        }
+
+        if (secondButton) {
+            secondButton.style.left = leftPositions[secondBox.position];
+        }
+
+        await sleep(550);
+
+        if (firstButton) firstButton.style.transform = "";
+        if (secondButton) secondButton.style.transform = "";
+
+        // Pequeña pausa entre intercambios para que pueda seguirlos.
+        await sleep(130);
+    }
+
+    // Asegurar que cada caja tenga la posición correcta y una etiqueta
+    // actualizada después de todos los intercambios.
+    renderBoxObjects(false);
+
+    document.querySelectorAll(".box-object").forEach(button => {
+        button.disabled = false;
+    });
 
     mixingInProgress = false;
 }
 
-/* ========================================
+/* =========================================
    ELEGIR UNA CAJA
-======================================== */
+========================================= */
 
-function selectBox(originalBox, button) {
-    if (gameCompleted || mixingInProgress) return;
+async function selectBox(boxId) {
+    if (roundInProgress || mixingInProgress || boxClickLocked || gameCompleted) {
+        return;
+    }
 
-    if (originalBox === winningBox) {
+    boxClickLocked = true;
+
+    const selectedButton = document.querySelector(
+        `.box-object[data-box-id="${boxId}"]`
+    );
+
+    if (!selectedButton) {
+        boxClickLocked = false;
+        return;
+    }
+
+    if (boxId === winningBoxId) {
         gameCompleted = true;
+        roundInProgress = false;
 
-        button.classList.add("correct");
-        button.innerHTML = "⭐<span>¡LA ENCONTRASTE!</span>";
+        selectedButton.classList.add("correct-box", "show-star");
+
+        document.querySelectorAll(".box-object").forEach(button => {
+            button.disabled = true;
+        });
 
         playSound(victorySound);
 
-        document.getElementById("boxInstruction").textContent =
-            "¡Misión cumplida!";
+        gameStatus.textContent = "¡RETO SUPERADO!";
+        boxInstruction.textContent = "¡Encontraste la estrella mágica!";
+        boxMessage.textContent =
+            "¡Excelente, Gaby! Tienes una vista increíble. ⭐💜";
 
-        document.getElementById("boxMessage").textContent =
-            "¡Muy bien, Gaby! Encontraste la estrella. ⭐";
+        mixButton.hidden = true;
+        retryButton.hidden = true;
 
-        document.querySelectorAll(".box").forEach(box => {
-            box.disabled = true;
-        });
-
-        const mixButton = document.getElementById("mixButton");
-        mixButton.textContent = "Continuar la misión 💜";
-        mixButton.disabled = false;
-        mixButton.onclick = () => showScreen("code-screen", 45);
+        continueButton.hidden = false;
+        continueButton.textContent = "Descubrir la siguiente pista 💜";
 
     } else {
         playSound(errorSound);
 
-        button.classList.add("wrong");
-        button.innerHTML = "❌<span>¡INTENTA OTRA!</span>";
+        selectedButton.classList.add("wrong-box");
 
-        document.getElementById("boxMessage").textContent =
-            "¡Uy! Esa no era. Observa las cajas e inténtalo otra vez.";
+        gameStatus.textContent = "¡CASI LO LOGRAS!";
+        boxMessage.textContent =
+            "¡Esa no era! No te preocupes, puedes volver a intentarlo. 💪";
 
-        document.querySelectorAll(".box").forEach(box => {
-            box.disabled = true;
+        document.querySelectorAll(".box-object").forEach(button => {
+            button.disabled = true;
         });
 
-        setTimeout(() => {
-            if (!gameCompleted) {
-                renderBoxes(false);
+        await sleep(700);
 
-                document.querySelectorAll(".box").forEach(box => {
-                    box.disabled = false;
-                });
-            }
-        }, 650);
+        if (gameCompleted) return;
+
+        retryButton.hidden = false;
+        retryButton.textContent = "Volver a intentarlo 🔄";
+
+        continueButton.hidden = true;
+        boxInstruction.textContent =
+            "Concéntrate y vuelve a seguir la estrella.";
+        boxClickLocked = true;
     }
 }
 
-/* ========================================
+/* =========================================
+   CONTINUAR TRAS ENCONTRAR LA ESTRELLA
+========================================= */
+
+function continueAfterBoxes() {
+    if (!gameCompleted) return;
+
+    showScreen("code-screen", 45);
+}
+
+/* =========================================
    CÓDIGO SECRETO
-======================================== */
+========================================= */
 
 function checkCode() {
     const input = document.getElementById("secretCode");
@@ -1158,7 +1329,6 @@ function checkCode() {
 
     if (enteredCode === SECRET_CODE.toUpperCase()) {
         playSound(victorySound);
-
         message.textContent = "¡Código correcto! ¡Vamos al siguiente reto! 💜";
 
         setTimeout(() => {
@@ -1167,7 +1337,6 @@ function checkCode() {
 
     } else {
         playSound(errorSound);
-
         message.textContent =
             "Ese no es el código correcto. Revisa bien la mochila de repartir de papá. 🎒";
 
@@ -1177,14 +1346,12 @@ function checkCode() {
 }
 
 document.getElementById("secretCode").addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        checkCode();
-    }
+    if (event.key === "Enter") checkCode();
 });
 
-/* ========================================
+/* =========================================
    PREGUNTA DE OPCIÓN MÚLTIPLE
-======================================== */
+========================================= */
 
 function answerQuiz(answer) {
     if (quizCompleted) return;
@@ -1203,9 +1370,7 @@ function answerQuiz(answer) {
 
         playSound(victorySound);
 
-        setTimeout(() => {
-            startCountdown();
-        }, 1200);
+        setTimeout(startCountdown, 1200);
 
     } else {
         buttons[answer].classList.add("wrong-answer");
@@ -1221,9 +1386,9 @@ function answerQuiz(answer) {
     }
 }
 
-/* ========================================
+/* =========================================
    CUENTA REGRESIVA
-======================================== */
+========================================= */
 
 function startCountdown() {
     if (countdownStarted) return;
@@ -1246,16 +1411,14 @@ function startCountdown() {
             clearInterval(timer);
             countdown.textContent = "¡SORPRESA!";
 
-            setTimeout(() => {
-                revealSurprise();
-            }, 800);
+            setTimeout(revealSurprise, 800);
         }
     }, 1000);
 }
 
-/* ========================================
+/* =========================================
    REVELACIÓN FINAL
-======================================== */
+========================================= */
 
 function revealSurprise() {
     showScreen("reveal-screen", 100);
@@ -1265,25 +1428,24 @@ function revealSurprise() {
     createConfetti();
     createBalloons();
 
-    // La canción principal debe continuar durante la revelación.
     if (backgroundMusic.paused) {
         startBackgroundMusic();
     }
 }
 
-/* ========================================
+/* =========================================
    CONFETI
-======================================== */
+========================================= */
 
 function createConfetti() {
-    const colors = ["💜", "💖", "✨", "⭐", "🎉", "🐺"];
+    const symbols = ["💜", "💖", "✨", "⭐", "🎉", "🐺"];
 
     for (let i = 0; i < 65; i++) {
         const confetti = document.createElement("div");
 
         confetti.className = "confetti";
-        confetti.textContent = colors[
-            Math.floor(Math.random() * colors.length)
+        confetti.textContent = symbols[
+            Math.floor(Math.random() * symbols.length)
         ];
 
         confetti.style.left = Math.random() * 100 + "vw";
@@ -1293,25 +1455,23 @@ function createConfetti() {
 
         document.body.appendChild(confetti);
 
-        setTimeout(() => {
-            confetti.remove();
-        }, 9000);
+        setTimeout(() => confetti.remove(), 9000);
     }
 }
 
-/* ========================================
+/* =========================================
    GLOBOS
-======================================== */
+========================================= */
 
 function createBalloons() {
-    const balloons = ["🎈", "💜", "💖", "🎈", "✨"];
+    const symbols = ["🎈", "💜", "💖", "🎈", "✨"];
 
     for (let i = 0; i < 15; i++) {
         const balloon = document.createElement("div");
 
         balloon.className = "balloon";
-        balloon.textContent = balloons[
-            Math.floor(Math.random() * balloons.length)
+        balloon.textContent = symbols[
+            Math.floor(Math.random() * symbols.length)
         ];
 
         balloon.style.left = Math.random() * 100 + "vw";
@@ -1320,9 +1480,7 @@ function createBalloons() {
 
         document.body.appendChild(balloon);
 
-        setTimeout(() => {
-            balloon.remove();
-        }, 11000);
+        setTimeout(() => balloon.remove(), 11000);
     }
 }
 </script>
